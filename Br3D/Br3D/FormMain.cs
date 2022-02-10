@@ -6,6 +6,7 @@ using hanee.Cad.Tool;
 using hanee.ThreeD;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Br3D
@@ -24,7 +25,12 @@ namespace Br3D
             model.WorkFailed += Model_WorkFailed;
 
             InitSnapping();
+            InitElementMethod();
+        }
 
+        // element별 method 목록 초기화
+        private void InitElementMethod()
+        {
             functionByElement.Add(tileNavItemOpen, Open);
             functionByElement.Add(tileNavItemSaveAs, SaveAs);
             functionByElement.Add(tileNavItemSaveImage, SaveImage);
@@ -75,9 +81,11 @@ namespace Br3D
                 // zoom fit
                 foreach (Viewport v in model.Viewports)
                     v.ZoomFit();
+
+                // object tree 갱신
+                ObjectTreeListHelper.Regen(treeListObject, model);
             }
         }
-
         private void navButtonMain_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
         {
 
@@ -100,46 +108,23 @@ namespace Br3D
             }
         }
 
-        void End()
+        // 
+        void FlagOsnap(DevExpress.XtraBars.Navigation.TileNavItem tile, Snapping.objectSnapType snapType)
         {
-            if (model is HModel)
-            {
-                ((HModel)model).Snapping.FlagActiveObjectSnap(Snapping.objectSnapType.End);
-            }
+            HModel hModel = model as HModel;
+            if (hModel == null)
+                return;
+
+            hModel.Snapping.FlagActiveObjectSnap(snapType);
+            tile.Tile.Checked = hModel.Snapping.IsActiveObjectSnap(snapType);
         }
 
-        void Middle()
-        {
-            if (model is HModel)
-            {
-                ((HModel)model).Snapping.FlagActiveObjectSnap(Snapping.objectSnapType.Mid);
-            }
-        }
+        void End() => FlagOsnap(tileNavItemEnd, Snapping.objectSnapType.End);
+        void Middle() => FlagOsnap(tileNavItemMiddle, Snapping.objectSnapType.Mid);
+        void Point() => FlagOsnap(tileNavItemPoint, Snapping.objectSnapType.Point);
+        void Intersection() => FlagOsnap(tileNavItemIntersection, Snapping.objectSnapType.Intersect);
+        void Center() => FlagOsnap(tileNavItemCenter, Snapping.objectSnapType.Center);
 
-        void Point()
-        {
-            if (model is HModel)
-            {
-                ((HModel)model).Snapping.FlagActiveObjectSnap(Snapping.objectSnapType.Point);
-            }
-        }
-
-        void Intersection()
-        {
-            if (model is HModel)
-            {
-                ((HModel)model).Snapping.FlagActiveObjectSnap(Snapping.objectSnapType.Intersect);
-            }
-
-        }
-
-        void Center()
-        {
-            if (model is HModel)
-            {
-                ((HModel)model).Snapping.FlagActiveObjectSnap(Snapping.objectSnapType.Center);
-            }
-        }
         async void Coorindates()
         {
             ActionID ac = new ActionID(model, ActionID.ShowResult.label);

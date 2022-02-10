@@ -109,32 +109,36 @@ namespace Br3D
                 if (prop == null)
                     continue;
 
-                TreeData tmp;
-                // 있으면 curData로 교체하고 통과
-                if (curData.dic.TryGetValue(prop, out tmp))
+                // 마지막 노드가 아닌경우 
+                if (i < listProperties.Count - 1)
                 {
-                    curData = tmp;
-
-                    // 마지막 노드에는 tag를 연결한다.
-                    if (i == listProperties.Count - 1)
+                    // 없으면 만든다.
+                    if (!curData.dic.TryGetValue(prop, out TreeData tmpData))
                     {
-                        tmp.Tag = tag;
+                        tmpData = new TreeData(id++, curData.ID, prop);
+                        curData.dic[prop] = tmpData;
+                        curData = tmpData;
                     }
-
-                    continue;
+                    else
+                    {
+                        curData = tmpData;
+                    }
                 }
-
-                // 없으면 만들어서 추가
-                tmp = new TreeData(id++, curData.ID, prop);
-
-                curData.dic[prop] = tmp;
-
-                curData = tmp;
-
-                // 마지막 노드에는 tag를 연결한다.
-                if (i == listProperties.Count - 1)
+                // 마지막 노드는 무조건 추가
+                else
                 {
-                    tmp.Tag = tag;
+                    // 마지막 노드가 이미 있다면 새로운 이름으로 만들어야 한다.
+                    var newProp = prop;
+                    int num = 1;
+                    while (curData.dic.ContainsKey(newProp))
+                    {
+                        newProp = $"{prop}{num++}";
+                    }
+                    
+                    var newData = new TreeData(id++, curData.ID, newProp);
+                    newData.Tag = tag;
+                    curData.dic[newProp] = newData;
+                    curData = newData;
                 }
             }
         }
@@ -192,8 +196,34 @@ namespace Br3D
         {
             List<string> properties = new List<string>();
             properties.Add("Root");
-            properties.Add(ent.GetType().ToString());
-            properties.Add(ent.ToString());
+            if (ent is devDept.Eyeshot.Translators.IEyeIfcObject)
+            {
+                var ifc = ent as devDept.Eyeshot.Translators.IEyeIfcObject;
+                if (ifc != null)
+                {
+                    string[] keys = new string[] { "KeyWord", "Name" };
+                    foreach (var key in keys)
+                    {
+                        if (ifc.Identification.TryGetValue(key, out string val))
+                            properties.Add(val);
+                    }
+                    
+                }
+            }
+            else
+            {
+                properties.Add(ent.GetType().ToString());
+                properties.Add(ent.ToString());
+            }
+            
+
+            // .Ifc 문자가 있으면 Ifc 이후 문자만 취한다.
+            foreach (var prop in properties)
+            {
+                var idx = prop.IndexOf(".Ifc");
+                if (idx < 0)
+                    continue;
+            }
 
             return properties;
         }

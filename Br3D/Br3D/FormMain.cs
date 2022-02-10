@@ -7,7 +7,6 @@ using hanee.Cad.Tool;
 using hanee.ThreeD;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Br3D
@@ -24,15 +23,68 @@ namespace Br3D
             model.MouseDoubleClick += Model_MouseDoubleClick;
             model.WorkCompleted += Model_WorkCompleted;
             model.WorkFailed += Model_WorkFailed;
+            model.MouseUp += Model_MouseUp;
 
             InitSnapping();
             InitElementMethod();
             InitObjectTreeList();
         }
 
+        private void Model_MouseUp(object sender, MouseEventArgs e)
+        {
+            // tree에서 선택
+            if (!treeListObject.Visible)
+                return;
+
+            treeListObject.ClearSelection();
+            var item = model.GetItemUnderMouseCursor(e.Location);
+            if (item == null)
+                return;
+
+            var node = treeListObject.FindNode(x => x.Tag == item.Item);
+            if (node == null)
+                return;
+            if (node.ParentNode != null)
+                node.ParentNode.Expand();
+            treeListObject.SelectNode(node);
+            treeListObject.TopVisibleNodeIndex = node.Id;
+        }
+
         private void InitObjectTreeList()
         {
             treeListObject.FocusedNodeChanged += TreeListObject_FocusedNodeChanged;
+            treeListObject.AfterCheckNode += TreeListObject_AfterCheckNode;
+
+        }
+
+        // check 변경시
+        private void TreeListObject_AfterCheckNode(object sender, DevExpress.XtraTreeList.NodeEventArgs e)
+        {
+            var node = e.Node;
+            if (node == null)
+                return;
+
+
+            AfterCheckNode(node);
+            model.Invalidate();
+        }
+
+        private void AfterCheckNode(DevExpress.XtraTreeList.Nodes.TreeListNode node)
+        {
+            var ent = node.Tag as Entity;
+            if (ent != null)
+            {
+                ent.Visible = node.Checked;
+            }
+
+
+            if (node.Nodes == null)
+                return;
+
+            foreach (DevExpress.XtraTreeList.Nodes.TreeListNode childNode in node.Nodes)
+            {
+                AfterCheckNode(childNode);
+            }
         }
 
         private void TreeListObject_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)

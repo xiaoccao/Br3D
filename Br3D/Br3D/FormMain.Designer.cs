@@ -46,7 +46,7 @@ namespace Br3D
             devDept.Eyeshot.CancelToolBarButton cancelToolBarButton1 = new devDept.Eyeshot.CancelToolBarButton("Cancel", devDept.Eyeshot.ToolBarButton.styleType.ToggleButton, true, true);
             devDept.Eyeshot.ProgressBar progressBar1 = new devDept.Eyeshot.ProgressBar(devDept.Eyeshot.ProgressBar.styleType.Circular, 0, "Idle", System.Drawing.Color.Black, System.Drawing.Color.Transparent, System.Drawing.Color.Green, 1D, true, cancelToolBarButton1, false, 0.1D, 0.333D, true);
             devDept.Graphics.BackgroundSettings backgroundSettings1 = new devDept.Graphics.BackgroundSettings(devDept.Graphics.backgroundStyleType.LinearGradient, System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(82)))), ((int)(((byte)(103))))), System.Drawing.Color.DodgerBlue, System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(41))))), 0.75D, null, devDept.Graphics.colorThemeType.Auto, 0.33D);
-            devDept.Eyeshot.Camera camera1 = new devDept.Eyeshot.Camera(new devDept.Geometry.Point3D(0D, 0D, 45D), 380D, new devDept.Geometry.Quaternion(0.018434349666532526D, 0.039532590434972079D, 0.42221602280006187D, 0.90544518284475428D), devDept.Graphics.projectionType.Perspective, 40D, 6.0399999618530273D, false, 0.001D);
+            devDept.Eyeshot.Camera camera1 = new devDept.Eyeshot.Camera(new devDept.Geometry.Point3D(0D, 0D, 45D), 380D, new devDept.Geometry.Quaternion(0.018434349666532526D, 0.039532590434972079D, 0.42221602280006187D, 0.90544518284475428D), devDept.Graphics.projectionType.Perspective, 40D, 6.4499992392052707D, false, 0.001D);
             devDept.Eyeshot.HomeToolBarButton homeToolBarButton1 = new devDept.Eyeshot.HomeToolBarButton("Home", devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true);
             devDept.Eyeshot.MagnifyingGlassToolBarButton magnifyingGlassToolBarButton1 = new devDept.Eyeshot.MagnifyingGlassToolBarButton("Magnifying Glass", devDept.Eyeshot.ToolBarButton.styleType.ToggleButton, true, true);
             devDept.Eyeshot.ZoomWindowToolBarButton zoomWindowToolBarButton1 = new devDept.Eyeshot.ZoomWindowToolBarButton("Zoom Window", devDept.Eyeshot.ToolBarButton.styleType.ToggleButton, true, true);
@@ -86,7 +86,7 @@ namespace Br3D
             devDept.Eyeshot.CoordinateSystemIcon coordinateSystemIcon1 = new devDept.Eyeshot.CoordinateSystemIcon(new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129))), System.Drawing.Color.Black, System.Drawing.Color.Black, System.Drawing.Color.Black, System.Drawing.Color.Black, System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80))))), System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80))))), System.Drawing.Color.OrangeRed, "Origin", "X", "Y", "Z", true, devDept.Eyeshot.coordinateSystemPositionType.BottomLeft, 37, null, false);
             devDept.Eyeshot.ViewCubeIcon viewCubeIcon1 = new devDept.Eyeshot.ViewCubeIcon(devDept.Eyeshot.coordinateSystemPositionType.TopRight, true, System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(20)))), ((int)(((byte)(60))))), true, "FRONT", "BACK", "LEFT", "RIGHT", "TOP", "BOTTOM", System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77))))), System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77))))), System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77))))), System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77))))), System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77))))), System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77))))), 'S', 'N', 'W', 'E', true, null, System.Drawing.Color.White, System.Drawing.Color.Black, 120, true, true, null, null, null, null, null, null, false, new devDept.Geometry.Quaternion(0D, 0D, 0D, 1D));
             devDept.Eyeshot.Viewport.SavedViewsManager savedViewsManager1 = new devDept.Eyeshot.Viewport.SavedViewsManager(8);
-            devDept.Eyeshot.Viewport viewport1 = new devDept.Eyeshot.Viewport(new System.Drawing.Point(0, 0), new System.Drawing.Size(822, 604), backgroundSettings1, camera1, new devDept.Eyeshot.ToolBar[] {
+            devDept.Eyeshot.Viewport viewport1 = new devDept.Eyeshot.Viewport(new System.Drawing.Point(0, 0), new System.Drawing.Size(820, 645), backgroundSettings1, camera1, new devDept.Eyeshot.ToolBar[] {
             toolBar1,
             toolBar2}, new devDept.Eyeshot.Legend[0], devDept.Eyeshot.displayType.Rendered, true, false, false, false, new devDept.Eyeshot.Grid[] {
             grid1}, new devDept.Eyeshot.OriginSymbol[] {
@@ -112,7 +112,6 @@ namespace Br3D
             this.dockPanelObjectTree = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel3_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.treeListObject = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumnName = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tileNavPane1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hModel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
@@ -141,7 +140,7 @@ namespace Br3D
             this.tileNavPane1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tileNavPane1.Location = new System.Drawing.Point(0, 0);
             this.tileNavPane1.Name = "tileNavPane1";
-            this.tileNavPane1.Size = new System.Drawing.Size(1046, 40);
+            this.tileNavPane1.Size = new System.Drawing.Size(1044, 43);
             this.tileNavPane1.TabIndex = 2;
             this.tileNavPane1.Text = "tileNavPane1";
             this.tileNavPane1.ElementClick += new DevExpress.XtraBars.Navigation.NavElementClickEventHandler(this.tileNavPane1_ElementClick);
@@ -324,11 +323,11 @@ namespace Br3D
             // 
             this.hModel1.Cursor = System.Windows.Forms.Cursors.Default;
             this.hModel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hModel1.Location = new System.Drawing.Point(224, 40);
+            this.hModel1.Location = new System.Drawing.Point(224, 43);
             this.hModel1.Name = "hModel1";
             this.hModel1.ProgressBar = progressBar1;
             this.hModel1.propertyGridHelper = null;
-            this.hModel1.Size = new System.Drawing.Size(822, 604);
+            this.hModel1.Size = new System.Drawing.Size(820, 645);
             this.hModel1.TabIndex = 3;
             this.hModel1.Text = "hModel1";
             this.hModel1.Transparency = hanee.ThreeD.HModel.TranparencyMode.untransparency;
@@ -358,46 +357,37 @@ namespace Br3D
             this.dockPanelObjectTree.Controls.Add(this.dockPanel3_Container);
             this.dockPanelObjectTree.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
             this.dockPanelObjectTree.ID = new System.Guid("c306bba9-1d83-4cca-b897-1e005975cc6f");
-            this.dockPanelObjectTree.Location = new System.Drawing.Point(0, 40);
+            this.dockPanelObjectTree.Location = new System.Drawing.Point(0, 43);
             this.dockPanelObjectTree.Name = "dockPanelObjectTree";
             this.dockPanelObjectTree.OriginalSize = new System.Drawing.Size(224, 200);
-            this.dockPanelObjectTree.Size = new System.Drawing.Size(224, 604);
+            this.dockPanelObjectTree.Size = new System.Drawing.Size(224, 645);
             this.dockPanelObjectTree.Text = "Object Tree";
             // 
             // dockPanel3_Container
             // 
             this.dockPanel3_Container.Controls.Add(this.treeListObject);
-            this.dockPanel3_Container.Location = new System.Drawing.Point(3, 30);
+            this.dockPanel3_Container.Location = new System.Drawing.Point(3, 26);
             this.dockPanel3_Container.Name = "dockPanel3_Container";
-            this.dockPanel3_Container.Size = new System.Drawing.Size(217, 571);
+            this.dockPanel3_Container.Size = new System.Drawing.Size(217, 616);
             this.dockPanel3_Container.TabIndex = 0;
             // 
             // treeListObject
             // 
-            this.treeListObject.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumnName});
             this.treeListObject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeListObject.Location = new System.Drawing.Point(0, 0);
             this.treeListObject.Name = "treeListObject";
-            this.treeListObject.Size = new System.Drawing.Size(217, 571);
+            this.treeListObject.Size = new System.Drawing.Size(217, 616);
             this.treeListObject.TabIndex = 0;
-            // 
-            // treeListColumnName
-            // 
-            this.treeListColumnName.Caption = "Name";
-            this.treeListColumnName.FieldName = "Name";
-            this.treeListColumnName.Name = "treeListColumnName";
-            this.treeListColumnName.Visible = true;
-            this.treeListColumnName.VisibleIndex = 0;
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1046, 644);
+            this.ClientSize = new System.Drawing.Size(1044, 688);
             this.Controls.Add(this.hModel1);
             this.Controls.Add(this.dockPanelObjectTree);
             this.Controls.Add(this.tileNavPane1);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.IconOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("FormMain.IconOptions.SvgImage")));
             this.Name = "FormMain";
             this.Text = "Br3D";
@@ -433,6 +423,5 @@ namespace Br3D
         private DevExpress.XtraBars.Docking.DockPanel dockPanelObjectTree;
         private DevExpress.XtraBars.Docking.ControlContainer dockPanel3_Container;
         private DevExpress.XtraTreeList.TreeList treeListObject;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumnName;
     }
 }

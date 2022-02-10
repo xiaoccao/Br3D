@@ -1,4 +1,5 @@
 ﻿using devDept.Eyeshot;
+using devDept.Eyeshot.Entities;
 using devDept.Eyeshot.Translators;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraEditors;
@@ -26,7 +27,25 @@ namespace Br3D
 
             InitSnapping();
             InitElementMethod();
+            InitObjectTreeList();
         }
+
+        private void InitObjectTreeList()
+        {
+            treeListObject.FocusedNodeChanged += TreeListObject_FocusedNodeChanged;
+        }
+
+        private void TreeListObject_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
+        {
+            Entity ent = e.Node.Tag as Entity;
+            if (ent == null)
+                return;
+
+            model.Entities.ClearSelection();
+            ent.Selected = true;
+            model.Invalidate();
+        }
+
 
         // element별 method 목록 초기화
         private void InitElementMethod()

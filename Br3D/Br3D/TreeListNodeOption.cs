@@ -14,8 +14,6 @@ namespace Br3D
         public bool Checked { get; set; }
 
         public object Tag { get; set; }
-
-        public bool Expanded { get; set; }
     }
 
     public class TreeData

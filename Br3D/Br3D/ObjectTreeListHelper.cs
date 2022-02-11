@@ -31,15 +31,29 @@ namespace Br3D
                     continue;
                 node.Tag = op.Tag;
                 node.Checked = op.Checked;
-                node.Expanded = op.Expanded;
             }
 
-            treeList.ExpandToLevel(2);
+            treeList.ExpandToLevel(0);
+        }
+
+        static public List<TreeListNode> GetAllSubNodes(this TreeListNode node)
+        {
+            List<TreeListNode> nodes = new List<TreeListNode>();
+            nodes.Add(node);
+
+            foreach (TreeListNode subNode in node.Nodes)
+            {
+                var subNodes = GetAllSubNodes(subNode);
+                if (subNodes == null || subNodes.Count == 0)
+                    continue;
+                nodes.AddRange(subNodes);
+            }
+            return nodes;
         }
 
 
         // element를 tree로 만들기 위한 data source를 만든다.
-        static public BindingList<TreeListNodeOption> GenerateDataSource(devDept.Eyeshot.Model model)
+        static private BindingList<TreeListNodeOption> GenerateDataSource(devDept.Eyeshot.Model model)
         {
             int id = -1;
             TreeData rootData = new TreeData(id++, -1, "root");
@@ -81,7 +95,6 @@ namespace Br3D
                 option.Name = data.Name;
                 option.Checked = true;
                 option.Tag = data.Tag;
-                option.Expanded = data.Expanded;
                 options.Add(option);
 
                 realID++;

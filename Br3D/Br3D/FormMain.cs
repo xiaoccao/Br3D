@@ -25,9 +25,34 @@ namespace Br3D
             model.WorkFailed += Model_WorkFailed;
             model.MouseUp += Model_MouseUp;
 
+       
+
+            InitGraphics();
+            InitDisplayMode();
+            
             InitSnapping();
             InitElementMethod();
             InitObjectTreeList();
+
+            InitToolbar();
+        }
+
+        private void InitToolbar()
+        {
+            
+        }
+
+        private void InitGraphics()
+        {
+            model.AntiAliasing = true;
+            model.AntiAliasingSamples = devDept.Graphics.antialiasingSamplesNumberType.x4;
+            model.AskForAntiAliasing = true;
+        }
+
+        private void InitDisplayMode()
+        {
+            model.Rendered.SilhouettesDrawingMode = silhouettesDrawingType.Never;
+            model.Rendered.ShadowMode = devDept.Graphics.shadowType.None;
         }
 
         private void Model_MouseUp(object sender, MouseEventArgs e)
@@ -89,13 +114,29 @@ namespace Br3D
 
         private void TreeListObject_FocusedNodeChanged(object sender, DevExpress.XtraTreeList.FocusedNodeChangedEventArgs e)
         {
-            Entity ent = e.Node.Tag as Entity;
-            if (ent == null)
+            var entities = GetAllEntitiesByNode(e.Node, true);
+            if (entities == null)
                 return;
-
+            
             model.Entities.ClearSelection();
-            ent.Selected = true;
+            entities.ForEach(x => x.Selected = true);
             model.Invalidate();
+        }
+
+        private List<Entity> GetAllEntitiesByNode(DevExpress.XtraTreeList.Nodes.TreeListNode node, bool subEntities)
+        {
+            List<Entity> entities = new List<Entity>();
+            var subNodes = node.GetAllSubNodes();
+            foreach (DevExpress.XtraTreeList.Nodes.TreeListNode subNode in subNodes)
+            {
+                var ent = subNode.Tag as Entity;
+                if (ent == null)
+                    continue;
+
+                entities.Add(ent);
+            }
+            
+            return entities;
         }
 
 

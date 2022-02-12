@@ -1,0 +1,8 @@
+open hileejaeho.cafe24.com
+hileejaeho
+gksrlf77
+binary
+cd apps
+cd InsideFolder
+put ..\Install\Setup_InsideFolder.exe
+quit

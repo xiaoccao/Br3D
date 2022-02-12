@@ -1,9 +1,11 @@
 ﻿
+using devDept.Eyeshot.Entities;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Br3D
 {
@@ -223,10 +225,17 @@ namespace Br3D
                     
                 }
             }
+            else if(ent is BlockReference)
+            {
+                properties.Add("Block");
+                properties.Add(((BlockReference)ent).BlockName);
+            }
             else
             {
-                properties.Add(ent.GetType().ToString());
-                properties.Add(ent.ToString());
+
+                string type = ent.GetType().ToString().Split('.').LastOrDefault();
+                properties.Add(type);
+                properties.Add(type);   // 마지막 노드는 이름이 같으면 번호를 자동으로 붙인다.
             }
             
 

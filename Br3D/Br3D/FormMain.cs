@@ -8,13 +8,20 @@ using hanee.ThreeD;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using ToolBarButton = devDept.Eyeshot.ToolBarButton;
 
 namespace Br3D
 {
     public partial class FormMain : DevExpress.XtraEditors.XtraForm
     {
+        devDept.Eyeshot.ToolBarButton toolBarButtonWireframe = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources.wireframe_32x, "Wireframe", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
+        devDept.Eyeshot.ToolBarButton toolBarButtonHiddenLine = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources.hiddenline_32x, "HiddenLine", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
+        devDept.Eyeshot.ToolBarButton toolBarButtonShaded = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources.shaded_32x, "Shade", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
+        devDept.Eyeshot.ToolBarButton toolBarButtonRendered = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources.rendered_32x, "Render", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
 
-        Model model => hModel1;
+        List<Viewport> viewports = new List<Viewport>();
+
+        Model model => o;
         Dictionary<NavElement, Action> functionByElement = new Dictionary<NavElement, Action>();
         public FormMain()
         {
@@ -24,22 +31,111 @@ namespace Br3D
             model.WorkCompleted += Model_WorkCompleted;
             model.WorkFailed += Model_WorkFailed;
             model.MouseUp += Model_MouseUp;
+            
+            foreach (Viewport vp in model.Viewports)
+                viewports.Add(vp);
 
-       
+            Options.Instance.appName = "Br3D";
+            Options.Instance.LoadOptions();
 
+            LanguageHelper.Load(Options.Instance.language);
             InitGraphics();
             InitDisplayMode();
-            
+
             InitSnapping();
-            InitElementMethod();
+            InitTileElementMethod();
+            InitTileElementStatus();
             InitObjectTreeList();
 
             InitToolbar();
+            Translate();
         }
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            ViewportSingle();
+        }
+
+        private void Translate()
+        {
+            // navButton
+            navButtonHome.Caption = LanguageHelper.Tr("Home");
+
+            // category
+            tileNavCategoryOptions.Caption = LanguageHelper.Tr("Options");
+            tileNavCategoryOsnap.Caption = LanguageHelper.Tr("Osnap");
+            tileNavCategoryAnnotation.Caption = LanguageHelper.Tr("Annotation");
+            tileNavCategoryViewport.Caption = LanguageHelper.Tr("Viewport");
+
+
+            //tile
+            SetTileText(tileNavItemOpen, LanguageHelper.Tr("Open"));
+            SetTileText(tileNavItemSaveAs, LanguageHelper.Tr("Save As"));
+            SetTileText(tileNavItemSaveImage, LanguageHelper.Tr("Save Image"));
+            SetTileText(tileNavItemExit, LanguageHelper.Tr("Exit"));
+            SetTileText(tileNavItemEnd, LanguageHelper.Tr("End Point"));
+            SetTileText(tileNavItemIntersection, LanguageHelper.Tr("Intersection Point"));
+            SetTileText(tileNavItemCenter, LanguageHelper.Tr("Center Point"));
+            SetTileText(tileNavItemPoint, LanguageHelper.Tr("Point"));
+            SetTileText(tileNavItemMiddle, LanguageHelper.Tr("Middle Point"));
+            SetTileText(tileNavItemCoordinates, LanguageHelper.Tr("Coordinates"));
+            SetTileText(tileNavItemDistance, LanguageHelper.Tr("Distance"));
+            SetTileText(tileNavItemMemo, LanguageHelper.Tr("Memo"));
+            SetTileText(tileNavItemLanguage, LanguageHelper.Tr("Language"));
+
+            // sub tile
+
+            // control
+            dockPanelObjectTree.Text = LanguageHelper.Tr("Object Tree");
+        }
+
+        private void SetTileText(TileNavItem tileNavItem, string text)
+        {
+            tileNavItem.TileText = text;
+            tileNavItem.Caption = text;
+        }
+
 
         private void InitToolbar()
         {
-            
+            foreach (Viewport vp in model.Viewports)
+            {
+                if (vp.ToolBars.Length > 1)
+                {
+                    var displayModelToolbar = vp.ToolBars[1];
+                    displayModelToolbar.Position = devDept.Eyeshot.ToolBar.positionType.VerticalTopLeft;
+                    displayModelToolbar.Buttons.Clear();
+                    displayModelToolbar.Buttons.Add(toolBarButtonWireframe);
+                    displayModelToolbar.Buttons.Add(toolBarButtonHiddenLine);
+                    displayModelToolbar.Buttons.Add(toolBarButtonShaded);
+                    displayModelToolbar.Buttons.Add(toolBarButtonRendered);
+                }
+
+                vp.Rotate.MouseButton = new MouseButton(MouseButtons.Middle, modifierKeys.Ctrl);
+                vp.Rotate.RotationMode = rotationType.Turntable;
+
+                vp.Pan.MouseButton = new MouseButton(MouseButtons.Middle, modifierKeys.None);
+            }
+
+            toolBarButtonWireframe.Click += ToolBarButtonDisplayMode_Click;
+            toolBarButtonHiddenLine.Click += ToolBarButtonDisplayMode_Click;
+            toolBarButtonShaded.Click += ToolBarButtonDisplayMode_Click;
+            toolBarButtonRendered.Click += ToolBarButtonDisplayMode_Click;
+        }
+
+        private void ToolBarButtonDisplayMode_Click(object sender, EventArgs e)
+        {
+
+            var toolBar = sender as ToolBarButton;
+            if (toolBar == toolBarButtonWireframe)
+                model.ActiveViewport.DisplayMode = displayType.Wireframe;
+            else if (toolBar == toolBarButtonHiddenLine)
+                model.ActiveViewport.DisplayMode = displayType.HiddenLines;
+            else if (toolBar == toolBarButtonShaded)
+                model.ActiveViewport.DisplayMode = displayType.Shaded;
+            else if (toolBar == toolBarButtonRendered)
+                model.ActiveViewport.DisplayMode = displayType.Rendered;
+
+            model.Invalidate();
         }
 
         private void InitGraphics()
@@ -51,6 +147,10 @@ namespace Br3D
 
         private void InitDisplayMode()
         {
+            model.Shaded.ShowInternalWires = false;
+            model.Shaded.EdgeColorMethod = edgeColorMethodType.SingleColor;
+            model.Shaded.EdgeThickness = 1;
+
             model.Rendered.SilhouettesDrawingMode = silhouettesDrawingType.Never;
             model.Rendered.ShadowMode = devDept.Graphics.shadowType.None;
         }
@@ -61,25 +161,28 @@ namespace Br3D
             if (!treeListObject.Visible)
                 return;
 
-            treeListObject.ClearSelection();
-            var item = model.GetItemUnderMouseCursor(e.Location);
-            if (item == null)
-                return;
+            if (e.Button == MouseButtons.Left)
+            {
+                treeListObject.ClearSelection();
+                var item = model.GetItemUnderMouseCursor(e.Location);
+                if (item == null)
+                    return;
 
-            var node = treeListObject.FindNode(x => x.Tag == item.Item);
-            if (node == null)
-                return;
-            if (node.ParentNode != null)
-                node.ParentNode.Expand();
-            treeListObject.SelectNode(node);
-            treeListObject.TopVisibleNodeIndex = node.Id;
+                var node = treeListObject.FindNode(x => x.Tag == item.Item);
+                if (node == null)
+                    return;
+                if (node.ParentNode != null)
+                    node.ParentNode.Expand();
+                treeListObject.SelectNode(node);
+                treeListObject.TopVisibleNodeIndex = node.Id;
+
+            }
         }
 
         private void InitObjectTreeList()
         {
             treeListObject.FocusedNodeChanged += TreeListObject_FocusedNodeChanged;
             treeListObject.AfterCheckNode += TreeListObject_AfterCheckNode;
-
         }
 
         // check 변경시
@@ -88,7 +191,6 @@ namespace Br3D
             var node = e.Node;
             if (node == null)
                 return;
-
 
             AfterCheckNode(node);
             model.Invalidate();
@@ -117,7 +219,7 @@ namespace Br3D
             var entities = GetAllEntitiesByNode(e.Node, true);
             if (entities == null)
                 return;
-            
+
             model.Entities.ClearSelection();
             entities.ForEach(x => x.Selected = true);
             model.Invalidate();
@@ -135,27 +237,76 @@ namespace Br3D
 
                 entities.Add(ent);
             }
-            
+
             return entities;
         }
 
 
+        void InitTileElementStatus()
+        {
+            tileNavSubItemKorean.Tile.Checked = false;
+            tileNavSubItemEnglish.Tile.Checked = false;
+            if (Options.Instance.language == "ko-KR")
+                tileNavSubItemKorean.Tile.Checked = true;
+            else if(Options.Instance.language == "en-US")
+                tileNavSubItemEnglish.Tile.Checked = true;
+        }
+
         // element별 method 목록 초기화
-        private void InitElementMethod()
+        private void InitTileElementMethod()
         {
             functionByElement.Add(tileNavItemOpen, Open);
             functionByElement.Add(tileNavItemSaveAs, SaveAs);
             functionByElement.Add(tileNavItemSaveImage, SaveImage);
+            functionByElement.Add(tileNavItemExit, Close);
             functionByElement.Add(tileNavItemCoordinates, Coorindates);
             functionByElement.Add(tileNavItemDistance, Distance);
+            functionByElement.Add(tileNavItemMemo, Memo);
             functionByElement.Add(tileNavItemClearAnnotations, ClearAnnotations);
             functionByElement.Add(tileNavItemEnd, End);
             functionByElement.Add(tileNavItemIntersection, Intersection);
             functionByElement.Add(tileNavItemMiddle, Middle);
             functionByElement.Add(tileNavItemCenter, Center);
             functionByElement.Add(tileNavItemPoint, Point);
+
+            functionByElement.Add(tileNavItemViewportsingle, ViewportSingle);
+            functionByElement.Add(tileNavItemViewport1x1, Viewport1x1);
+            functionByElement.Add(tileNavItemViewport1x2, Viewport1x2);
+            functionByElement.Add(tileNavItemViewport2x2, Viewport2x2);
+
+            functionByElement.Add(tileNavItemLanguage, Language);
+            functionByElement.Add(tileNavSubItemKorean, Korean);
+            functionByElement.Add(tileNavSubItemEnglish, English);
+
+            functionByElement.Add(tileNavItemHomePage, Homepage);
+            
         }
 
+        void Homepage()
+        {
+            System.Diagnostics.Process.Start("http://hileejaeho.cafe24.com/kr-br3d/");
+        }
+
+        void Language()
+        {
+            tileNavItemLanguage.Tile.ShowDropDown();
+        }
+
+        void Korean()
+        {
+            Options.Instance.language = "ko-KR";
+            InitTileElementStatus();
+            LanguageHelper.Load(Options.Instance.language);
+            Translate();
+        }
+
+        void English()
+        {
+            Options.Instance.language = "en-US";
+            InitTileElementStatus();
+            LanguageHelper.Load(Options.Instance.language);
+            Translate();
+        }
         private void InitSnapping()
         {
             if (model is HModel)
@@ -172,6 +323,31 @@ namespace Br3D
             {
                 model.ZoomFit();
                 return;
+            }
+
+            // zoom all
+            if (e.Button == MouseButtons.Middle)
+            {
+                model.ZoomFit();
+                return;
+            }
+
+            if (ActionBase.IsUserInputting())
+            {
+                return;
+            }
+
+            if (model.ObjectManipulator.Visible == false)
+            {
+                devDept.Geometry.Transformation trans = new devDept.Geometry.Transformation();
+                IList<Entity> selectedEntities = ((HModel)model).GetAllSelectedEntities();
+                trans.Identity();
+                model.ObjectManipulator.Enable(trans, true, selectedEntities);
+            }
+            else
+            {
+                model.ObjectManipulator.Apply();
+                model.Entities.Regen();
             }
         }
 
@@ -231,6 +407,48 @@ namespace Br3D
             tile.Tile.Checked = hModel.Snapping.IsActiveObjectSnap(snapType);
         }
 
+        void ViewportSingle()
+        {
+            if (model.Viewports.Contains(viewports[1]))
+                model.Viewports.Remove(viewports[1]);
+            if (model.Viewports.Contains(viewports[2]))
+                model.Viewports.Remove(viewports[2]);
+            if (model.Viewports.Contains(viewports[3]))
+                model.Viewports.Remove(viewports[3]);
+            model.Invalidate();
+        }
+
+        void Viewport1x1()
+        {
+            if (!model.Viewports.Contains(viewports[1]))
+                model.Viewports.Add(viewports[1]);
+            if (model.Viewports.Contains(viewports[2]))
+                model.Viewports.Remove(viewports[2]);
+            if (model.Viewports.Contains(viewports[3]))
+                model.Viewports.Remove(viewports[3]);
+            model.Invalidate();
+        }
+        void Viewport1x2()
+        {
+            if (!model.Viewports.Contains(viewports[1]))
+                model.Viewports.Add(viewports[1]);
+            if (!model.Viewports.Contains(viewports[2]))
+                model.Viewports.Add(viewports[2]);
+            if (model.Viewports.Contains(viewports[3]))
+                model.Viewports.Remove(viewports[3]);
+            model.Invalidate();
+        }
+        void Viewport2x2()
+        {
+            if (!model.Viewports.Contains(viewports[1]))
+                model.Viewports.Add(viewports[1]);
+            if (!model.Viewports.Contains(viewports[2]))
+                model.Viewports.Add(viewports[2]);
+            if (!model.Viewports.Contains(viewports[3]))
+                model.Viewports.Add(viewports[3]);
+            model.Invalidate();
+        }
+
         void End() => FlagOsnap(tileNavItemEnd, Snapping.objectSnapType.End);
         void Middle() => FlagOsnap(tileNavItemMiddle, Snapping.objectSnapType.Mid);
         void Point() => FlagOsnap(tileNavItemPoint, Snapping.objectSnapType.Point);
@@ -246,6 +464,12 @@ namespace Br3D
         async void Distance()
         {
             ActionDist ac = new ActionDist(model, ActionDist.ShowResult.label);
+            await ac.RunAsync();
+        }
+
+        async void Memo()
+        {
+            ActionMemo ac = new ActionMemo(model);
             await ac.RunAsync();
         }
 
@@ -363,6 +587,11 @@ namespace Br3D
         {
             model.Clear();
             model.Invalidate();
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Options.Instance.SaveOptions();
         }
 
 

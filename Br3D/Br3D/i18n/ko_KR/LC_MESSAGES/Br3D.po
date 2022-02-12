@@ -1,0 +1,788 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-02-12 17:41+0900\n"
+"PO-Revision-Date: 2022-02-12 17:54+0900\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ko_KR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-KeywordsList: Tr\n"
+"X-Poedit-SearchPath-0: i18n/ko_KR\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: FormMain.cs:57
+msgid "Home"
+msgstr "홈"
+
+#: FormMain.cs:60
+msgid "Options"
+msgstr "옵션"
+
+#: FormMain.cs:61 FormMain.cs:72
+msgid "Osnap"
+msgstr "객체 스냅"
+
+#: FormMain.cs:62
+msgid "Annotation"
+msgstr "주석"
+
+#: FormMain.cs:63
+msgid "Viewport"
+msgstr "뷰 포트"
+
+#: FormMain.cs:67
+msgid "Open"
+msgstr "열기"
+
+#: FormMain.cs:68
+msgid "Save As"
+msgstr "저장"
+
+#: FormMain.cs:69
+msgid "Save Image"
+msgstr "이미지 저장"
+
+#: FormMain.cs:70
+msgid "Exit"
+msgstr "종료"
+
+#: FormMain.cs:73
+msgid "End Point"
+msgstr "끝점"
+
+#: FormMain.cs:74
+msgid "Intersection Point"
+msgstr "교차점"
+
+#: FormMain.cs:75
+msgid "Center Point"
+msgstr "중심점"
+
+#: FormMain.cs:76
+msgid "Point"
+msgstr "점"
+
+#: FormMain.cs:77
+msgid "Middle Point"
+msgstr "중간점"
+
+#: FormMain.cs:79
+msgid "Coordinates"
+msgstr "좌표"
+
+#: FormMain.cs:80
+msgid "Distance"
+msgstr "거리"
+
+#: FormMain.cs:81
+msgid "Memo"
+msgstr "메모"
+
+#: FormMain.cs:82
+msgid "Language"
+msgstr "언어"
+
+#: FormMain.cs:87
+msgid "Object Tree"
+msgstr "객체 트리"
+
+#~ msgid "Tool"
+#~ msgstr "도구"
+
+#~ msgid "System"
+#~ msgstr "시스템"
+
+#~ msgid "Clipboard"
+#~ msgstr "클립보드"
+
+#~ msgid "New"
+#~ msgstr "새로 만들기"
+
+#~ msgid "Path"
+#~ msgstr "경로"
+
+#~ msgid "Edit"
+#~ msgstr "편집"
+
+#~ msgid "Layout"
+#~ msgstr "배치"
+
+#~ msgid "Filter"
+#~ msgstr "필터"
+
+#~ msgid "Watch"
+#~ msgstr "감시"
+
+#~ msgid "Utility"
+#~ msgstr "유틸리티"
+
+#~ msgid "System folders"
+#~ msgstr "시스템 폴더"
+
+#~ msgid "Show/Hide"
+#~ msgstr "보기/숨기기"
+
+#~ msgid "Archive"
+#~ msgstr "압축"
+
+#~ msgid "Skin"
+#~ msgstr "스킨"
+
+#~ msgid "Connection"
+#~ msgstr "연결하기"
+
+#~ msgid "Transfers"
+#~ msgstr "전송"
+
+#~ msgid "Find"
+#~ msgstr "찾기"
+
+#~ msgid "New folder"
+#~ msgstr "새 폴더"
+
+#~ msgid "Copy"
+#~ msgstr "복사"
+
+#~ msgid "Paste"
+#~ msgstr "붙여넣기"
+
+#~ msgid "Cut"
+#~ msgstr "잘라내기"
+
+#~ msgid "Rename"
+#~ msgstr "이름변경"
+
+#~ msgid "Delete"
+#~ msgstr "삭제"
+
+#~ msgid "Open file path"
+#~ msgstr "파일 경로 열기"
+
+#~ msgid "List"
+#~ msgstr "목록"
+
+#~ msgid "Count by ext"
+#~ msgstr "확장자별 갯수"
+
+#~ msgid "Size by ext"
+#~ msgstr "확장자별 크기"
+
+#~ msgid "Compare"
+#~ msgstr "비교"
+
+#~ msgid "1 Explorer"
+#~ msgstr "단일 탐색기"
+
+#~ msgid "2 Explorer"
+#~ msgstr "다중 탐색기"
+
+#~ msgid "Default"
+#~ msgstr "기본값"
+
+#~ msgid "File only"
+#~ msgstr "파일만 보기"
+
+#~ msgid "Subfolders"
+#~ msgstr "하위폴더"
+
+#~ msgid "Link to origin"
+#~ msgstr "링크를 원본으로 보기"
+
+#~ msgid "Copy list"
+#~ msgstr "목록 복사"
+
+#~ msgid "Restore"
+#~ msgstr "복원"
+
+#~ msgid "Color"
+#~ msgstr "색상"
+
+#~ msgid "Hotkey"
+#~ msgstr "단축키"
+
+#~ msgid "Compress"
+#~ msgstr "압축하기"
+
+#~ msgid "Extract"
+#~ msgstr "압축풀기"
+
+#~ msgid "Extract here"
+#~ msgstr "여기에 압축풀기"
+
+#~ msgid "Hidden item"
+#~ msgstr "숨김 항목"
+
+#~ msgid "Homepage"
+#~ msgstr "홈페이지"
+
+#~ msgid "Check for update"
+#~ msgstr "업데이트 체크"
+
+#~ msgid "Help"
+#~ msgstr "도움말"
+
+#~ msgid "Site"
+#~ msgstr "사이트"
+
+#~ msgid "Connect"
+#~ msgstr "연결하기"
+
+#~ msgid "Disconnect"
+#~ msgstr "연결끊기"
+
+#~ msgid "Stop"
+#~ msgstr "중지"
+
+#~ msgid "Sub explorer"
+#~ msgstr "보조 탐색기"
+
+#~ msgid "Hotkeys"
+#~ msgstr "단축키"
+
+#~ msgid "General"
+#~ msgstr "일반"
+
+#~ msgid "Default values"
+#~ msgstr "기본값"
+
+#~ msgid "Run on Windows startup"
+#~ msgstr "윈도우 시작시 실행"
+
+#~ msgid "Startup folder"
+#~ msgstr "시작 폴더"
+
+#~ msgid "Startup mode"
+#~ msgstr "시작 모드"
+
+#~ msgid "Compress level"
+#~ msgstr "압축 수준"
+
+#~ msgid "Drive"
+#~ msgstr "드라이브"
+
+#~ msgid "File"
+#~ msgstr "파일"
+
+#~ msgid "Folder"
+#~ msgstr "폴더"
+
+#~ msgid "Ext"
+#~ msgstr "확장자"
+
+#~ msgid "Saves as current color options"
+#~ msgstr "현재 색 옵션을 다른이름으로 저장합니다"
+
+#~ msgid "Defaults all color options"
+#~ msgstr "모든 색 옵션을 기본값으로 설정합니다"
+
+#~ msgid "Saves as current hotkey options"
+#~ msgstr "현재 단축키 옵션을 다른이름으로 저장합니다"
+
+#~ msgid "Defaults all hotkey options"
+#~ msgstr "모든 단축키 옵션을 기본값으로 설정합니다"
+
+#~ msgid "Homepage(&A)"
+#~ msgstr "홈페이지(&A)"
+
+#~ msgid "Check for update(&U)"
+#~ msgstr "업데이트 체크(&U)"
+
+#~ msgid "Help(&H)"
+#~ msgstr "도움말(&U)"
+
+#~ msgid "Find(&F)"
+#~ msgstr "찾기(&F)"
+
+#~ msgid "Show(&S)"
+#~ msgstr "보기(&S)"
+
+#~ msgid ""
+#~ "Selected file list copied.\n"
+#~ "Paste(Ctrl+V)."
+#~ msgstr ""
+#~ "선택한 파일 목록을 복사했습니다.\n"
+#~ "필요한 곳에 붙여넣기 하세요(Ctrl+v)"
+
+#~ msgid "Update check failed! - wyUpdate.exe not found!"
+#~ msgstr "업데이트 체크 실패! - wyUpdate.exe가 없습니다!"
+
+#~ msgid "Added"
+#~ msgstr "추가됨"
+
+#~ msgid "Changed"
+#~ msgstr "변경됨"
+
+#~ msgid "Deleted"
+#~ msgstr "삭제됨"
+
+#~ msgid "Last folder"
+#~ msgstr "마지막 폴더"
+
+#~ msgid "Default folder"
+#~ msgstr "기본 폴더"
+
+#~ msgid "Explorer"
+#~ msgstr "탐색기"
+
+#~ msgid "Fast"
+#~ msgstr "빠르게"
+
+#~ msgid "Normal"
+#~ msgstr "보통"
+
+#~ msgid "Best"
+#~ msgstr "최대압축"
+
+#~ msgid "Name"
+#~ msgstr "이름"
+
+#~ msgid "Default color?"
+#~ msgstr "색을 초기화 합니까?"
+
+#~ msgid "Default color"
+#~ msgstr "기본색"
+
+#~ msgid "Default hotkey?"
+#~ msgstr "단축키를 초기화 합니까?"
+
+#~ msgid "Default hotkey"
+#~ msgstr "기본 단축키"
+
+#~ msgid "Edit hotkey"
+#~ msgstr "단축키 편집"
+
+#~ msgid "Already assigned to : "
+#~ msgstr "이미 할당됨 : "
+
+#~ msgid "Ignore path"
+#~ msgstr "제외 경로"
+
+#~ msgid "Changed item"
+#~ msgstr "변경된 항목"
+
+#~ msgid "Created item"
+#~ msgstr "생성된 항목"
+
+#~ msgid "Deleted item"
+#~ msgstr "삭제된 항목"
+
+#~ msgid "Watch options"
+#~ msgstr "감시 옵션"
+
+#~ msgid "Add"
+#~ msgstr "추가"
+
+#~ msgid "Close"
+#~ msgstr "닫기"
+
+#~ msgid "Watch items"
+#~ msgstr "감시 항목"
+
+#~ msgid "Watching exts"
+#~ msgstr "감시 확장자"
+
+#~ msgid "Ignore paths"
+#~ msgstr "제외 경로"
+
+#~ msgid "File Folder"
+#~ msgstr "파일 폴더"
+
+#~ msgid "System Folder"
+#~ msgstr "시스템 폴더"
+
+#~ msgid "File(s)"
+#~ msgstr "파일"
+
+#~ msgid "Folder(s)"
+#~ msgstr "폴더"
+
+#~ msgid "Left"
+#~ msgstr "남음"
+
+#~ msgid "Dark"
+#~ msgstr "어두움"
+
+#~ msgid "Light"
+#~ msgstr "밝음"
+
+#~ msgid "Mono(Dark)"
+#~ msgstr "단색(어두움)"
+
+#~ msgid "Mono(Light)"
+#~ msgstr "단색(밝음)"
+
+#~ msgid "All"
+#~ msgstr "모두"
+
+#~ msgid "Everything"
+#~ msgstr "모두"
+
+#~ msgid "Last 5 minutes"
+#~ msgstr "최근 5분"
+
+#~ msgid "Last 1 hour"
+#~ msgstr "최근 1시간"
+
+#~ msgid "Last 1 week"
+#~ msgstr "최근 1주일"
+
+#~ msgid "Last 1 month"
+#~ msgstr "최근 1개월"
+
+#~ msgid "Today"
+#~ msgstr "오늘"
+
+#~ msgid "Source code"
+#~ msgstr "소스코드"
+
+#~ msgid "Document"
+#~ msgstr "문서"
+
+#~ msgid "Compressed"
+#~ msgstr "압축파일"
+
+#~ msgid "Audio"
+#~ msgstr "오디오"
+
+#~ msgid "Video"
+#~ msgstr "비디오"
+
+#~ msgid "Executable"
+#~ msgstr "실행파일"
+
+#~ msgid "Temporary"
+#~ msgstr "임시파일"
+
+#~ msgid "Not ready"
+#~ msgstr "준비되지 않음"
+
+#~ msgid "Favorites"
+#~ msgstr "즐겨찾기"
+
+#~ msgid "Clear(&X)"
+#~ msgstr "지우기(&X)"
+
+#~ msgid "Copy(&C)"
+#~ msgstr "복사(&C)"
+
+#~ msgid "Selected"
+#~ msgstr "선택됨"
+
+#~ msgid "Can not change the path when doing transfer on FTP.."
+#~ msgstr "FTP 전송중에는 경로를 변경할 수 없습니다.."
+
+#~ msgid "Filter ex)*.exe;*.png"
+#~ msgstr "필터 예)*.exe;*.png"
+
+#~ msgid "Logs are copied to clipboard"
+#~ msgstr "로그가 클립보드로 복사되었습니다"
+
+#~ msgid "Event"
+#~ msgstr "이벤트"
+
+#~ msgid "Date modified"
+#~ msgstr "수정한 날짜"
+
+#~ msgid "Date created"
+#~ msgstr "생성한 날짜"
+
+#~ msgid "Attribute"
+#~ msgstr "속성"
+
+#~ msgid "Size"
+#~ msgstr "크기"
+
+#~ msgid "Type"
+#~ msgstr "유형"
+
+#~ msgid "Are you sure you want to <b>delete</b> a file/folder?"
+#~ msgstr "파일/폴더를 정말 <b>삭제</b>하시겠습니까?"
+
+#~ msgid "<color=red>{count} selected file/folder</color>"
+#~ msgstr "<color=red>{count}개의 선택된 파일/폴더</color>"
+
+#~ msgid "Are you sure you want to <b>delete</b> the files/folders?"
+#~ msgstr "파일/폴더를 정말 <b>삭제</b>하시겠습니까?"
+
+#~ msgid "<color=red>{count} selected files/folders</color>"
+#~ msgstr "<color=red>{count}개의 선택된 파일/폴더</color>"
+
+#~ msgid "Confirm file delete"
+#~ msgstr "파일 삭제 확인"
+
+#~ msgid "Copy file(s)/folder(s) : "
+#~ msgstr "파일/폴더 복사 : "
+
+#~ msgid "Items"
+#~ msgstr "항목"
+
+#~ msgid "File Copy"
+#~ msgstr "파일 복사"
+
+#~ msgid "Do you want to go to the unzipped folder?"
+#~ msgstr "압축을 푼 폴더로 이동하시겠습니까?"
+
+#~ msgid "Completed"
+#~ msgstr "완료"
+
+#~ msgid "Extract completed"
+#~ msgstr "압축풀기 완료"
+
+#~ msgid "Select file(s) to compress"
+#~ msgstr "압축할 파일을 선택하세요"
+
+#~ msgid "Do you want to go to the folder where zipped file made?"
+#~ msgstr "압축파일이 만들어진 폴더로 이동하시겠습니까?"
+
+#~ msgid "Compression"
+#~ msgstr "압축"
+
+#~ msgid "Filename"
+#~ msgstr "파일명"
+
+#~ msgid "Compression level"
+#~ msgstr "압축 수준"
+
+#~ msgid "Password"
+#~ msgstr "비밀번호"
+
+#~ msgid "Ok"
+#~ msgstr "확인"
+
+#~ msgid "Cancel"
+#~ msgstr "취소"
+
+#~ msgid "Confirm File/Folder Replace"
+#~ msgstr "같은 파일이 있음"
+
+#~ msgid "A destination folder already contains a file/folder named"
+#~ msgstr "이미 같은 이름의 파일/폴더가 있습니다"
+
+#~ msgid "Apply to all(&A)"
+#~ msgstr "이후 모두 동일하게 처리(&A)"
+
+#~ msgid "Overwrite(&W)"
+#~ msgstr "덮어쓰기(&W)"
+
+#~ msgid "Skip(&S)"
+#~ msgstr "건너뛰기(&S)"
+
+#~ msgid "Overwrite Newer(&E)"
+#~ msgstr "새 파일 덮어쓰기(&E)"
+
+#~ msgid "Rename(&R)"
+#~ msgstr "이름변경(&R)"
+
+#~ msgid "Time"
+#~ msgstr "시간"
+
+#~ msgid "Find(feat. Everything)"
+#~ msgstr "찾기(feat. Everything)"
+
+#~ msgid "Filters by date modified"
+#~ msgstr "수정시간으로 필터링 합니다"
+
+#~ msgid "Filters by file type"
+#~ msgstr "파일 종류로 필터링 합니다"
+
+#~ msgid "Search results : "
+#~ msgstr "검색 결과 : "
+
+#~ msgid "Opens selected file path in InsideFolder explorer"
+#~ msgstr "InsideFolder 탐색기에서 선택한 파일의 경로를 엽니다"
+
+#~ msgid "Open search results"
+#~ msgstr "검색 결과 열기"
+
+#~ msgid "Opens search results in InsideFolder explorer"
+#~ msgstr "InsideFolder 탐색기에서 검색결과를 엽니다"
+
+#~ msgid "Result is empty."
+#~ msgstr "결과가 없습니다."
+
+#~ msgid "There are too many results."
+#~ msgstr "검색 결과가 너무 많습니다."
+
+#~ msgid "FTP Connection"
+#~ msgstr "FTP 연결"
+
+#~ msgid "Host"
+#~ msgstr "호스트"
+
+#~ msgid "ID"
+#~ msgstr "아이디"
+
+#~ msgid "Passive mode"
+#~ msgstr "패시브 모드"
+
+#~ msgid "Add to favorites"
+#~ msgstr "즐겨찾기에 추가"
+
+#~ msgid "FTP site manager"
+#~ msgstr "FTP 사이트 관리자"
+
+#~ msgid "Port"
+#~ msgstr "포트"
+
+#~ msgid "Note"
+#~ msgstr "비고"
+
+#~ msgid "Remote directory"
+#~ msgstr "원격 디렉토리"
+
+#~ msgid "Show Password"
+#~ msgstr "비밀번호 보기"
+
+#~ msgid "Connection information"
+#~ msgstr "연결정보"
+
+#~ msgid "Etc"
+#~ msgstr "기타"
+
+#~ msgid "FTP transfers log"
+#~ msgstr "FTP 전송 로그"
+
+#~ msgid "Log"
+#~ msgstr "로그"
+
+#~ msgid "Rename(\\/:*?\" <>| characters cannot be used)"
+#~ msgstr "이름변경(\\/:*?\" <>| 문자는 사용할 수 없음)"
+
+#~ msgid ""
+#~ "Do not used following character.\n"
+#~ "\\/:*?\"<>|"
+#~ msgstr ""
+#~ "다음 문자는 사용할 수 없습니다.\n"
+#~ "\\/:*?\"<>|"
+
+#~ msgid "Date deleted"
+#~ msgstr "삭제한 날짜"
+
+#~ msgid "Deleted file(s)/folder(s)"
+#~ msgstr "삭제된 파일/폴더"
+
+#~ msgid "Select all"
+#~ msgstr "모두 선택"
+
+#~ msgid "Restore selected items"
+#~ msgstr "선택한 항목 복원"
+
+#~ msgid "Undefined"
+#~ msgstr "지정되지 않음"
+
+#~ msgid "Copy to right"
+#~ msgstr "오른쪽으로 복사"
+
+#~ msgid "Copy to left"
+#~ msgstr "왼쪽으로 복사"
+
+#~ msgid "Go to other explorer"
+#~ msgstr "다른 탐색기로 이동"
+
+#~ msgid "Delete completely"
+#~ msgstr "완전히 삭제"
+
+#~ msgid "Run"
+#~ msgstr "실행"
+
+#~ msgid "Go up"
+#~ msgstr "위로 가기"
+
+#~ msgid "Go down"
+#~ msgstr "아래로 가기"
+
+#~ msgid "Go to list top"
+#~ msgstr "목록 꼭대기로 이동"
+
+#~ msgid "Go to list bottom"
+#~ msgstr "목록 최하단으로 이동"
+
+#~ msgid "Go to parent folder"
+#~ msgstr "상위 폴더로 이동"
+
+#~ msgid "Select all to bottom"
+#~ msgstr "아래로 모두 선택"
+
+#~ msgid "Select all to top"
+#~ msgstr "위로 모두 선택"
+
+#~ msgid "Select current"
+#~ msgstr "선택"
+
+#~ msgid "Select none"
+#~ msgstr "선택 해제"
+
+#~ msgid "Refresh"
+#~ msgstr "새로고침"
+
+#~ msgid "By name"
+#~ msgstr "이름 순"
+
+#~ msgid "By ext."
+#~ msgstr "확장자 순"
+
+#~ msgid "By path"
+#~ msgstr "경로 순"
+
+#~ msgid "By date modified"
+#~ msgstr "수정시간 순"
+
+#~ msgid "By date created"
+#~ msgstr "생성시간 순"
+
+#~ msgid "By size"
+#~ msgstr "크기 순"
+
+#~ msgid "By type"
+#~ msgstr "유형 순"
+
+#~ msgid "By attribute"
+#~ msgstr "속성 순"
+
+#~ msgid "Context menu"
+#~ msgstr "컨텍스트 메뉴"
+
+#~ msgid "Select drive"
+#~ msgstr "드라이브 선택"
+
+#~ msgid "Left select drive"
+#~ msgstr "왼쪽 드라이브 선택"
+
+#~ msgid "Right select drive"
+#~ msgstr "오른쪽 드라이브 선택"
+
+#~ msgid "Status"
+#~ msgstr "상태"
+
+#~ msgid "Warning"
+#~ msgstr "경고"
+
+#~ msgid "Error"
+#~ msgstr "에러"
+
+#~ msgid "MyPC"
+#~ msgstr "내 PC"
+
+#~ msgid "Message"
+#~ msgstr "메시지"
+
+#~ msgid "Start connecting"
+#~ msgstr "연결 시작"
+
+#~ msgid "Info"
+#~ msgstr "정보"
+
+#~ msgid "Recent"
+#~ msgstr "최근목록"
+
+#~ msgid "Zip"
+#~ msgstr "압축"
+
+#~ msgid "Unzip"
+#~ msgstr "압축해제"

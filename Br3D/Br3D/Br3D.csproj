@@ -110,6 +110,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Define.cs" />
     <Compile Include="DisplayModeButton.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -135,6 +136,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="i18n\ko_KR\LC_MESSAGES\Br3D.mo">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="i18n\ko_KR\LC_MESSAGES\Br3D.po" />
+    <None Include="Install\CertificateFile_pfx\Codesign_all.bat" />
+    <None Include="Install\CertificateFile_pfx\HanGil_CodeSign.pfx" />
+    <None Include="Install\CodeSign_Program_All.bat" />
+    <None Include="Install\CodeSign_Setup_All.bat" />
+    <None Include="Patch\Br3D.wyp" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -169,6 +179,44 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\rendered_32x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\view_single.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\view_1x1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\view_1x2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\view_2x2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\snap_endpoint_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\snap_intersection_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\snap_middle_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\snap_center_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\snap_node_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\south_korea_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\usa_16px.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Install\CertificateFile_pfx\signtool.exe" />
+    <Content Include="Install\Setup_Br3D.iss" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

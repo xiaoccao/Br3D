@@ -1,12 +1,5 @@
-﻿using DevExpress.XtraEditors;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Br3D
@@ -16,6 +9,15 @@ namespace Br3D
         public FormAbout()
         {
             InitializeComponent();
+
+            labelControlVersion.Text = $"Version {GetVersion()}";
+        }
+
+        public string GetVersion()
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            return assembly.GetName().Version.ToString();
+
         }
 
         private void labelControlName_Click(object sender, EventArgs e)

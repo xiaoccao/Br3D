@@ -20,6 +20,9 @@ namespace Br3D
         devDept.Eyeshot.ToolBarButton toolBarButtonHiddenLine = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources.hiddenline_32x, "HiddenLine", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
         devDept.Eyeshot.ToolBarButton toolBarButtonShaded = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources.shaded_32x, "Shade", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
         devDept.Eyeshot.ToolBarButton toolBarButtonRendered = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources.rendered_32x, "Render", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
+        devDept.Eyeshot.ToolBarSeparator toolBarSeparator = new ToolBarSeparator();
+        devDept.Eyeshot.ToolBarButton toolBarButtonPerspectiveMode = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources.perspective, "Perspective", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
+        devDept.Eyeshot.ToolBarButton toolBarButtonOrthographicMode = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources.orthographic, "Orthographic", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
 
         List<Viewport> viewports = new List<Viewport>();
 
@@ -34,7 +37,7 @@ namespace Br3D
             design.WorkFailed += Design_WorkFailed;
             design.MouseUp += Design_MouseUp;
             design.MouseMove += Design_MouseMove;
-            
+            design.ActiveViewport.Camera.ProjectionMode = devDept.Graphics.projectionType.Orthographic;
             foreach (Viewport vp in design.Viewports)
                 viewports.Add(vp);
 
@@ -117,7 +120,14 @@ namespace Br3D
             SetTileText(tileNavItemCoordinates, LanguageHelper.Tr("Coordinates"));
             SetTileText(tileNavItemDistance, LanguageHelper.Tr("Distance"));
             SetTileText(tileNavItemMemo, LanguageHelper.Tr("Memo"));
+            SetTileText(tileNavItemClearAnnotations, LanguageHelper.Tr("Clear Annotations"));
             SetTileText(tileNavItemLanguage, LanguageHelper.Tr("Language"));
+
+            SetTileText(tileNavItemCheckForUpdate, LanguageHelper.Tr("Check For Update"));
+            SetTileText(tileNavItemHomePage, LanguageHelper.Tr("Homepage"));
+            SetTileText(tileNavItemAbout, LanguageHelper.Tr("About"));
+
+
 
             // sub tile
 
@@ -145,6 +155,9 @@ namespace Br3D
                     displayModelToolbar.Buttons.Add(toolBarButtonHiddenLine);
                     displayModelToolbar.Buttons.Add(toolBarButtonShaded);
                     displayModelToolbar.Buttons.Add(toolBarButtonRendered);
+                    displayModelToolbar.Buttons.Add(toolBarSeparator);
+                    displayModelToolbar.Buttons.Add(toolBarButtonPerspectiveMode);
+                    displayModelToolbar.Buttons.Add(toolBarButtonOrthographicMode);
                 }
 
                 vp.Rotate.MouseButton = new MouseButton(MouseButtons.Middle, modifierKeys.Ctrl);
@@ -157,6 +170,23 @@ namespace Br3D
             toolBarButtonHiddenLine.Click += ToolBarButtonDisplayMode_Click;
             toolBarButtonShaded.Click += ToolBarButtonDisplayMode_Click;
             toolBarButtonRendered.Click += ToolBarButtonDisplayMode_Click;
+
+            toolBarButtonPerspectiveMode.Click += ToolBarButtonPerspectiveMode_Click;
+            toolBarButtonOrthographicMode.Click += ToolBarButtonOrthographicMode_Click;
+        }
+
+        private void ToolBarButtonOrthographicMode_Click(object sender, EventArgs e)
+        {
+            design.ActiveViewport.Camera.ProjectionMode = devDept.Graphics.projectionType.Orthographic;
+            design.ActiveViewport.ZoomFit();
+            design.ActiveViewport.Invalidate();
+        }
+
+        private void ToolBarButtonPerspectiveMode_Click(object sender, EventArgs e)
+        {
+            design.ActiveViewport.Camera.ProjectionMode = devDept.Graphics.projectionType.Perspective;
+            design.ActiveViewport.ZoomFit();
+            design.ActiveViewport.Invalidate();
         }
 
         private void ToolBarButtonDisplayMode_Click(object sender, EventArgs e)

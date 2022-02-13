@@ -1,5 +1,5 @@
 rem 불필요한 파일 삭제
-pushd ..\bin\Release
+pushd ..\bin\x64\Release
 del *.pdb
 del *.xml
 popd

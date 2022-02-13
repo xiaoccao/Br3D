@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-02-12 17:41+0900\n"
-"PO-Revision-Date: 2022-02-12 17:54+0900\n"
+"POT-Creation-Date: 2022-02-13 17:15+0900\n"
+"PO-Revision-Date: 2022-02-13 17:15+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -16,81 +16,101 @@ msgstr ""
 "X-Poedit-SearchPath-0: i18n/ko_KR\n"
 "X-Poedit-SearchPath-1: .\n"
 
-#: FormMain.cs:57
+#: FormMain.cs:101
 msgid "Home"
 msgstr "홈"
 
-#: FormMain.cs:60
+#: FormMain.cs:104
 msgid "Options"
 msgstr "옵션"
 
-#: FormMain.cs:61 FormMain.cs:72
+#: FormMain.cs:105
 msgid "Osnap"
 msgstr "객체 스냅"
 
-#: FormMain.cs:62
+#: FormMain.cs:106
 msgid "Annotation"
 msgstr "주석"
 
-#: FormMain.cs:63
+#: FormMain.cs:107
 msgid "Viewport"
 msgstr "뷰 포트"
 
-#: FormMain.cs:67
+#: FormMain.cs:111
 msgid "Open"
 msgstr "열기"
 
-#: FormMain.cs:68
+#: FormMain.cs:112
 msgid "Save As"
 msgstr "저장"
 
-#: FormMain.cs:69
+#: FormMain.cs:113
 msgid "Save Image"
 msgstr "이미지 저장"
 
-#: FormMain.cs:70
+#: FormMain.cs:114
 msgid "Exit"
 msgstr "종료"
 
-#: FormMain.cs:73
+#: FormMain.cs:115
 msgid "End Point"
 msgstr "끝점"
 
-#: FormMain.cs:74
+#: FormMain.cs:116
 msgid "Intersection Point"
 msgstr "교차점"
 
-#: FormMain.cs:75
+#: FormMain.cs:117
 msgid "Center Point"
 msgstr "중심점"
 
-#: FormMain.cs:76
+#: FormMain.cs:118
 msgid "Point"
 msgstr "점"
 
-#: FormMain.cs:77
+#: FormMain.cs:119
 msgid "Middle Point"
 msgstr "중간점"
 
-#: FormMain.cs:79
+#: FormMain.cs:120
 msgid "Coordinates"
 msgstr "좌표"
 
-#: FormMain.cs:80
+#: FormMain.cs:121
 msgid "Distance"
 msgstr "거리"
 
-#: FormMain.cs:81
+#: FormMain.cs:122
 msgid "Memo"
 msgstr "메모"
 
-#: FormMain.cs:82
+#: FormMain.cs:123
+msgid "Clear Annotations"
+msgstr "주석 제거"
+
+#: FormMain.cs:124
 msgid "Language"
 msgstr "언어"
 
-#: FormMain.cs:87
+#: FormMain.cs:126
+msgid "Check For Update"
+msgstr "업데이트 체크"
+
+#: FormMain.cs:127
+msgid "Homepage"
+msgstr "홈페이지"
+
+#: FormMain.cs:128
+msgid "About"
+msgstr "About"
+
+#: FormMain.cs:135
 msgid "Object Tree"
 msgstr "객체 트리"
+
+#: FormMain.cs:372
+msgid "Update check failed! - wyUpdate.exe not found!"
+msgstr "업데이트 체크 실패! - wyUpdate.exe가 없습니다!"
 
 #~ msgid "Tool"
 #~ msgstr "도구"
@@ -218,12 +238,6 @@ msgstr "객체 트리"
 #~ msgid "Hidden item"
 #~ msgstr "숨김 항목"
 
-#~ msgid "Homepage"
-#~ msgstr "홈페이지"
-
-#~ msgid "Check for update"
-#~ msgstr "업데이트 체크"
-
 #~ msgid "Help"
 #~ msgstr "도움말"
 
@@ -308,9 +322,6 @@ msgstr "객체 트리"
 #~ msgstr ""
 #~ "선택한 파일 목록을 복사했습니다.\n"
 #~ "필요한 곳에 붙여넣기 하세요(Ctrl+v)"
-
-#~ msgid "Update check failed! - wyUpdate.exe not found!"
-#~ msgstr "업데이트 체크 실패! - wyUpdate.exe가 없습니다!"
 
 #~ msgid "Added"
 #~ msgstr "추가됨"

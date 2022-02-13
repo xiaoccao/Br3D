@@ -35,7 +35,7 @@ namespace Br3D
             this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.hyperlinkLabelControl1 = new DevExpress.XtraEditors.HyperlinkLabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControlVersion = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,20 +94,20 @@ namespace Br3D
             this.labelControl1.Text = "본 소프트웨어는 개인 사용자는 물론\r\n기업/(비)영리법인/공공기관/교육기관/인터넷PC방 등 어디서나\r\n자유롭게 사용 및 배포를 할 수 있습니다.\r" +
     "\n\r\nCopyright (C) 2022 ~ present HaneeSoft corporation. \r\nAll right reserved.";
             // 
-            // labelControl2
+            // labelControlVersion
             // 
-            this.labelControl2.Location = new System.Drawing.Point(134, 80);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(75, 15);
-            this.labelControl2.TabIndex = 5;
-            this.labelControl2.Text = "Version 1.0.0.0";
+            this.labelControlVersion.Location = new System.Drawing.Point(134, 80);
+            this.labelControlVersion.Name = "labelControlVersion";
+            this.labelControlVersion.Size = new System.Drawing.Size(75, 15);
+            this.labelControlVersion.TabIndex = 5;
+            this.labelControlVersion.Text = "Version 1.0.0.0";
             // 
             // FormAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(374, 262);
-            this.Controls.Add(this.labelControl2);
+            this.Controls.Add(this.labelControlVersion);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.hyperlinkLabelControl1);
             this.Controls.Add(this.separatorControl1);
@@ -132,6 +132,6 @@ namespace Br3D
         private DevExpress.XtraEditors.SeparatorControl separatorControl1;
         private DevExpress.XtraEditors.HyperlinkLabelControl hyperlinkLabelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControlVersion;
     }
 }

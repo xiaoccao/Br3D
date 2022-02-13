@@ -92,9 +92,6 @@
     <Reference Include="DevExpress.XtraEditors.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="hanee.Geometry">
-      <HintPath>..\..\..\..\..\Hanee\Trunk\Engine\ThreeDEngine\Src\hanee.Geometry\bin\x86\Debug\hanee.Geometry.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
@@ -173,16 +170,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Hanee\Trunk\Engine\ThreeDEngine\Src\hanee.Cad.Tool\hanee.Cad.Tool.csproj">
-      <Project>{2E30F919-D89A-4574-9E73-056A4842CC63}</Project>
-      <Name>hanee.Cad.Tool</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\Hanee\Trunk\Engine\ThreeDEngine\Src\hanee.ThreeD\hanee.ThreeD.csproj">
-      <Project>{FC3755DF-44F3-4BDA-BADC-4333146DBC84}</Project>
-      <Name>hanee.ThreeD</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Images\wireframe_32x.png" />
   </ItemGroup>
   <ItemGroup>
@@ -227,7 +214,20 @@
   <ItemGroup>
     <None Include="Images\usa_16px.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Src\hanee.Cad.Tool\hanee.Cad.Tool.csproj">
+      <Project>{2e30f919-d89a-4574-9e73-056a4842cc63}</Project>
+      <Name>hanee.Cad.Tool</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Src\hanee.Geometry\hanee.Geometry.csproj">
+      <Project>{8a7185a8-b093-4391-984f-0e73f4e08541}</Project>
+      <Name>hanee.Geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Src\hanee.ThreeD\hanee.ThreeD.csproj">
+      <Project>{fc3755df-44f3-4bda-badc-4333146dbc84}</Project>
+      <Name>hanee.ThreeD</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Install\CertificateFile_pfx\signtool.exe" />
     <Content Include="Install\Setup_Br3D.iss" />

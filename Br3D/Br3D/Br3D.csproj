@@ -72,6 +72,9 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>br3d_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
     <Reference Include="devDept.Eyeshot.Control.Win.v2022" />
@@ -228,6 +231,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="br3d_icon.ico" />
     <Content Include="Install\CertificateFile_pfx\signtool.exe" />
     <Content Include="Install\Setup_Br3D.iss" />
     <None Include="wyUpdate.exe">

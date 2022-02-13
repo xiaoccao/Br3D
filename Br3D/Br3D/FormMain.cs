@@ -7,6 +7,7 @@ using hanee.Cad.Tool;
 using hanee.ThreeD;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using ToolBarButton = devDept.Eyeshot.ToolBarButton;
 
@@ -319,7 +320,26 @@ namespace Br3D
             functionByElement.Add(tileNavSubItemEnglish, English);
 
             functionByElement.Add(tileNavItemHomePage, Homepage);
-            
+            functionByElement.Add(tileNavItemCheckForUpdate, CheckForUpdate);
+            functionByElement.Add(tileNavItemAbout, About);
+        }
+
+        void About()
+        {
+            FormAbout form = new FormAbout();
+            form.ShowDialog();
+
+        }
+        void CheckForUpdate()
+        {
+            // 업데이트 체크
+            var filePath = Path.Combine(hanee.ThreeD.Util.GetExePath(), "wyUpdate.exe");
+            if (File.Exists(filePath))
+            {
+                System.Diagnostics.Process.Start(filePath);
+            }
+            else
+                XtraMessageBox.Show(LanguageHelper.Tr("Update check failed! - wyUpdate.exe not found!"));
         }
 
         void Homepage()

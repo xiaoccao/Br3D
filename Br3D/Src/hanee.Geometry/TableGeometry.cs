@@ -1,5 +1,6 @@
 ﻿using devDept.Eyeshot;
 using devDept.Eyeshot.Entities;
+using devDept.Geometry.Entities;
 using devDept.Geometry;
 using System;
 using System.Collections.Generic;

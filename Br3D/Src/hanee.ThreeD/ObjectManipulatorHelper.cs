@@ -1,5 +1,6 @@
 ﻿using devDept.Eyeshot;
 using devDept.Eyeshot.Entities;
+using devDept.Geometry.Entities;
 using devDept.Geometry;
 using System.Windows.Forms;
 
@@ -26,7 +27,7 @@ namespace hanee.ThreeD
             return base.OnDrag(ref lastPoint, curPoint, viewport);
         }
 
-        public virtual void StartManipulating(HModel model, MouseEventArgs e)
+        public virtual void StartManipulating(HDesign model, MouseEventArgs e)
         {
             if (manipulating)
             {
@@ -44,7 +45,7 @@ namespace hanee.ThreeD
             Enable(new Identity(), true);
         }
 
-        public virtual void EndManipulating(HModel model)
+        public virtual void EndManipulating(HDesign model)
         {
             Apply();
             selectedEntity = null;

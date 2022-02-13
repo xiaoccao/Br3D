@@ -15,7 +15,7 @@ namespace hanee.Cad.Tool
     public class ActionAngle : ActionBase
     {
         Point3D ptCen, pt1, pt2;
-        public ActionAngle(devDept.Eyeshot.Model vp) : base(vp)
+        public ActionAngle(devDept.Eyeshot.Design vp) : base(vp)
         {
             ptCen = null;
             pt1 = null;
@@ -73,7 +73,7 @@ namespace hanee.Cad.Tool
         }
 
 
-        protected override void OnMouseMove(devDept.Eyeshot.Environment vp, MouseEventArgs e)
+        protected override void OnMouseMove(devDept.Eyeshot.Workspace vp, MouseEventArgs e)
         {
             EntityList entities = new EntityList();
             if(ptCen != null)

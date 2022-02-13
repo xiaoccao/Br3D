@@ -1,4 +1,5 @@
-﻿using System;
+﻿using devDept.Eyeshot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace Br3D
         [STAThread]
         static void Main()
         {
+            devDept.LicenseManager.Unlock(typeof(Workspace), "US22-3HH2W-3C6KK-6120-RX6M");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());

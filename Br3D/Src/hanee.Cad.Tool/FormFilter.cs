@@ -14,14 +14,14 @@ namespace hanee.Cad.Tool
 {
     public partial class FormFilter : Form
     {
-        Model model;
-        public FormFilter(Model model)
+        Design model;
+        public FormFilter(Design model)
         {
             InitializeComponent();
             this.model = model;
         }
 
-        public void SetModel(Model model)
+        public void SetModel(Design model)
         {
             this.model = model;
         }

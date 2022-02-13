@@ -1,12 +1,15 @@
 ﻿using devDept.Eyeshot;
 using devDept.Eyeshot.Entities;
+using devDept.Geometry.Entities;
 using devDept.Geometry;
 using devDept.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using Environment = devDept.Eyeshot.Environment;
+//TODO devDept 2022: Eyeshot.Environment class has been renamed in Eyeshot.Workspace.
+//using Environment = devDept.Eyeshot.Workspace;
+using Environment = devDept.Eyeshot.Workspace;
 
 namespace hanee.ThreeD
 {

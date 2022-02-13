@@ -1,4 +1,5 @@
 ﻿using devDept.Eyeshot.Entities;
+using devDept.Geometry.Entities;
 using devDept.Geometry;
 using System;
 using System.Collections.Generic;
@@ -53,50 +54,5 @@ namespace hanee.Geometry
         }
 
 
-        /// <summary>
-        /// curve상에 붙어 잇는 절점을 리턴
-        /// </summary>
-        /// <param name="region"></param>
-        /// <param name="curve"></param>
-        /// <param name="exceptEndOfCurve"> curve의 양 끝에 있는점은 제외</param>
-        /// <returns></returns>
-        static public List<Point3D>  ContourPointsOnCurve(Region region, ICurve curve, bool exceptEndOfCurve) 
-        {
-            if (region == null)
-                return null;
-
-            List<Point3D> points = new List<Point3D>();
-
-            foreach(var c in region.ContourList)
-            {
-                Point3D [] curvePoints = c.GetAllPoint();
-                foreach(var p in curvePoints)
-                {
-                    if (!p.IsOnCurve(curve, 0.05))
-                        continue;
-
-                    // curve에 붙여서 추가한다.
-                    double t = 0;
-                    if (!curve.Project(p, out t))
-                        continue;
-                    Point3D ptAttached = curve.PointAt(t);
-
-                    // curve에 붙였는데, curve를 벗어나 있을 수 있음
-                    if (!ptAttached.IsOnCurve(curve, 0.000001))
-                        continue;
-
-                    points.Add(ptAttached);
-                }
-            }
-
-            // curve를 나눌수 있는 유효한 점만 리턴
-            points = hanee.Geometry.Util.GetValidPointsToSplitCurve(curve, points, exceptEndOfCurve);
-
-          
-
-
-
-            return points;
-        }
     }
 }

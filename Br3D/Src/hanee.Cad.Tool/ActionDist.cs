@@ -22,7 +22,7 @@ namespace hanee.Cad.Tool
             label,
             form
         }
-        readonly HModel brModel;
+        readonly HDesign brModel;
         Point3D pt1, pt2, ptText;
         List<Point3D> points;
         Step step;
@@ -30,9 +30,9 @@ namespace hanee.Cad.Tool
 
 
 
-        public ActionDist(devDept.Eyeshot.Model vp, ShowResult showResult=ShowResult.form) : base(vp)
+        public ActionDist(devDept.Eyeshot.Design vp, ShowResult showResult=ShowResult.form) : base(vp)
         {
-            brModel = vp as HModel;
+            brModel = vp as HDesign;
             this.showResult = showResult;
             points = new List<Point3D>();
         }
@@ -41,7 +41,7 @@ namespace hanee.Cad.Tool
         public override async void Run()
         { await RunAsync(); }
 
-        protected override void OnMouseMove(devDept.Eyeshot.Environment vp, MouseEventArgs e)
+        protected override void OnMouseMove(devDept.Eyeshot.Workspace vp, MouseEventArgs e)
         {
             if (step != Step.secondPoint || point3D == null)
             {
@@ -61,9 +61,9 @@ namespace hanee.Cad.Tool
 
         DistanceText CreateDistanceText()
         {
-            if (environment is HModel)
+            if (workspace is HDesign)
             {
-                DistanceText dt = new DistanceText((Model)environment, pt1, pt2, pt1.DistanceTo(pt2).ToString("0.000"), Define.DefaultFont, Define.DefaultTextColor, new Vector2D(0, 0))
+                DistanceText dt = new DistanceText((Design)workspace, pt1, pt2, pt1.DistanceTo(pt2).ToString("0.000"), Define.DefaultFont, Define.DefaultTextColor, new Vector2D(0, 0))
                 {
                     Alignment = System.Drawing.ContentAlignment.MiddleCenter,
                     FillColor = System.Drawing.Color.Yellow
@@ -141,7 +141,7 @@ namespace hanee.Cad.Tool
         {
             StartAction();
 
-            Model model = environment as Model;
+            Design model = workspace as Design;
             if (model != null)
             {
                 if(showResult == ShowResult.form)

@@ -12,10 +12,10 @@ using devDept.Graphics;
 namespace hanee.ThreeD
 {
     // view port layout를 프로퍼티 그리드에 필요한 것만 노출하기 위한 클래스
-    public class HModelProperties
+    public class HDesignProperties
     {
-        HModel vp = null;
-        public HModelProperties(HModel vp)
+        HDesign vp = null;
+        public HDesignProperties(HDesign vp)
         {
             this.vp = vp;
         }

@@ -1,5 +1,6 @@
 ﻿using devDept.Eyeshot;
 using devDept.Eyeshot.Entities;
+using devDept.Geometry.Entities;
 using devDept.Geometry;
 using devDept.Graphics;
 using System;
@@ -8,7 +9,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Environment = devDept.Eyeshot.Environment;
+//TODO devDept 2022: Eyeshot.Environment class has been renamed in Eyeshot.Workspace.
+//using Environment = devDept.Eyeshot.Workspace;
+using Environment = devDept.Eyeshot.Workspace;
 using hanee.Geometry;
 namespace hanee.ThreeD
 {
@@ -278,7 +281,8 @@ namespace hanee.ThreeD
             else if (ent is CompositeCurve)
             {
                 CompositeCurve comCurve = (CompositeCurve)ent;
-                foreach (var curve in comCurve.CurveList)
+                var curves = comCurve.GetIndividualCurves();
+                foreach (var curve in curves)
                 {
                     environment.DrawCurve(curve);
                 }

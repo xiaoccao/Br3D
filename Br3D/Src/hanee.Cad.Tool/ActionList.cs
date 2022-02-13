@@ -5,13 +5,12 @@ using hanee.ThreeD;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace hanee.Cad.Tool
 {
     public class ActionList : ActionBase
     {
-        public ActionList(devDept.Eyeshot.Environment environment) : base(environment)
+        public ActionList(devDept.Eyeshot.Workspace environment) : base(environment)
         {
         }
 

@@ -1,5 +1,6 @@
 ﻿using devDept.Eyeshot;
 using devDept.Eyeshot.Entities;
+using devDept.Geometry.Entities;
 using devDept.Eyeshot.Translators;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraEditors;
@@ -23,19 +24,18 @@ namespace Br3D
         List<Viewport> viewports = new List<Viewport>();
 
         private Memo lastMemo = null;
-        Model model => o;
+        Design design => hDesign;
         Dictionary<NavElement, Action> functionByElement = new Dictionary<NavElement, Action>();
         public FormMain()
         {
             InitializeComponent();
-            model.Unlock("US21-D8G5N-12J8F-5F65-RD3W");
-            model.MouseDoubleClick += Model_MouseDoubleClick;
-            model.WorkCompleted += Model_WorkCompleted;
-            model.WorkFailed += Model_WorkFailed;
-            model.MouseUp += Model_MouseUp;
-            model.MouseMove += Model_MouseMove;
+            design.MouseDoubleClick += Design_MouseDoubleClick;
+            design.WorkCompleted += Design_WorkCompleted;
+            design.WorkFailed += Design_WorkFailed;
+            design.MouseUp += Design_MouseUp;
+            design.MouseMove += Design_MouseMove;
             
-            foreach (Viewport vp in model.Viewports)
+            foreach (Viewport vp in design.Viewports)
                 viewports.Add(vp);
 
             Options.Instance.appName = "Br3D";
@@ -54,7 +54,7 @@ namespace Br3D
             Translate();
         }
 
-        private void Model_MouseMove(object sender, MouseEventArgs e)
+        private void Design_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.None)
                 return;
@@ -77,11 +77,11 @@ namespace Br3D
         // 마우스 커서 아래에 있는 memo를 리턴한다.
         private Memo GetMemoUnderMouseCursor(System.Drawing.Point location)
         {
-            int index = model.GetLabelUnderMouseCursor(location);
+            int index = design.GetLabelUnderMouseCursor(location);
             if (index != -1)
             {
                 //get the entity
-                var label = model.ActiveViewport.Labels[index];
+                var label = design.ActiveViewport.Labels[index];
                 return label as Memo;
             }
             return null;
@@ -134,7 +134,7 @@ namespace Br3D
 
         private void InitToolbar()
         {
-            foreach (Viewport vp in model.Viewports)
+            foreach (Viewport vp in design.Viewports)
             {
                 if (vp.ToolBars.Length > 1)
                 {
@@ -164,40 +164,40 @@ namespace Br3D
 
             var toolBar = sender as ToolBarButton;
             if (toolBar == toolBarButtonWireframe)
-                model.ActiveViewport.DisplayMode = displayType.Wireframe;
+                design.ActiveViewport.DisplayMode = displayType.Wireframe;
             else if (toolBar == toolBarButtonHiddenLine)
-                model.ActiveViewport.DisplayMode = displayType.HiddenLines;
+                design.ActiveViewport.DisplayMode = displayType.HiddenLines;
             else if (toolBar == toolBarButtonShaded)
-                model.ActiveViewport.DisplayMode = displayType.Shaded;
+                design.ActiveViewport.DisplayMode = displayType.Shaded;
             else if (toolBar == toolBarButtonRendered)
-                model.ActiveViewport.DisplayMode = displayType.Rendered;
+                design.ActiveViewport.DisplayMode = displayType.Rendered;
 
-            model.Invalidate();
+            design.Invalidate();
         }
 
         private void InitGraphics()
         {
-            model.AntiAliasing = true;
-            model.AntiAliasingSamples = devDept.Graphics.antialiasingSamplesNumberType.x4;
-            model.AskForAntiAliasing = true;
+            design.AntiAliasing = true;
+            design.AntiAliasingSamples = devDept.Graphics.antialiasingSamplesNumberType.x4;
+            design.AskForAntiAliasing = true;
         }
 
         private void InitDisplayMode()
         {
-            model.Shaded.ShowInternalWires = false;
-            model.Shaded.EdgeColorMethod = edgeColorMethodType.SingleColor;
-            model.Shaded.EdgeThickness = 1;
+            design.Shaded.ShowInternalWires = false;
+            design.Shaded.EdgeColorMethod = edgeColorMethodType.SingleColor;
+            design.Shaded.EdgeThickness = 1;
 
-            model.Rendered.SilhouettesDrawingMode = silhouettesDrawingType.Never;
-            model.Rendered.ShadowMode = devDept.Graphics.shadowType.None;
+            design.Rendered.SilhouettesDrawingMode = silhouettesDrawingType.Never;
+            design.Rendered.ShadowMode = devDept.Graphics.shadowType.None;
         }
 
-        private void Model_MouseUp(object sender, MouseEventArgs e)
+        private void Design_MouseUp(object sender, MouseEventArgs e)
         {
             // tree에서 선택
             if (!treeListObject.Visible)
                 return;
-            if (model.ActionMode != actionType.None)
+            if (design.ActionMode != actionType.None)
                 return;
 
 
@@ -205,7 +205,7 @@ namespace Br3D
             if (e.Button == MouseButtons.Left)
             {
                 treeListObject.ClearSelection();
-                var item = model.GetItemUnderMouseCursor(e.Location);
+                var item = design.GetItemUnderMouseCursor(e.Location);
                 if (item == null)
                     return;
 
@@ -234,7 +234,7 @@ namespace Br3D
                 return;
 
             AfterCheckNode(node);
-            model.Invalidate();
+            design.Invalidate();
         }
 
         private void AfterCheckNode(DevExpress.XtraTreeList.Nodes.TreeListNode node)
@@ -261,9 +261,9 @@ namespace Br3D
             if (entities == null)
                 return;
 
-            model.Entities.ClearSelection();
+            design.Entities.ClearSelection();
             entities.ForEach(x => x.Selected = true);
-            model.Invalidate();
+            design.Invalidate();
         }
 
         private List<Entity> GetAllEntitiesByNode(DevExpress.XtraTreeList.Nodes.TreeListNode node, bool subEntities)
@@ -369,26 +369,26 @@ namespace Br3D
         }
         private void InitSnapping()
         {
-            if (model is HModel)
+            if (design is HDesign)
             {
-                HModel vp = (HModel)model;
+                HDesign vp = (HDesign)design;
                 vp.Snapping.SetActiveObjectSnap(Snapping.objectSnapType.None, true);
                 vp.Snapping.objectSnapEnabled = true;
             }
         }
 
-        private void Model_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void Design_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Middle)
             {
-                model.ZoomFit();
+                design.ZoomFit();
                 return;
             }
 
             // zoom all
             if (e.Button == MouseButtons.Middle)
             {
-                model.ZoomFit();
+                design.ZoomFit();
                 return;
             }
 
@@ -397,41 +397,45 @@ namespace Br3D
                 return;
             }
 
-            if (model.ObjectManipulator.Visible == false)
+            if (design.ObjectManipulator.Visible == false)
             {
                 devDept.Geometry.Transformation trans = new devDept.Geometry.Transformation();
-                IList<Entity> selectedEntities = ((HModel)model).GetAllSelectedEntities();
+                IList<Entity> selectedEntities = ((HDesign)design).GetAllSelectedEntities();
                 trans.Identity();
-                model.ObjectManipulator.Enable(trans, true, selectedEntities);
+                design.ObjectManipulator.Enable(trans, true, selectedEntities);
             }
             else
             {
-                model.ObjectManipulator.Apply();
-                model.Entities.Regen();
+                design.ObjectManipulator.Apply();
+                design.Entities.Regen();
             }
         }
 
-        private void Model_WorkFailed(object sender, WorkFailedEventArgs e)
+        //TODO devDept 2022: devDept.Eyeshot.WorkFailedEventArgs has been moved to devDept namespace.
+        //private void Model_WorkFailed(object sender, WorkFailedEventArgs e)
+        private void Design_WorkFailed(object sender, devDept.WorkFailedEventArgs e)
         {
             MessageBox.Show(e.Error);
 
         }
 
-        private void Model_WorkCompleted(object sender, devDept.Eyeshot.WorkCompletedEventArgs e)
+        //TODO devDept 2022: devDept.Eyeshot.WorkCompletedEventArgs has been moved to devDept namespace.
+        //private void Model_WorkCompleted(object sender, devDept.Eyeshot.WorkCompletedEventArgs e)
+        private void Design_WorkCompleted(object sender, devDept.WorkCompletedEventArgs e)
         {
             if (e.WorkUnit is ReadFileAsync)
             {
                 ReadFileAsync rfa = (ReadFileAsync)e.WorkUnit;
 
                 // viewport에 추가한다.
-                rfa.AddToScene(model);
+                rfa.AddToScene(design);
 
                 // zoom fit
-                foreach (Viewport v in model.Viewports)
+                foreach (Viewport v in design.Viewports)
                     v.ZoomFit();
 
                 // object tree 갱신
-                ObjectTreeListHelper.Regen(treeListObject, model);
+                ObjectTreeListHelper.Regen(treeListObject, design);
             }
         }
         private void navButtonMain_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
@@ -459,7 +463,7 @@ namespace Br3D
         // 
         void FlagOsnap(DevExpress.XtraBars.Navigation.TileNavItem tile, Snapping.objectSnapType snapType)
         {
-            HModel hModel = model as HModel;
+            HDesign hModel = design as HDesign;
             if (hModel == null)
                 return;
 
@@ -469,44 +473,50 @@ namespace Br3D
 
         void ViewportSingle()
         {
-            if (model.Viewports.Contains(viewports[1]))
-                model.Viewports.Remove(viewports[1]);
-            if (model.Viewports.Contains(viewports[2]))
-                model.Viewports.Remove(viewports[2]);
-            if (model.Viewports.Contains(viewports[3]))
-                model.Viewports.Remove(viewports[3]);
-            model.Invalidate();
+            if (design.Viewports.Contains(viewports[1]))
+                design.Viewports.Remove(viewports[1]);
+            if (design.Viewports.Contains(viewports[2]))
+                design.Viewports.Remove(viewports[2]);
+            if (design.Viewports.Contains(viewports[3]))
+                design.Viewports.Remove(viewports[3]);
+            design.Invalidate();
         }
 
         void Viewport1x1()
         {
-            if (!model.Viewports.Contains(viewports[1]))
-                model.Viewports.Add(viewports[1]);
-            if (model.Viewports.Contains(viewports[2]))
-                model.Viewports.Remove(viewports[2]);
-            if (model.Viewports.Contains(viewports[3]))
-                model.Viewports.Remove(viewports[3]);
-            model.Invalidate();
+            if (!design.Viewports.Contains(viewports[1]))
+                design.Viewports.Add(viewports[1]);
+            if (design.Viewports.Contains(viewports[2]))
+                design.Viewports.Remove(viewports[2]);
+            if (design.Viewports.Contains(viewports[3]))
+                design.Viewports.Remove(viewports[3]);
+            foreach (Viewport vp in design.Viewports)
+                vp.ZoomFit();
+            design.Invalidate();
         }
         void Viewport1x2()
         {
-            if (!model.Viewports.Contains(viewports[1]))
-                model.Viewports.Add(viewports[1]);
-            if (!model.Viewports.Contains(viewports[2]))
-                model.Viewports.Add(viewports[2]);
-            if (model.Viewports.Contains(viewports[3]))
-                model.Viewports.Remove(viewports[3]);
-            model.Invalidate();
+            if (!design.Viewports.Contains(viewports[1]))
+                design.Viewports.Add(viewports[1]);
+            if (!design.Viewports.Contains(viewports[2]))
+                design.Viewports.Add(viewports[2]);
+            if (design.Viewports.Contains(viewports[3]))
+                design.Viewports.Remove(viewports[3]);
+            foreach (Viewport vp in design.Viewports)
+                vp.ZoomFit();
+            design.Invalidate();
         }
         void Viewport2x2()
         {
-            if (!model.Viewports.Contains(viewports[1]))
-                model.Viewports.Add(viewports[1]);
-            if (!model.Viewports.Contains(viewports[2]))
-                model.Viewports.Add(viewports[2]);
-            if (!model.Viewports.Contains(viewports[3]))
-                model.Viewports.Add(viewports[3]);
-            model.Invalidate();
+            if (!design.Viewports.Contains(viewports[1]))
+                design.Viewports.Add(viewports[1]);
+            if (!design.Viewports.Contains(viewports[2]))
+                design.Viewports.Add(viewports[2]);
+            if (!design.Viewports.Contains(viewports[3]))
+                design.Viewports.Add(viewports[3]);
+            foreach (Viewport vp in design.Viewports)
+                vp.ZoomFit();
+            design.Invalidate();
         }
 
         void End() => FlagOsnap(tileNavItemEnd, Snapping.objectSnapType.End);
@@ -517,26 +527,26 @@ namespace Br3D
 
         async void Coorindates()
         {
-            ActionID ac = new ActionID(model, ActionID.ShowResult.label);
+            ActionID ac = new ActionID(design, ActionID.ShowResult.label);
             await ac.RunAsync();
         }
 
         async void Distance()
         {
-            ActionDist ac = new ActionDist(model, ActionDist.ShowResult.label);
+            ActionDist ac = new ActionDist(design, ActionDist.ShowResult.label);
             await ac.RunAsync();
         }
 
         async void Memo()
         {
-            ActionMemo ac = new ActionMemo(model);
+            ActionMemo ac = new ActionMemo(design);
             await ac.RunAsync();
         }
 
         void ClearAnnotations()
         {
-            model.ActiveViewport.Labels.Clear();
-            model.Invalidate();
+            design.ActiveViewport.Labels.Clear();
+            design.Invalidate();
         }
 
         private void SaveImage()
@@ -557,16 +567,16 @@ namespace Br3D
                 {
 
                     case 1:
-                        model.WriteToFileRaster(2, dlg.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                        design.WriteToFileRaster(2, dlg.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
                         break;
                     case 2:
-                        model.WriteToFileRaster(2, dlg.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                        design.WriteToFileRaster(2, dlg.FileName, System.Drawing.Imaging.ImageFormat.Png);
                         break;
                     case 3:
-                        model.WriteToFileRaster(2, dlg.FileName, System.Drawing.Imaging.ImageFormat.Wmf);
+                        design.WriteToFileRaster(2, dlg.FileName, System.Drawing.Imaging.ImageFormat.Wmf);
                         break;
                     case 4:
-                        model.WriteToFileRaster(2, dlg.FileName, System.Drawing.Imaging.ImageFormat.Emf);
+                        design.WriteToFileRaster(2, dlg.FileName, System.Drawing.Imaging.ImageFormat.Emf);
                         break;
 
                 }
@@ -616,7 +626,7 @@ namespace Br3D
                 if (rf == null)
                     return;
 
-                model.StartWork(rf);
+                design.StartWork(rf);
             }
             catch (Exception ex)
             {
@@ -630,11 +640,11 @@ namespace Br3D
         {
             try
             {
-                devDept.Eyeshot.Translators.WriteFileAsync wf = FileHelper.GetWriteFileAsync(model, null, pathFileName);
+                devDept.Eyeshot.Translators.WriteFileAsync wf = FileHelper.GetWriteFileAsync(design, pathFileName);
                 if (wf == null)
                     return;
 
-                model.StartWork(wf);
+                design.StartWork(wf);
             }
             catch (Exception ex)
             {
@@ -645,8 +655,8 @@ namespace Br3D
 
         void NewFile()
         {
-            model.Clear();
-            model.Invalidate();
+            design.Clear();
+            design.Invalidate();
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)

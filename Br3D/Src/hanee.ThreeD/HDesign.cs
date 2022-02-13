@@ -1,5 +1,6 @@
 ﻿using devDept.Eyeshot;
 using devDept.Eyeshot.Entities;
+using devDept.Geometry.Entities;
 using devDept.Eyeshot.Translators;
 using devDept.Geometry;
 using devDept.Graphics;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 namespace hanee.ThreeD
 {
     [Serializable]
-    public partial class HModel : devDept.Eyeshot.Model
+    public partial class HDesign : devDept.Eyeshot.Design
     {
         // 투명도 옵션
         public enum TranparencyMode
@@ -44,7 +45,7 @@ namespace hanee.ThreeD
         // 투명도 모드를 적용하기 위한 객체의 기본 색상을 보관
         Dictionary<Entity, EntityColor> dicColorOld = new Dictionary<Entity, EntityColor>();
 
-        public HModel()
+        public HDesign()
         {
             Snapping = new Snapping(this);
         }
@@ -146,9 +147,9 @@ namespace hanee.ThreeD
 
         // 최소 사양의 viewport layout을 만든다
         [Obsolete]
-        public static HModel CreateMinimumViewportLayout()
+        public static HDesign CreateMinimumViewportLayout()
         {
-            HModel viewportLayout = new HModel();
+            HDesign viewportLayout = new HDesign();
             viewportLayout.CreateControl();
 
             ((System.ComponentModel.ISupportInitialize)(viewportLayout)).BeginInit();
@@ -322,7 +323,7 @@ namespace hanee.ThreeD
         /// fromModel에서 환경을 복사해서 채운다.
         /// </summary>
         /// <param name="from"></param>
-        public void FillEnvironment(devDept.Eyeshot.Model fromModel)
+        public void FillEnvironment(devDept.Eyeshot.Design fromModel)
         {
             // line type
             foreach (var lt in fromModel.LineTypes)
@@ -648,7 +649,8 @@ namespace hanee.ThreeD
             else if (ent is CompositeCurve)
             {
                 CompositeCurve comCurve = (CompositeCurve)ent;
-                foreach (var curve in comCurve.CurveList)
+                var curves = comCurve.GetIndividualCurves();
+                foreach (var curve in curves)
                 {
                     DrawCurve(curve);
                 }
@@ -799,7 +801,7 @@ namespace hanee.ThreeD
             };
 
 
-            return HModel.FilterBySupportFormats(supportFormats);
+            return HDesign.FilterBySupportFormats(supportFormats);
 
         }
         public static string FilterForOpenDialog()
@@ -821,7 +823,7 @@ namespace hanee.ThreeD
                 { "EMF", "*.emf" }
             };
 
-            return HModel.FilterBySupportFormats(supportFormats);
+            return HDesign.FilterBySupportFormats(supportFormats);
         }
 
         public static string FilterBySupportFormats(Dictionary<string, string> supportFormats)
@@ -853,7 +855,7 @@ namespace hanee.ThreeD
         }
         
 
-        protected override void DrawOverlay(HModel.DrawSceneParams myParams)
+        protected override void DrawOverlay(HDesign.DrawSceneParams myParams)
         {
             
             if (ActionBase.IsUserInputting() == true)
@@ -941,7 +943,9 @@ namespace hanee.ThreeD
                 Dictionary<string, Stream> textureStreams;
 
                 Get3DModelStreams(filename, out stream, out matStream, out textureStreams);
-                rf = new devDept.Eyeshot.Translators.ReadOBJ(stream, matStream, textureStreams, Mesh.edgeStyleType.Free);
+                //TODO devDept 2022: Mesh.edgeStyleType Enum has been moved to devDept.Geometry.Entities.GMesh namespace.
+                //rf = new devDept.Eyeshot.Translators.ReadOBJ(stream, matStream, textureStreams, Mesh.edgeStyleType.Free);
+                rf = new devDept.Eyeshot.Translators.ReadOBJ(stream, matStream, textureStreams, GMesh.edgeStyleType.Free);
             }
             else if (ext == ".LAS")
             {
@@ -958,10 +962,6 @@ namespace hanee.ThreeD
             else if (ext == ".3DS")
             {
                 rf = new devDept.Eyeshot.Translators.Read3DS(filename);
-            }
-            else if (ext == ".LUS")
-            {
-                rf = new devDept.Eyeshot.Translators.ReadLusas(filename);
             }
             else if (ext == ".JT")
             {
@@ -1014,7 +1014,7 @@ namespace hanee.ThreeD
                             string[] textureFiles = System.IO.Directory.GetFiles(directoryName);
                             foreach (var textureFile in textureFiles)
                             {
-                                if (!HModel.IsImageFile(textureFile))
+                                if (!HDesign.IsImageFile(textureFile))
                                     continue;
 
                                 Stream textureStream = File.OpenRead(textureFile);
@@ -1048,7 +1048,7 @@ namespace hanee.ThreeD
         }
 
         // 파일이름을 받아서 WriteFileAsync를 리턴한다.
-        public static WriteFileAsync GetWriteFileAsync(HModel vp, string filename, WriteParamsWithTextStyles writeParam = null, bool ascii = false)
+        public static WriteFileAsync GetWriteFileAsync(HDesign vp, string filename, WriteParamsWithTextStyles writeParam = null, bool ascii = false)
         {
             string ext = System.IO.Path.GetExtension(filename);
             ext = ext.ToUpper();

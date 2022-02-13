@@ -2,7 +2,10 @@
 using System.Windows.Forms;
 using devDept.Eyeshot;
 using devDept.Eyeshot.Entities;
-using Environment = devDept.Eyeshot.Environment;
+using devDept.Geometry.Entities;
+//TODO devDept 2022: Eyeshot.Environment class has been renamed in Eyeshot.Workspace.
+//using Environment = devDept.Eyeshot.Workspace;
+using Environment = devDept.Eyeshot.Workspace;
 
 namespace hanee.ThreeD
 {
@@ -11,35 +14,21 @@ namespace hanee.ThreeD
     {
         Environment environment { get; set; }
 
-        Model model { get; set; }
-        Drawings drawings { get; set; }
+        Design model { get; set; }
 
         private PropertyGrid propertyGrid { get; set; }
 
-        public PropertyGridHelper(Model model, PropertyGrid propertyGrid)
+        public PropertyGridHelper(Design model, PropertyGrid propertyGrid)
         {
             this.environment = model;
             this.model = model;
-            this.drawings = null;
             this.propertyGrid = propertyGrid;
 
             this.propertyGrid.PropertyValueChanged += PropertyGrid_PropertyValueChanged;
         }
-
-        public PropertyGridHelper(Drawings drawings, Model model, PropertyGrid propertyGrid)
-        {
-            this.environment = drawings;
-            this.model = model;
-            this.drawings = drawings;
-
-            this.propertyGrid = propertyGrid;
-
-            this.propertyGrid.PropertyValueChanged += PropertyGrid_PropertyValueChanged;
-        }
-
         private void PropertyGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
-            if (propertyGrid.SelectedObject is Entity || propertyGrid.SelectedObject is PropertiesView)
+            if (propertyGrid.SelectedObject is Entity)
             {
                 environment.Entities.Regen();
 
@@ -54,18 +43,7 @@ namespace hanee.ThreeD
             if (propertyGrid == null)
                 return;
 
-            if (obj is VectorView)
-            {
-                propertyGrid.SelectedObject = new PropertiesVectorView(obj as VectorView, model, drawings);
-            }
-            else if (obj is RasterView)
-            {
-                propertyGrid.SelectedObject = new PropertiesRasterView(obj as RasterView, drawings);
-            }
-            else
-            {
-                propertyGrid.SelectedObject = obj;
-            }
+            propertyGrid.SelectedObject = obj;
 
             propertyGrid.Refresh();
         }

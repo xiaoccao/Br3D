@@ -1,5 +1,6 @@
 ﻿using devDept.Eyeshot;
 using devDept.Eyeshot.Entities;
+using devDept.Geometry.Entities;
 // 
 
 using devDept.Geometry;
@@ -9,7 +10,9 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Environment = devDept.Eyeshot.Environment;
+//TODO devDept 2022: Eyeshot.Environment class has been renamed in Eyeshot.Workspace.
+//using Environment = devDept.Eyeshot.Workspace;
+using Workspace = devDept.Eyeshot.Workspace;
 using Label = devDept.Eyeshot.Labels.Label;
 namespace hanee.ThreeD
 {
@@ -89,8 +92,8 @@ namespace hanee.ThreeD
 
         static private Entity selectedEntity = null;
         static private Label selectedLabel = null;
-        static private devDept.Eyeshot.Model.SelectedFace selectedFace = null;
-        static private devDept.Eyeshot.Model.SelectedEdge selectedEdge = null;
+        static private devDept.Eyeshot.Design.SelectedFace selectedFace = null;
+        static private devDept.Eyeshot.Design.SelectedEdge selectedEdge = null;
 
         // 시스템 설정값
         static public SystemValue systemValue = new SystemValue();
@@ -116,7 +119,7 @@ namespace hanee.ThreeD
         }
 
         // 임시 객체를 이동한다.
-        static public void MoveTempEtt(devDept.Eyeshot.Model vp, Vector3D vMove)
+        static public void MoveTempEtt(devDept.Eyeshot.Design vp, Vector3D vMove)
         {
             for (int i = 0; i < vp.TempEntities.Count(); ++i)
             {
@@ -125,7 +128,7 @@ namespace hanee.ThreeD
         }
 
         // 임시 객체를 회전한다.
-        static public void RotateTempEtt(devDept.Eyeshot.Model vp, Vector3D fromDir, Vector3D toDir, Point3D centerPoint)
+        static public void RotateTempEtt(devDept.Eyeshot.Design vp, Vector3D fromDir, Vector3D toDir, Point3D centerPoint)
         {
             Transformation trans = new Transformation();
             trans.Rotation(fromDir, toDir, centerPoint);
@@ -136,7 +139,9 @@ namespace hanee.ThreeD
         }
 
         // 임시 객체를 설정한다.
-        static public void SetTempEtt(devDept.Eyeshot.Environment vp, Entity ent, bool initTempEntities = true)
+        //TODO devDept 2022: Eyeshot.Environment class has been renamed in Eyeshot.Workspace.
+        //static public void SetTempEtt(devDept.Eyeshot.Workspace vp, Entity ent, bool initTempEntities = true)
+        static public void SetTempEtt(devDept.Eyeshot.Workspace vp, Entity ent, bool initTempEntities = true)
         {
             if (initTempEntities)
             {
@@ -289,7 +294,7 @@ namespace hanee.ThreeD
 
         // select시 dynamic highlight를 할지?
         static bool dynamicHighlight = true;
-        static public devDept.Eyeshot.Model.SelectedItem LastSelectedItem = null;
+        static public devDept.Eyeshot.Design.SelectedItem LastSelectedItem = null;
         static Dictionary<Type, bool> selectableType = new Dictionary<Type, bool>();
 
 
@@ -304,7 +309,7 @@ namespace hanee.ThreeD
             return false;
         }
         // mouse move 이벤트 처리
-        static public void MouseMoveHandler(Environment vp, MouseEventArgs e)
+        static public void MouseMoveHandler(Workspace vp, MouseEventArgs e)
         {
             if (ActionBase.currentMousePoint == e.Location)
                 return;
@@ -322,7 +327,7 @@ namespace hanee.ThreeD
             {
                 vp.SetCurrent(null);
 
-                devDept.Eyeshot.Model.SelectedItem item = vp.GetItemUnderMouseCursor(e.Location);
+                devDept.Eyeshot.Design.SelectedItem item = vp.GetItemUnderMouseCursor(e.Location);
                 if (item != null && item.Item != null && selectableType != null && selectableType.Count() > 0 && !selectableType.ContainsKey(item.Item.GetType()))
                 {
                     item = null;
@@ -372,18 +377,18 @@ namespace hanee.ThreeD
         }
 
         // mouse event args로 Point 좌표를 설정한다.
-        static void SetPointByMouseEventArgs(Environment viewportLayout, MouseEventArgs e)
+        static void SetPointByMouseEventArgs(Workspace viewportLayout, MouseEventArgs e)
         {
             point = e.Location;
         }
 
         // mouse event args로 Point3D 좌표를 설정한다.
-        static void SetPoint3DByMouseEventArgs(Environment viewportLayout, MouseEventArgs e)
+        static void SetPoint3DByMouseEventArgs(Workspace viewportLayout, MouseEventArgs e)
         {
             // snapPoint 우선
-            if (viewportLayout is devDept.Eyeshot.Model)
+            if (viewportLayout is devDept.Eyeshot.Design)
             {
-                hanee.ThreeD.HModel vp = (hanee.ThreeD.HModel)viewportLayout;
+                hanee.ThreeD.HDesign vp = (hanee.ThreeD.HDesign)viewportLayout;
                 if (vp.Snapping.CurrentlySnapping)
                 {
                     point3D = vp.Snapping.GetSnapPoint();
@@ -406,13 +411,13 @@ namespace hanee.ThreeD
         }
 
         // mouse 위치의 Point3D 좌표를 리턴
-        static public Point3D GetPoint3DByMouseLocation(Environment viewportLayout, System.Drawing.Point location)
+        static public Point3D GetPoint3DByMouseLocation(Workspace viewportLayout, System.Drawing.Point location)
         {
             Point3D point3D = viewportLayout.ScreenToWorld(location);
             // null 이면 camere 가 바라보는 평면을 기준으로 좌표를 계산한다
             if(point3D == null)
             {
-                Model model = viewportLayout as Model;
+                Design model = viewportLayout as Design;
                 if(model != null)
                 {
                     viewportLayout.ScreenToPlane(location, model.ActiveViewport.Camera.NearPlane, out point3D);
@@ -434,21 +439,21 @@ namespace hanee.ThreeD
             return point3D;
         }
 
-        static public void CameraMoveEndHandler(devDept.Eyeshot.Model vp, object sender, devDept.Eyeshot.Model.CameraMoveEventArgs e)
+        static public void CameraMoveEndHandler(devDept.Eyeshot.Design vp, object sender, devDept.Eyeshot.Design.CameraMoveEventArgs e)
         {
 
         }
         // selection changed 이벤트 처리
-        static public void SelectionChangedHandler(devDept.Eyeshot.Model vp, object sender, devDept.Eyeshot.Model.SelectionChangedEventArgs e)
+        static public void SelectionChangedHandler(devDept.Eyeshot.Design vp, object sender, devDept.Eyeshot.Design.SelectionChangedEventArgs e)
         {
             // face 선택중인 경우
             if (userInputting[(int)UserInput.SelectingFace] == true)
             {
                 foreach (var item in e.AddedItems)
                 {
-                    if (item is devDept.Eyeshot.Model.SelectedFace)
+                    if (item is devDept.Eyeshot.Design.SelectedFace)
                     {
-                        selectedFace = (devDept.Eyeshot.Model.SelectedFace)item;
+                        selectedFace = (devDept.Eyeshot.Design.SelectedFace)item;
                         userInputting[(int)UserInput.SelectingFace] = false;
                     }
                 }
@@ -459,9 +464,9 @@ namespace hanee.ThreeD
             {
                 foreach (var item in e.AddedItems)
                 {
-                    if (item is devDept.Eyeshot.Model.SelectedEdge)
+                    if (item is devDept.Eyeshot.Design.SelectedEdge)
                     {
-                        selectedEdge = (devDept.Eyeshot.Model.SelectedEdge)item;
+                        selectedEdge = (devDept.Eyeshot.Design.SelectedEdge)item;
                         userInputting[(int)UserInput.SelectingEdge] = false;
                     }
                 }
@@ -469,7 +474,7 @@ namespace hanee.ThreeD
         }
 
         // mouse click 이벤트 처리
-        static public void MouseDownHandler(Environment viewportLayout, MouseEventArgs e)
+        static public void MouseDownHandler(Workspace viewportLayout, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -483,12 +488,12 @@ namespace hanee.ThreeD
         }
 
         // 마우스 오른키를 누르면 입력 완료로 처리한다.
-        private static void MouseDownHandler_RightButton(Environment viewportLayout, MouseEventArgs e)
+        private static void MouseDownHandler_RightButton(Workspace viewportLayout, MouseEventArgs e)
         {
             Entered = true;
         }
 
-        private static void MouseDownHandler_LeftButton(Environment viewportLayout, MouseEventArgs e)
+        private static void MouseDownHandler_LeftButton(Workspace viewportLayout, MouseEventArgs e)
         {
             if (userInputting[(int)UserInput.GettingPoint] == true)
             {
@@ -506,7 +511,7 @@ namespace hanee.ThreeD
 
             if (userInputting[(int)UserInput.SelectingLabel] == true)
             {
-                Model model = viewportLayout as Model;
+                Design model = viewportLayout as Design;
                 int idx = viewportLayout.GetLabelUnderMouseCursor(e.Location);
                 if (model != null && idx > -1 && idx < model.ActiveViewport.Labels.Count)
                 {
@@ -519,7 +524,7 @@ namespace hanee.ThreeD
 
             if (userInputting[(int)UserInput.SelectingEntity] == true)
             {
-                devDept.Eyeshot.Model.SelectedItem item = viewportLayout.GetItemUnderMouseCursor(e.Location);
+                devDept.Eyeshot.Design.SelectedItem item = viewportLayout.GetItemUnderMouseCursor(e.Location);
                 if (item != null)
                 {
                     Entity entityTmp = item.Item as Entity;
@@ -534,7 +539,7 @@ namespace hanee.ThreeD
 
             if (userInputting[(int)UserInput.SelectingSubEntity] == true)
             {
-                devDept.Eyeshot.Model.SelectedItem item = viewportLayout.GetItemUnderMouseCursor(e.Location);
+                devDept.Eyeshot.Design.SelectedItem item = viewportLayout.GetItemUnderMouseCursor(e.Location);
                 if (item != null)
                 {
                     // sub 객체를 탐색한다.
@@ -597,7 +602,9 @@ namespace hanee.ThreeD
         }
 
         // action에서 mouse move에 대한 처리를 할때 재정의 한다.
-        protected virtual void OnMouseMove(devDept.Eyeshot.Environment vp, MouseEventArgs e)
+        //TODO devDept 2022: Eyeshot.Environment class has been renamed in Eyeshot.Workspace.
+        //protected virtual void OnMouseMove(devDept.Eyeshot.Workspace vp, MouseEventArgs e)
+        protected virtual void OnMouseMove(devDept.Eyeshot.Workspace vp, MouseEventArgs e)
         {
 
         }
@@ -664,20 +671,20 @@ namespace hanee.ThreeD
         }
 
         // edge 1개를 선택받는다
-        public async Task<devDept.Eyeshot.Model.SelectedEdge> GetEdge(string message = null, int stepID = -1)
+        public async Task<devDept.Eyeshot.Design.SelectedEdge> GetEdge(string message = null, int stepID = -1)
         {
 
-            actionType oldActionType = environment.ActionMode;
+            actionType oldActionType = workspace.ActionMode;
             selectionFilterType oldSelectionFilterType = selectionFilterType.Entity;
 
-            devDept.Eyeshot.Model model = environment as devDept.Eyeshot.Model;
+            devDept.Eyeshot.Design model = workspace as devDept.Eyeshot.Design;
             if (model != null)
             {
                 oldSelectionFilterType = model.SelectionFilterMode;
                 model.SelectionFilterMode = selectionFilterType.Edge;
             }
 
-            environment.ActionMode = actionType.SelectVisibleByPickDynamic;
+            workspace.ActionMode = actionType.SelectVisibleByPickDynamic;
 
             ActionBase.StepID = StepID;
             ActionBase.cursorText = message;
@@ -698,8 +705,8 @@ namespace hanee.ThreeD
             ActionBase.cursorText = null;
             if (selectedEdge != null)
             {
-                selectedEdge.Select(environment, true);
-                environment.Invalidate();
+                selectedEdge.Select(workspace, true);
+                workspace.Invalidate();
             }
 
             if (model != null)
@@ -713,12 +720,12 @@ namespace hanee.ThreeD
         }
 
         // face 1개를 선택받는다
-        public async Task<devDept.Eyeshot.Model.SelectedFace> GetFace(string message = null, int stepID = -1)
+        public async Task<devDept.Eyeshot.Design.SelectedFace> GetFace(string message = null, int stepID = -1)
         {
-            actionType oldActionType = environment.ActionMode;
+            actionType oldActionType = workspace.ActionMode;
             selectionFilterType oldSelectionFilterType = selectionFilterType.Entity;
 
-            devDept.Eyeshot.Model model = environment as devDept.Eyeshot.Model;
+            devDept.Eyeshot.Design model = workspace as devDept.Eyeshot.Design;
             if (model != null)
             {
                 oldSelectionFilterType = model.SelectionFilterMode;
@@ -726,7 +733,7 @@ namespace hanee.ThreeD
             }
 
 
-            environment.ActionMode = actionType.SelectVisibleByPickDynamic;
+            workspace.ActionMode = actionType.SelectVisibleByPickDynamic;
 
 
             ActionBase.StepID = StepID;
@@ -749,7 +756,7 @@ namespace hanee.ThreeD
             if (selectedFace != null)
             {
                 selectedFace.Item.Selected = true;
-                environment.Invalidate();
+                workspace.Invalidate();
             }
 
 
@@ -812,7 +819,7 @@ namespace hanee.ThreeD
             if (selectedLabel != null)
             {
                 selectedLabel.Selected = true;
-                environment.Invalidate();
+                workspace.Invalidate();
             }
 
             return selectedLabel;
@@ -844,7 +851,7 @@ namespace hanee.ThreeD
             if (selectedEntity != null)
             {
                 selectedEntity.Selected = true;
-                environment.Invalidate();
+                workspace.Invalidate();
             }
 
             return selectedEntity;
@@ -860,7 +867,7 @@ namespace hanee.ThreeD
             ActionBase.dynamicHighlight = dynamicHighlight;
             ActionBase.LastSelectedItem = null;
 
-            environment.SetCurrent(null);
+            workspace.SetCurrent(null);
 
             while (ActionBase.userInputting[(int)UserInput.SelectingSubEntity] == true)
             {
@@ -879,10 +886,10 @@ namespace hanee.ThreeD
             if (selectedEntity != null)
             {
                 selectedEntity.Selected = true;
-                environment.Invalidate();
+                workspace.Invalidate();
             }
 
-            environment.SetCurrent(null);
+            workspace.SetCurrent(null);
             return selectedEntity;
         }
 
@@ -891,9 +898,10 @@ namespace hanee.ThreeD
 
 
         #region 생성자
-        protected devDept.Eyeshot.Environment environment;
-        protected Drawings GetDrawings() { return environment as Drawings; }
-        protected devDept.Eyeshot.Model GetModel() { return environment as devDept.Eyeshot.Model; }
+        //TODO devDept 2022: Eyeshot.Environment class has been renamed in Eyeshot.Workspace.
+        //protected devDept.Eyeshot.Workspace environment;
+        protected devDept.Eyeshot.Workspace workspace;
+        protected devDept.Eyeshot.Design GetDesign() { return workspace as devDept.Eyeshot.Design; }
 
 
         // 액션이 취소 되었는지?
@@ -921,9 +929,11 @@ namespace hanee.ThreeD
         // 새로운 액션이 시작되어서 중지 되었는지?
         public bool StoppedActionByNewActionStart
         { get; set; }
-        public ActionBase(devDept.Eyeshot.Environment environment)
+        //TODO devDept 2022: Eyeshot.Environment class has been renamed in Eyeshot.Workspace.
+        //public ActionBase(devDept.Eyeshot.Workspace environment)
+        public ActionBase(devDept.Eyeshot.Workspace environment)
         {
-            this.environment = environment;
+            this.workspace = environment;
 
             //// 액션을 시작하면 기존에 실행중이던 액션을 먼저 종료한다.
             //if (runningAction != null)
@@ -963,7 +973,7 @@ namespace hanee.ThreeD
 
             ActionBase.PreviewEntities = null;
             ActionBase.PreviewFaceEntities = null;
-            ActionBase.SetTempEtt(environment, null);
+            ActionBase.SetTempEtt(workspace, null);
         }
 
         // 액션 종료할때 반드시 호출해야 한다.
@@ -971,27 +981,27 @@ namespace hanee.ThreeD
         {
             ActionBase.PreviewEntities = null;
             ActionBase.PreviewFaceEntities = null;
-            ActionBase.SetTempEtt(environment, null);
+            ActionBase.SetTempEtt(workspace, null);
             ActionBase.IsModified = true;
 
-            environment.ActionMode = actionType.None;
-            devDept.Eyeshot.Model model = environment as devDept.Eyeshot.Model;
-            if (model != null)
+            workspace.ActionMode = actionType.None;
+            devDept.Eyeshot.Design design = workspace as devDept.Eyeshot.Design;
+            if (design != null)
             {
-                model.SelectionFilterMode = selectionFilterType.Entity;
+                design.SelectionFilterMode = selectionFilterType.Entity;
             }
 
-            environment.Cursor = System.Windows.Forms.Cursors.Default;
+            workspace.Cursor = System.Windows.Forms.Cursors.Default;
             ActionBase.runningAction = null;
 
-            if (ActionBase.IsUnselectAllOnEndAction && environment is devDept.Eyeshot.Model)
+            if (ActionBase.IsUnselectAllOnEndAction && workspace is devDept.Eyeshot.Design)
             {
-                devDept.Eyeshot.Model vl = (devDept.Eyeshot.Model)environment;
+                devDept.Eyeshot.Design vl = (devDept.Eyeshot.Design)workspace;
                 vl.Entities.ClearSelection();
             }
 
             // invalidate를 해 줘야 미리보기라던가, 마우스 text가 바로 사라짐
-            environment.Invalidate();
+            workspace.Invalidate();
         }
     }
 }

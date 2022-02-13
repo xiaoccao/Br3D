@@ -13,10 +13,10 @@ namespace hanee.Cad.Tool
     public class DistanceText : LeaderAndTextAndBox
     {
         Point3D pt1, pt2;
-        devDept.Eyeshot.Model model;
+        devDept.Eyeshot.Design model;
 
-        //public DistanceText(Model model, Point3D pt1, Point3D pt2, string text, Font textFont, Color textColor) : base((pt1+pt2)/2, text, textFont, textColor, ContentAlignment.MiddleCenter)
-        public DistanceText(Model model, Point3D pt1, Point3D pt2, string text, Font textFont, Color textColor, Vector2D offset) : base((pt1 + pt2) / 2, text, textFont, textColor, offset)
+        //public DistanceText(Design model, Point3D pt1, Point3D pt2, string text, Font textFont, Color textColor) : base((pt1+pt2)/2, text, textFont, textColor, ContentAlignment.MiddleCenter)
+        public DistanceText(Design model, Point3D pt1, Point3D pt2, string text, Font textFont, Color textColor, Vector2D offset) : base((pt1 + pt2) / 2, text, textFont, textColor, offset)
         {
             this.model = model;
             this.pt1 = pt1;

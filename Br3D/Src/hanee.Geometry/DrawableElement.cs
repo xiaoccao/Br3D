@@ -94,37 +94,5 @@ namespace hanee.Geometry
         {
             return Guid.NewGuid().ToString();
         }
-        // material을 초기화 한다.
-        // material이 초기화 되기 전에는 material로 랜더링 되지 않는다.
-        virtual public void InitMaterial(Model model, List<string> additionalMaterialNames=null)
-        {
-            // name 이 없으면 name을 만들어 준다.
-            if(!enabledMaterial)
-            {
-                materialName = GetDefaultMaterialName();
-            }
-
-            // material이 등록 되어 있지 않으면 등록 시킨다.
-            if (!model.Materials.Contains(materialName))
-            {
-                Material newMaterial = Material.Gold;
-                newMaterial.Name = materialName;
-                model.Materials.Add(newMaterial);
-            }
-
-            if(additionalMaterialNames != null)
-            {
-                foreach(var amn in additionalMaterialNames)
-                {
-                    // material이 등록 되어 있지 않으면 등록 시킨다.
-                    if (!model.Materials.Contains(amn))
-                    {
-                        Material newMaterial = Material.Gold;
-                        newMaterial.Name = amn;
-                        model.Materials.Add(newMaterial);
-                    }
-                }
-            }
-        }
     }
 }

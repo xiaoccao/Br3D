@@ -10,15 +10,15 @@ namespace hanee.Cad.Tool
     public class ActionFilter : ActionBase
     {
         static FormFilter form = null;
-        public ActionFilter(devDept.Eyeshot.Environment environment) : base(environment)
+        public ActionFilter(devDept.Eyeshot.Workspace environment) : base(environment)
         {
             if(form == null)
             {
-                form = new FormFilter(GetModel());
+                form = new FormFilter(GetDesign());
             }
             else
             {
-                form.SetModel(GetModel());
+                form.SetModel(GetDesign());
             }
         }
 

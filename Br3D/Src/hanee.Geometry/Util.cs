@@ -1,4 +1,5 @@
 ﻿using devDept.Eyeshot.Entities;
+using devDept.Geometry.Entities;
 using devDept.Geometry;
 using System;
 using System.Collections.Generic;
@@ -104,93 +105,7 @@ namespace hanee.Geometry
             return points;
         }
 
-        /// <summary>
-        /// curve를 split할 수 있는 유효한 점들을 리턴
-        /// </summary>
-        /// <param name="curve"></param>
-        /// <param name="points"></param>
-        /// <returns></returns>
-        public static List<Point3D> GetValidPointsToSplitCurve(ICurve curve, List<Point3D> points, bool exceptEndOfCurve=true)
-        {
-            // contour순서대로 정렬
-            points = CurveHelper.SortPointsOn(curve, points);
+     
 
-            // 중복 좌표 제거
-            points = hanee.Geometry.Util.GetUnduplicatedPoints(points);
-
-            // 시종점 좌표 제거
-            if(exceptEndOfCurve)
-            {
-                if (points != null && points.Count > 0)
-                {
-                    if (points.First().Equals(curve.StartPoint, 0.001))
-                    {
-                        points.RemoveAt(0);
-                    }
-                }
-
-                if (points != null && points.Count > 0)
-                {
-                    if (points.Last().Equals(curve.EndPoint, 0.001))
-                    {
-                        points.RemoveAt(points.Count - 1);
-                    }
-                }
-            }
-            
-
-            return points;
-        }
-
-        /// <summary>
-        /// 교차점으로 curve을 나눈다.
-        /// </summary>
-        /// <param name="curves"></param>
-        /// <returns></returns>
-        public static List<ICurve> SplitCurvesByIntersection(List<ICurve> curves)
-        {
-            List<ICurve> dividedCurves = new List<ICurve>();
-
-            foreach (var c1 in curves)
-            {
-                // c1에 대해서 모든 match point를 찾는다.
-                List<Point3D> matchPoints = new List<Point3D>();
-                foreach (var c2 in curves)
-                {
-                    if (c1 == c2)
-                        continue;
-
-                    Point3D[] tmpMatchPoints = c1.IntersectWith(c2);
-                    if (tmpMatchPoints == null)
-                        continue;
-
-                    matchPoints.AddRange(tmpMatchPoints);
-                }
-
-
-                // curve를 split할 수 있는 유효한 점만 추출
-                matchPoints = GetValidPointsToSplitCurve(c1, matchPoints);
-              
-
-
-                if (matchPoints != null && matchPoints.Count > 0)
-                {
-                    // match point들로 divide 한다.
-                    ICurve[] tmpDividedCurves = null;
-                    c1.SplitBy(matchPoints, out tmpDividedCurves);
-
-                    if (tmpDividedCurves != null)
-                        dividedCurves.AddRange(tmpDividedCurves);
-                }
-                else
-                {
-                    dividedCurves.Add(c1);
-                }
-
-
-            }
-
-            return dividedCurves;
-        }
     }
 }

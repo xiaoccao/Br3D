@@ -50,7 +50,7 @@ namespace hanee.Geometry
         /// mode에 있는 환경을 여기에 추가하거나 교체한다.
         /// </summary>
         /// <param name="model"></param>
-        public void AddOrReplaceFromModel(Model model)
+        public void AddOrReplaceFromModel(Design model)
         {
             foreach (var lt in model.LineTypes)
                 lineTypes.AddOrReplace(lt);
@@ -79,7 +79,7 @@ namespace hanee.Geometry
         /// model에 환경을 넣어준다.
         /// </summary>
         /// <param name="model"></param>
-        public void FillToModel(Model model)
+        public void FillToModel(Design model)
         {
             foreach (var lt in lineTypes)
                 model.LineTypes.AddOrReplace(lt);

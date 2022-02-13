@@ -1,5 +1,6 @@
 ﻿
 using devDept.Eyeshot.Entities;
+using devDept.Geometry.Entities;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 using System;
@@ -11,7 +12,7 @@ namespace Br3D
 {
     public static class ObjectTreeListHelper
     {
-        static public void Regen(DevExpress.XtraTreeList.TreeList treeList, devDept.Eyeshot.Model model)
+        static public void Regen(DevExpress.XtraTreeList.TreeList treeList, devDept.Eyeshot.Design model)
         {
             SetOptionsAsElementTreeList(treeList);
             treeList.TreeViewFieldName = "Name";
@@ -55,7 +56,7 @@ namespace Br3D
 
 
         // element를 tree로 만들기 위한 data source를 만든다.
-        static private BindingList<TreeListNodeOption> GenerateDataSource(devDept.Eyeshot.Model model)
+        static private BindingList<TreeListNodeOption> GenerateDataSource(devDept.Eyeshot.Design model)
         {
             int id = -1;
             TreeData rootData = new TreeData(id++, -1, "root");

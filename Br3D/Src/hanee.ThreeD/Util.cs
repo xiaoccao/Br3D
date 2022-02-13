@@ -1,5 +1,6 @@
 ﻿using devDept.Eyeshot;
 using devDept.Eyeshot.Entities;
+using devDept.Geometry.Entities;
 using devDept.Eyeshot.Labels;
 using devDept.Geometry;
 using hanee.Geometry;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using PointF = devDept.Geometry.PointF;
 
 namespace hanee.ThreeD
 {
@@ -18,7 +20,7 @@ namespace hanee.ThreeD
         }
 
         // jittering 블럭인 경우 일단 객체로 변환하고, block의 변환정보를 리턴
-        public static Transformation ConvertJitteringBlockReferenceToEntities(Model model, List<Entity> entities)
+        public static Transformation ConvertJitteringBlockReferenceToEntities(Design model, List<Entity> entities)
         {
             if (entities == null || entities.Count != 1)
                 return null;
@@ -39,7 +41,7 @@ namespace hanee.ThreeD
 
         // texture를 xy 평면에 그대로 내리는 방식으로 texture coords를 설정한다.
         // 이미지가 model의 좌측 하단에서 시작되는 조건이다.
-        public static void ApplyTextureMappingToXYPlane(Model model, Mesh mesh, Point2D textureLeftBottom, double scaleX, double scaleY)
+        public static void ApplyTextureMappingToXYPlane(Design model, Mesh mesh, Point2D textureLeftBottom, double scaleX, double scaleY)
         {
             if (model == null || mesh == null)
                 return;
@@ -80,7 +82,7 @@ namespace hanee.ThreeD
         }
 
         // model에 있는 entity중 유효하지 않은것들을 골라낸다.
-        public static EntityList FindInvalidEntities(Model model)
+        public static EntityList FindInvalidEntities(Design model)
         {
             EntityList entities = new EntityList();
             foreach (var ent in model.Entities)
@@ -104,7 +106,7 @@ namespace hanee.ThreeD
             return ent.EntityData as Element;
         }
 
-        public static List<Label> GetElementLabels(Model model, Element element)
+        public static List<Label> GetElementLabels(Design model, Element element)
         {
             if (model.ActiveViewport.Labels == null || model.ActiveViewport.Labels.Count == 0)
                 return null;
@@ -114,7 +116,7 @@ namespace hanee.ThreeD
             return labels == null ? null : labels.ToList();
         }
 
-        public static List<Entity> GetElementEntities(Model model, Element element)
+        public static List<Entity> GetElementEntities(Design model, Element element)
         {
             if (model.Entities == null || model.Entities.Count == 0)
                 return null;
@@ -144,7 +146,7 @@ namespace hanee.ThreeD
         }
 
         // element에 연결된 모든 entity의 visible 설정을 변경한다.
-        public static void SetVisibleElementEntities(Model model, Element ele)
+        public static void SetVisibleElementEntities(Design model, Element ele)
         {
             DrawableElement dele = ele as DrawableElement;
             if (dele == null)
@@ -161,7 +163,7 @@ namespace hanee.ThreeD
         }
 
         // element에 연결된 모든 entity를 선택한다.
-        public static void SelectElementEntities(Model model, Element element)
+        public static void SelectElementEntities(Design model, Element element)
         {
             var entities = GetElementEntities(model, element);
             if (entities == null)
@@ -174,7 +176,7 @@ namespace hanee.ThreeD
         }
 
         // T 타입의 모든 element의 eyeshot label을모두 삭제
-        public static void ClearAllElementLabelsByType<T>(Model model) where T : Element
+        public static void ClearAllElementLabelsByType<T>(Design model) where T : Element
         {
             var eles = ElementManager.Instance.GetAllElements<T>();
             foreach (var ele in eles)
@@ -184,7 +186,7 @@ namespace hanee.ThreeD
         }
 
         // T 타입의 모든 element의 eyeshot entity를 모두 삭제
-        public static void ClearAllElementEntitiesByType<T>(Model model) where T : Element
+        public static void ClearAllElementEntitiesByType<T>(Design model) where T : Element
         {
             var eles = ElementManager.Instance.GetAllElements<T>();
             foreach (var ele in eles)
@@ -194,7 +196,7 @@ namespace hanee.ThreeD
         }
 
         // element에 연결된 모든 entity를 제거한다.
-        public static void ClearElementLabels(Model model, Element element)
+        public static void ClearElementLabels(Design model, Element element)
         {
             if (model.Entities == null || model.Entities.Count == 0)
                 return;
@@ -207,7 +209,7 @@ namespace hanee.ThreeD
         }
 
         // element에 연결된 모든 entity를 제거한다.
-        public static void ClearElementEntities(Model model, Element element)
+        public static void ClearElementEntities(Design model, Element element)
         {
             if (model.Entities == null || model.Entities.Count == 0)
                 return;
@@ -271,7 +273,7 @@ namespace hanee.ThreeD
         }
 
         // element의 속성으로 entity에 material을 적용한다.
-        public static void ApplyMaterialByElement(Model model, Entity ent, DrawableElement element)
+        public static void ApplyMaterialByElement(Design model, Entity ent, DrawableElement element)
         {
 
             if (!element.enabledMaterial)
@@ -303,7 +305,7 @@ namespace hanee.ThreeD
         }
 
         // element에 포함된 모든 객체에 material을 적용한다.
-        public static void ApplyMaterialEntitisInElement(Model model, DrawableElement element)
+        public static void ApplyMaterialEntitisInElement(Design model, DrawableElement element)
         {
             if (element == null)
                 return;

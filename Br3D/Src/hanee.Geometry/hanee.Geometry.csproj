@@ -50,12 +50,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="devDept.Eyeshot.Control.Win.v2021, Version=2021.2.416.0, Culture=neutral, PublicKeyToken=5385d83d2fb4d7d9, processorArchitecture=MSIL" />
-    <Reference Include="devDept.Geometry.v2021, Version=2021.2.416.0, Culture=neutral, PublicKeyToken=9440825e8b4733bc, processorArchitecture=MSIL" />
-    <Reference Include="devDept.Graphics.Win.v2021, Version=2021.2.416.0, Culture=neutral, PublicKeyToken=f3cd437f0d8061b5" />
-    <Reference Include="DevExpress.Data.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Xpo.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="devDept.Eyeshot.Control.Win.v2022" />
+    <Reference Include="devDept.Geometry.v2022" />
+    <Reference Include="devDept.Graphics.Win.v2022" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -76,25 +73,19 @@
     <Compile Include="Boundary.cs" />
     <Compile Include="ByteHelper.cs" />
     <Compile Include="Convert.cs" />
-    <Compile Include="CurveHelper.cs" />
     <Compile Include="DepthTestAlwaysBlockReference.cs" />
     <Compile Include="DepthTestAlwaysLinearPath.cs" />
     <Compile Include="DepthTestAlwaysRegion.cs" />
     <Compile Include="DepthTestAlwaysText.cs" />
     <Compile Include="DoubleHelper.cs" />
     <Compile Include="DrawableElement.cs" />
-    <Compile Include="Drawer.cs" />
     <Compile Include="Element.cs" />
     <Compile Include="ElementConnector.cs" />
     <Compile Include="ElementID.cs" />
     <Compile Include="ElementManager.cs" />
     <Compile Include="EntityHelper.cs" />
-    <Compile Include="EntityListHelper.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="FloatHelper.cs" />
-    <Compile Include="GutterSectionViewer.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="HaneeCollection.cs" />
     <Compile Include="IBX.cs" />
     <Compile Include="IndexTriangleHelper.cs" />
@@ -118,7 +109,6 @@
     <Compile Include="TableGeometry.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Vector2DHelper.cs" />
-    <Compile Include="WireMesh.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

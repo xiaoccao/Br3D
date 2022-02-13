@@ -1,4 +1,5 @@
 ﻿using devDept.Eyeshot.Entities;
+using devDept.Geometry.Entities;
 using devDept.Eyeshot.Translators;
 using devDept.Graphics;
 using System.Collections.Generic;
@@ -35,7 +36,8 @@ namespace hanee.ThreeD
             supportFormats.Add("All", "*.*");
             supportFormats.Add("AutoCAD", "*.dwg; *.dxf");
             supportFormats.Add("IFC", "*.ifc");
-            supportFormats.Add("3DS", ".dwg; *.dxf");
+            supportFormats.Add("3DS", "*.3ds");
+            supportFormats.Add("GCode", "*.gcode");
             supportFormats.Add("JT", "*.jt");
             supportFormats.Add("STEP", "*.stp; *.step");
             supportFormats.Add("IGES", "*.igs; *.iges");
@@ -43,7 +45,6 @@ namespace hanee.ThreeD
             supportFormats.Add("Stereolithography", "*.stl");
             supportFormats.Add("Laser LAS", "*.las");
             supportFormats.Add("Points", "*.asc");
-            supportFormats.Add("LUSAS", "*.las");
             supportFormats.Add("EMF", "*.emf");
             if (additionalSupportFormats != null)
             {
@@ -136,7 +137,9 @@ namespace hanee.ThreeD
                 Dictionary<string, Stream> textureStreams;
 
                 Get3DModelStreams(filename, out stream, out matStream, out textureStreams);
-                rf = new devDept.Eyeshot.Translators.ReadOBJ(stream, matStream, textureStreams, Mesh.edgeStyleType.Free);
+                //TODO devDept 2022: Mesh.edgeStyleType Enum has been moved to devDept.Geometry.Entities.GMesh namespace.
+                //rf = new devDept.Eyeshot.Translators.ReadOBJ(stream, matStream, textureStreams, Mesh.edgeStyleType.Free);
+                rf = new devDept.Eyeshot.Translators.ReadOBJ(stream, matStream, textureStreams, GMesh.edgeStyleType.Free);
             }
             else if (ext == ".LAS")
             {
@@ -154,17 +157,17 @@ namespace hanee.ThreeD
             {
                 rf = new devDept.Eyeshot.Translators.Read3DS(filename);
             }
-            else if (ext == ".LUS")
+            else if (ext == ".PDF")
             {
-                rf = new devDept.Eyeshot.Translators.ReadLusas(filename);
+                rf = new devDept.Eyeshot.Translators.ReadPDF(filename);
+            }
+            else if (ext == ".GCODE")
+            {
+                rf = new devDept.Eyeshot.Translators.ReadGCode(filename);
             }
             else if (ext == ".JT")
             {
                 rf = new devDept.Eyeshot.Translators.ReadJT(filename);
-            }
-            else if (ext == ".BR3")
-            {
-                rf = new devDept.Eyeshot.Translators.ReadFile(filename);
             }
             else
             {
@@ -239,12 +242,14 @@ namespace hanee.ThreeD
         }
 
         // 파일이름을 받아서 WriteFileAsync를 리턴한다.
-        static public WriteFileAsync GetWriteFileAsync(devDept.Eyeshot.Model model, devDept.Eyeshot.Drawings drawings, string filename, bool ascii = false)
+        static public WriteFileAsync GetWriteFileAsync(devDept.Eyeshot.Design model, string filename, bool ascii = false)
         {
             string ext = System.IO.Path.GetExtension(filename);
             ext = ext.ToUpper();
 
-            WriteParamsWithDrawings writeParam = new WriteParamsWithDrawings(model, drawings);
+            //TODO devDept 2022: The Drawings class has been renamed in Drawing.
+            //WriteParamsWithDrawings writeParam = new WriteParamsWithDrawings(model, drawings);
+            WriteParamsWithDrawing writeParam = new WriteParamsWithDrawing(model, null);
 
             WriteFileAsync wf = null;
             if (ext == ".IGES" || ext == ".IGS")
@@ -265,7 +270,7 @@ namespace hanee.ThreeD
             }
             else if (ext == ".DWG")
             {
-                WriteAutodeskParams aWriteParam = new WriteAutodeskParams(model, drawings);
+                WriteAutodeskParams aWriteParam = new WriteAutodeskParams(model, null);
                 wf = new WriteAutodesk(aWriteParam, filename);
             }
             else if (ext == ".HTML")

@@ -72,7 +72,7 @@ namespace hanee.ThreeD
             else if (type == linearUnitsType.Millimeters)
                 return "㎟";
 
-            return type.GetDisplayName() + "2";
+            return type.ToString() + "2";
         }
 
         // 체적 단위를 문자로
@@ -87,7 +87,7 @@ namespace hanee.ThreeD
             else if (type == linearUnitsType.Millimeters)
                 return "㎣";
 
-            return type.GetDisplayName() + "3";
+            return type.ToString() + "3";
         }
         
         // dist를 toUnits 단위로 변환
@@ -102,7 +102,7 @@ namespace hanee.ThreeD
         }
 
         // 읽어온 파일에 있는 객체의 단위계를 viewport에 맞춘다.
-        public static void AdjustUnitsForEntitiesRead(Model vp, ReadFileAsync rf)
+        public static void AdjustUnitsForEntitiesRead(Design vp, ReadFileAsync rf)
         {
             double factor = 1;
          

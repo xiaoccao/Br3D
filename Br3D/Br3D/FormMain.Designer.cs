@@ -50,6 +50,7 @@ namespace Br3D
             DevExpress.XtraEditors.TileItemElement tileItemElement18 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement16 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement17 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement19 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement21 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement22 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement23 = new DevExpress.XtraEditors.TileItemElement();
@@ -240,7 +241,6 @@ namespace Br3D
             toolBar8}, new devDept.Eyeshot.Legend[0], devDept.Eyeshot.displayType.Rendered, true, false, false, false, new devDept.Eyeshot.Grid[] {
             grid4}, new devDept.Eyeshot.OriginSymbol[] {
             originSymbol4}, false, rotateSettings4, zoomSettings4, panSettings4, navigationSettings4, coordinateSystemIcon4, viewCubeIcon4, savedViewsManager4, devDept.Eyeshot.viewType.Right);
-            DevExpress.XtraEditors.TileItemElement tileItemElement19 = new DevExpress.XtraEditors.TileItemElement();
             this.tileNavPaneViewport = new DevExpress.XtraBars.Navigation.TileNavPane();
             this.navButtonHome = new DevExpress.XtraBars.Navigation.NavButton();
             this.tileNavCategoryAnnotation = new DevExpress.XtraBars.Navigation.TileNavCategory();
@@ -263,6 +263,7 @@ namespace Br3D
             this.tileNavItemLanguage = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavSubItemKorean = new DevExpress.XtraBars.Navigation.TileNavSubItem();
             this.tileNavSubItemEnglish = new DevExpress.XtraBars.Navigation.TileNavSubItem();
+            this.tileNavItemHomePage = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavItemOpen = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavItemSaveAs = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavItemSaveImage = new DevExpress.XtraBars.Navigation.TileNavItem();
@@ -272,7 +273,7 @@ namespace Br3D
             this.dockPanelObjectTree = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel3_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.treeListObject = new DevExpress.XtraTreeList.TreeList();
-            this.tileNavItemHomePage = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tileNavPaneViewport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.o)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
@@ -598,6 +599,19 @@ namespace Br3D
             this.tileNavSubItemEnglish.Tile.Elements.Add(tileItemElement17);
             this.tileNavSubItemEnglish.Tile.Name = "tileBarItem3";
             // 
+            // tileNavItemHomePage
+            // 
+            this.tileNavItemHomePage.Caption = "Homepage";
+            this.tileNavItemHomePage.Name = "tileNavItemHomePage";
+            // 
+            // 
+            // 
+            this.tileNavItemHomePage.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement19.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemHomePage.TileImageOptions.SvgImage")));
+            tileItemElement19.Text = "Homepage";
+            this.tileNavItemHomePage.Tile.Elements.Add(tileItemElement19);
+            this.tileNavItemHomePage.Tile.Name = "tileBarItem1";
+            // 
             // tileNavItemOpen
             // 
             this.tileNavItemOpen.Caption = "Open";
@@ -721,19 +735,6 @@ namespace Br3D
             this.treeListObject.Size = new System.Drawing.Size(217, 616);
             this.treeListObject.TabIndex = 0;
             // 
-            // tileNavItemHomePage
-            // 
-            this.tileNavItemHomePage.Caption = "Homepage";
-            this.tileNavItemHomePage.Name = "tileNavItemHomePage";
-            // 
-            // tileBarItem1
-            // 
-            this.tileNavItemHomePage.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement19.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemHomePage.TileImageOptions.SvgImage")));
-            tileItemElement19.Text = "Homepage";
-            this.tileNavItemHomePage.Tile.Elements.Add(tileItemElement19);
-            this.tileNavItemHomePage.Tile.Name = "tileBarItem1";
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -791,5 +792,6 @@ namespace Br3D
         private DevExpress.XtraBars.Navigation.TileNavSubItem tileNavSubItemKorean;
         private DevExpress.XtraBars.Navigation.TileNavSubItem tileNavSubItemEnglish;
         private DevExpress.XtraBars.Navigation.TileNavItem tileNavItemHomePage;
+        private DevExpress.Utils.ToolTipController toolTipController1;
     }
 }

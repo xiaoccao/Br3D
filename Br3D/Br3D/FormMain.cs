@@ -21,6 +21,7 @@ namespace Br3D
 
         List<Viewport> viewports = new List<Viewport>();
 
+        private Memo lastMemo = null;
         Model model => o;
         Dictionary<NavElement, Action> functionByElement = new Dictionary<NavElement, Action>();
         public FormMain()
@@ -31,6 +32,7 @@ namespace Br3D
             model.WorkCompleted += Model_WorkCompleted;
             model.WorkFailed += Model_WorkFailed;
             model.MouseUp += Model_MouseUp;
+            model.MouseMove += Model_MouseMove;
             
             foreach (Viewport vp in model.Viewports)
                 viewports.Add(vp);
@@ -50,6 +52,40 @@ namespace Br3D
             InitToolbar();
             Translate();
         }
+
+        private void Model_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.None)
+                return;
+
+            Memo memo = GetMemoUnderMouseCursor(e.Location);
+            if (memo != null && lastMemo != memo)
+            {
+                toolTipController1.ShowHint(memo.OneLineText);
+                lastMemo = memo;
+            }
+            else
+            {
+                lastMemo = memo;
+            }
+
+            if (lastMemo == null)
+                toolTipController1.HideHint();
+        }
+
+        // 마우스 커서 아래에 있는 memo를 리턴한다.
+        private Memo GetMemoUnderMouseCursor(System.Drawing.Point location)
+        {
+            int index = model.GetLabelUnderMouseCursor(location);
+            if (index != -1)
+            {
+                //get the entity
+                var label = model.ActiveViewport.Labels[index];
+                return label as Memo;
+            }
+            return null;
+        }
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             ViewportSingle();
@@ -160,6 +196,10 @@ namespace Br3D
             // tree에서 선택
             if (!treeListObject.Visible)
                 return;
+            if (model.ActionMode != actionType.None)
+                return;
+
+
 
             if (e.Button == MouseButtons.Left)
             {

@@ -1,4 +1,6 @@
 ﻿using devDept.Eyeshot;
+using hanee.ThreeD;
+using System;
 
 namespace hanee.Cad.Tool
 {
@@ -10,6 +12,18 @@ namespace hanee.Cad.Tool
             InitializeComponent();
             this.design = design;
             layerControl1.SetDesign(design);
+
+            Translate();
+        }
+
+        public void RefreshDataSource()
+        {
+            layerControl1.RefreshDataSource();
+        }
+
+        private void Translate()
+        {
+            simpleButtonClose.Text = LanguageHelper.Tr("Close");
         }
     }
 }

@@ -94,6 +94,7 @@
     <Compile Include="ActionDist.cs" />
     <Compile Include="ActionFilter.cs" />
     <Compile Include="ActionID.cs" />
+    <Compile Include="ActionLayer.cs" />
     <Compile Include="ActionList.cs" />
     <Compile Include="ActionMemo.cs" />
     <Compile Include="Define.cs" />

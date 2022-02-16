@@ -417,8 +417,8 @@ namespace Br3D
 
         void Layer()
         {
-            FormLayer form = new FormLayer(design);
-            form.ShowDialog();
+            ActionLayer ac = new ActionLayer(design);
+            ac.Run();
         }
 
         void About()
@@ -540,8 +540,17 @@ namespace Br3D
 
                 // object tree 갱신
                 ObjectTreeListHelper.RegenAsync(treeListObject, design, isDwg);
+
+                RefreshDataSource();
             }
         }
+
+        private void RefreshDataSource()
+        {
+            if (ActionLayer.formLayer != null)
+                ActionLayer.formLayer.RefreshDataSource();
+        }
+
         private void navButtonMain_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)
         {
 

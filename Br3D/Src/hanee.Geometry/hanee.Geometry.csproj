@@ -84,6 +84,7 @@
     <Compile Include="ElementID.cs" />
     <Compile Include="ElementManager.cs" />
     <Compile Include="EntityHelper.cs" />
+    <Compile Include="EnumHelper.cs" />
     <Compile Include="Environment.cs" />
     <Compile Include="FloatHelper.cs" />
     <Compile Include="HaneeCollection.cs" />

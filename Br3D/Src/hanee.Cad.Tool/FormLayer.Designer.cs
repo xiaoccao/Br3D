@@ -29,42 +29,55 @@ namespace hanee.Cad.Tool
         /// </summary>
         private void InitializeComponent()
         {
-            this.layerControl1 = new hanee.Cad.Tool.LayerControl();
             this.simpleButtonClose = new DevExpress.XtraEditors.SimpleButton();
+            this.sidePanel1 = new DevExpress.XtraEditors.SidePanel();
+            this.layerControl1 = new hanee.Cad.Tool.LayerControl();
+            this.sidePanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // layerControl1
-            // 
-            this.layerControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.layerControl1.Location = new System.Drawing.Point(0, 0);
-            this.layerControl1.Name = "layerControl1";
-            this.layerControl1.Size = new System.Drawing.Size(713, 337);
-            this.layerControl1.TabIndex = 0;
             // 
             // simpleButtonClose
             // 
-            this.simpleButtonClose.Location = new System.Drawing.Point(626, 357);
+            this.simpleButtonClose.Location = new System.Drawing.Point(636, 5);
             this.simpleButtonClose.Name = "simpleButtonClose";
-            this.simpleButtonClose.Size = new System.Drawing.Size(75, 23);
+            this.simpleButtonClose.Size = new System.Drawing.Size(74, 26);
             this.simpleButtonClose.TabIndex = 1;
             this.simpleButtonClose.Text = "Close";
+            // 
+            // sidePanel1
+            // 
+            this.sidePanel1.Controls.Add(this.simpleButtonClose);
+            this.sidePanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.sidePanel1.Location = new System.Drawing.Point(0, 356);
+            this.sidePanel1.Name = "sidePanel1";
+            this.sidePanel1.Size = new System.Drawing.Size(713, 36);
+            this.sidePanel1.TabIndex = 2;
+            this.sidePanel1.Text = "sidePanel1";
+            // 
+            // layerControl1
+            // 
+            this.layerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.layerControl1.Location = new System.Drawing.Point(0, 0);
+            this.layerControl1.Name = "layerControl1";
+            this.layerControl1.Size = new System.Drawing.Size(713, 356);
+            this.layerControl1.TabIndex = 4;
             // 
             // FormLayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 392);
-            this.Controls.Add(this.simpleButtonClose);
             this.Controls.Add(this.layerControl1);
+            this.Controls.Add(this.sidePanel1);
             this.Name = "FormLayer";
             this.Text = "FormLayer";
+            this.sidePanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private LayerControl layerControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButtonClose;
+        private DevExpress.XtraEditors.SidePanel sidePanel1;
+        private LayerControl layerControl1;
     }
 }

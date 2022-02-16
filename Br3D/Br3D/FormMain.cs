@@ -132,6 +132,8 @@ namespace Br3D
             SetTileText(tileNavItemHomePage, LanguageHelper.Tr("Homepage"));
             SetTileText(tileNavItemAbout, LanguageHelper.Tr("About"));
 
+            SetTileText(tileNavItemLayer, LanguageHelper.Tr("Layer"));
+
 
 
             // sub tile
@@ -410,6 +412,13 @@ namespace Br3D
             functionByElement.Add(tileNavItemHomePage, Homepage);
             functionByElement.Add(tileNavItemCheckForUpdate, CheckForUpdate);
             functionByElement.Add(tileNavItemAbout, About);
+            functionByElement.Add(tileNavItemLayer, Layer);
+        }
+
+        void Layer()
+        {
+            FormLayer form = new FormLayer(design);
+            form.ShowDialog();
         }
 
         void About()

@@ -169,4 +169,10 @@
   <data name="perspective" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\perspective.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="_2d_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\2d_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_3d_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\3d_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

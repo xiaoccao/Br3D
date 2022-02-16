@@ -1,22 +1,23 @@
 ﻿
+using devDept.Eyeshot;
 using devDept.Eyeshot.Entities;
-using devDept.Geometry.Entities;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Br3D
 {
     public static class ObjectTreeListHelper
     {
-        static public void Regen(DevExpress.XtraTreeList.TreeList treeList, devDept.Eyeshot.Design model)
+        async static public void RegenAsync(DevExpress.XtraTreeList.TreeList treeList, devDept.Eyeshot.Design model, bool isDwg)
         {
             SetOptionsAsElementTreeList(treeList);
             treeList.TreeViewFieldName = "Name";
-            var options = GenerateDataSource(model);
+            var options = await RunTaskGenerateDataSourceAsync(model, isDwg);
+
             treeList.DataSource = options;
             treeList.ForceInitialize();
 
@@ -54,27 +55,25 @@ namespace Br3D
             return nodes;
         }
 
-
-        // element를 tree로 만들기 위한 data source를 만든다.
-        static private BindingList<TreeListNodeOption> GenerateDataSource(devDept.Eyeshot.Design model)
+        static Task<BindingList<TreeListNodeOption>> RunTaskGenerateDataSourceAsync(devDept.Eyeshot.Design model, bool isDwg)
         {
-            int id = -1;
-            TreeData rootData = new TreeData(id++, -1, "root");
-
-            // 모든 entity의 property를 가져옴
-            for (int i = 0; i < model.Entities.Count; ++i)
+            return Task.Run(() => GenerateDataSource(model, isDwg));
+        }
+        // element를 tree로 만들기 위한 data source를 만든다.
+        static private BindingList<TreeListNodeOption> GenerateDataSource(devDept.Eyeshot.Design model, bool isDwg)
+        {
+            if (isDwg)
             {
-                var ele = model.Entities[i];
-
-
-                List<string> properties = GetTreeNodeProperties(ele);
-                if (properties == null || properties.Count == 0)
-                    continue;
-
-                AddTreeNode(rootData, properties, ele, ref id);
+                return GenerateDataSourceDwg(model);
+            }
+            else
+            {
+                return GenerateDataSource3D(model);
             }
 
-
+        }
+        static BindingList<TreeListNodeOption> ConvertTreeDataToTreeOptions(TreeData rootData)
+        {
             // TreeListNodeOption으로 변환
             // 즉, 처음 정했던 id가 바뀔 수 있다.
             // 변경되는 id 정보를 보관했다가 parent id에 변경 id를 적용해준다.
@@ -115,6 +114,77 @@ namespace Br3D
             return options;
         }
 
+        // dwg는 속성만 트리로 구성한다.
+        private static BindingList<TreeListNodeOption> GenerateDataSourceDwg(Design model)
+        {
+            int id = -1;
+            TreeData rootData = new TreeData(id++, -1, "root");
+
+            // 모든 layer
+            foreach (var item in model.Layers)
+            {
+                List<string> properties = GetTreeNodeProperties(item);
+                if (properties == null || properties.Count == 0)
+                    continue;
+
+                AddTreeNode(rootData, properties, item, ref id);
+            }
+
+            // 모든 linetype
+            foreach (var item in model.LineTypes)
+            {
+                List<string> properties = GetTreeNodeProperties(item);
+                if (properties == null || properties.Count == 0)
+                    continue;
+
+                AddTreeNode(rootData, properties, item, ref id);
+            }
+
+            // 모든 block
+            foreach (var item in model.Blocks)
+            {
+                List<string> properties = GetTreeNodeProperties(item);
+                if (properties == null || properties.Count == 0)
+                    continue;
+
+                AddTreeNode(rootData, properties, item, ref id);
+            }
+
+            // 모든 textstyle
+            foreach (var item in model.TextStyles)
+            {
+                List<string> properties = GetTreeNodeProperties(item);
+                if (properties == null || properties.Count == 0)
+                    continue;
+
+                AddTreeNode(rootData, properties, item, ref id);
+            }
+
+
+            return ConvertTreeDataToTreeOptions(rootData);
+        }
+
+        private static BindingList<TreeListNodeOption> GenerateDataSource3D(Design model)
+        {
+            int id = -1;
+            TreeData rootData = new TreeData(id++, -1, "root");
+
+            // 모든 entity의 property를 가져옴
+            for (int i = 0; i < model.Entities.Count; ++i)
+            {
+                var ele = model.Entities[i];
+
+
+                List<string> properties = GetTreeNodeProperties(ele);
+                if (properties == null || properties.Count == 0)
+                    continue;
+
+                AddTreeNode(rootData, properties, ele, ref id);
+            }
+
+            return ConvertTreeDataToTreeOptions(rootData);
+        }
+
         static private void AddTreeNode(TreeData rootData, List<string> listProperties, object tag, ref int id)
         {
             TreeData curData = rootData;
@@ -150,7 +220,7 @@ namespace Br3D
                     {
                         newProp = $"{prop}{num++}";
                     }
-                    
+
                     var newData = new TreeData(id++, curData.ID, newProp);
                     newData.Tag = tag;
                     curData.dic[newProp] = newData;
@@ -208,7 +278,7 @@ namespace Br3D
         }
 
         // 객체의 tree node 속성 리턴
-        private static List<string> GetTreeNodeProperties(devDept.Eyeshot.Entities.Entity ent)
+        private static List<string> GetTreeNodeProperties(object ent)
         {
             List<string> properties = new List<string>();
             properties.Add("Root");
@@ -223,22 +293,42 @@ namespace Br3D
                         if (ifc.Identification.TryGetValue(key, out string val))
                             properties.Add(val);
                     }
-                    
+
                 }
             }
-            else if(ent is BlockReference)
+            else if (ent is BlockReference)
             {
                 properties.Add("Block");
                 properties.Add(((BlockReference)ent).BlockName);
             }
-            else
+            else if (ent is Entity)
             {
 
                 string type = ent.GetType().ToString().Split('.').LastOrDefault();
                 properties.Add(type);
                 properties.Add(type);   // 마지막 노드는 이름이 같으면 번호를 자동으로 붙인다.
             }
-            
+            else if (ent is Layer)
+            {
+                properties.Add("Layer");
+                properties.Add(((Layer)ent).Name);
+            }
+            else if (ent is Block)
+            {
+                properties.Add("Block");
+                properties.Add(((Block)ent).Name);
+            }
+            else if (ent is LineType)
+            {
+                properties.Add("LineType");
+                properties.Add(((LineType)ent).Name);
+            }
+            else if (ent is TextStyle)
+            {
+                properties.Add("TextStyle");
+                properties.Add(((TextStyle)ent).Name);
+            }
+
 
             // .Ifc 문자가 있으면 Ifc 이후 문자만 취한다.
             foreach (var prop in properties)

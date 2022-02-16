@@ -1,6 +1,5 @@
 ﻿using devDept.Eyeshot;
 using devDept.Eyeshot.Entities;
-using devDept.Geometry.Entities;
 using devDept.Eyeshot.Translators;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraEditors;
@@ -23,6 +22,8 @@ namespace Br3D
         devDept.Eyeshot.ToolBarSeparator toolBarSeparator = new ToolBarSeparator();
         devDept.Eyeshot.ToolBarButton toolBarButtonPerspectiveMode = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources.perspective, "Perspective", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
         devDept.Eyeshot.ToolBarButton toolBarButtonOrthographicMode = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources.orthographic, "Orthographic", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
+        devDept.Eyeshot.ToolBarButton toolBarButton2DMode = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources._2d_32px, "2D", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
+        devDept.Eyeshot.ToolBarButton toolBarButton3DMode = new devDept.Eyeshot.ToolBarButton(global::Br3D.Properties.Resources._3d_32px, "3D", null, devDept.Eyeshot.ToolBarButton.styleType.PushButton, true, true, null, null);
 
         List<Viewport> viewports = new List<Viewport>();
 
@@ -37,7 +38,9 @@ namespace Br3D
             design.WorkFailed += Design_WorkFailed;
             design.MouseUp += Design_MouseUp;
             design.MouseMove += Design_MouseMove;
-            design.ActiveViewport.Camera.ProjectionMode = devDept.Graphics.projectionType.Orthographic;
+
+            hDesign.SaveBackgroundColor();
+
             foreach (Viewport vp in design.Viewports)
                 viewports.Add(vp);
 
@@ -56,6 +59,12 @@ namespace Br3D
             InitToolbar();
             Translate();
         }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            ViewportSingle();
+        }
+
 
         private void Design_MouseMove(object sender, MouseEventArgs e)
         {
@@ -90,10 +99,6 @@ namespace Br3D
             return null;
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-            ViewportSingle();
-        }
 
         private void Translate()
         {
@@ -137,6 +142,8 @@ namespace Br3D
 
         private void SetTileText(TileNavItem tileNavItem, string text)
         {
+
+
             tileNavItem.TileText = text;
             tileNavItem.Caption = text;
         }
@@ -158,6 +165,9 @@ namespace Br3D
                     displayModelToolbar.Buttons.Add(toolBarSeparator);
                     displayModelToolbar.Buttons.Add(toolBarButtonPerspectiveMode);
                     displayModelToolbar.Buttons.Add(toolBarButtonOrthographicMode);
+                    displayModelToolbar.Buttons.Add(toolBarSeparator);
+                    displayModelToolbar.Buttons.Add(toolBarButton2DMode);
+                    //displayModelToolbar.Buttons.Add(toolBarButton3DMode);
                 }
 
                 vp.Rotate.MouseButton = new MouseButton(MouseButtons.Middle, modifierKeys.Ctrl);
@@ -173,6 +183,21 @@ namespace Br3D
 
             toolBarButtonPerspectiveMode.Click += ToolBarButtonPerspectiveMode_Click;
             toolBarButtonOrthographicMode.Click += ToolBarButtonOrthographicMode_Click;
+
+            toolBarButton2DMode.Click += ToolBarButton2DMode_Click;
+            toolBarButton3DMode.Click += ToolBarButton3DMode_Click;
+
+        }
+
+        // 3d 모드로 변경
+        private void ToolBarButton3DMode_Click(object sender, EventArgs e)
+        {
+            hDesign.Set3DView();
+        }
+
+        private void ToolBarButton2DMode_Click(object sender, EventArgs e)
+        {
+            hDesign.Set2DView();
         }
 
         private void ToolBarButtonOrthographicMode_Click(object sender, EventArgs e)
@@ -299,14 +324,47 @@ namespace Br3D
         private List<Entity> GetAllEntitiesByNode(DevExpress.XtraTreeList.Nodes.TreeListNode node, bool subEntities)
         {
             List<Entity> entities = new List<Entity>();
-            var subNodes = node.GetAllSubNodes();
-            foreach (DevExpress.XtraTreeList.Nodes.TreeListNode subNode in subNodes)
+            if (node.Tag is Layer)
             {
-                var ent = subNode.Tag as Entity;
-                if (ent == null)
-                    continue;
+                var layerName = ((Layer)node.Tag).Name;
+                var result = design.Entities.FindAll(x => x.LayerName == layerName);
+                if (result != null)
+                    entities.AddRange(result);
+            }
+            else if (node.Tag is Block)
+            {
+                var blockName = ((Block)node.Tag).Name;
+                var result = design.Entities.FindAll(x => x is BlockReferenceEx && ((BlockReference)x).BlockName == blockName);
+                if (result != null)
+                    entities.AddRange(result);
+            }
+            else if (node.Tag is LineType)
+            {
+                var lineTypeName = ((LineType)node.Tag).Name;
+                var result = design.Entities.FindAll(x => x.LineTypeName == lineTypeName);
+                if (result != null)
+                    entities.AddRange(result);
+            }
+            else if (node.Tag is TextStyle)
+            {
+                var textStyleName = ((TextStyle)node.Tag).Name;
+                var result = design.Entities.FindAll(x => x is Text && ((Text)x).StyleName == textStyleName);
+                if (result != null)
+                    entities.AddRange(result);
+            }
+            else
+            {
 
-                entities.Add(ent);
+                var subNodes = node.GetAllSubNodes();
+                foreach (DevExpress.XtraTreeList.Nodes.TreeListNode subNode in subNodes)
+                {
+                    if (subNode.Tag is Entity)
+                    {
+                        entities.Add((Entity)subNode.Tag);
+                    }
+
+                }
+
             }
 
             return entities;
@@ -319,7 +377,7 @@ namespace Br3D
             tileNavSubItemEnglish.Tile.Checked = false;
             if (Options.Instance.language == "ko-KR")
                 tileNavSubItemKorean.Tile.Checked = true;
-            else if(Options.Instance.language == "en-US")
+            else if (Options.Instance.language == "en-US")
                 tileNavSubItemEnglish.Tile.Checked = true;
         }
 
@@ -464,8 +522,15 @@ namespace Br3D
                 foreach (Viewport v in design.Viewports)
                     v.ZoomFit();
 
+                // dwg를 불러오면 2D로 뷰를 강제로 변환
+                bool isDwg = Path.GetExtension(rfa.FileName).ToLower().EndsWith("dwg");
+                if (isDwg)
+                    ToolBarButton2DMode_Click(sender, EventArgs.Empty);
+                else
+                    ToolBarButton3DMode_Click(sender, EventArgs.Empty);
+
                 // object tree 갱신
-                ObjectTreeListHelper.Regen(treeListObject, design);
+                ObjectTreeListHelper.RegenAsync(treeListObject, design, isDwg);
             }
         }
         private void navButtonMain_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)

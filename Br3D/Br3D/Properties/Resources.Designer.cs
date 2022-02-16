@@ -63,6 +63,26 @@ namespace Br3D.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap _2d_32px {
+            get {
+                object obj = ResourceManager.GetObject("_2d_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap _3d_32px {
+            get {
+                object obj = ResourceManager.GetObject("_3d_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap hiddenline_32x {
             get {
                 object obj = ResourceManager.GetObject("hiddenline_32x", resourceCulture);

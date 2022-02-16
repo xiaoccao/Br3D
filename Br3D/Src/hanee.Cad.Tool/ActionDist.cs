@@ -50,6 +50,8 @@ namespace hanee.Cad.Tool
             }
 
             pt2 = point3D;
+            if (pt1 == null)
+                return;
 
             ptText = (pt1 + pt2) / 2;
 

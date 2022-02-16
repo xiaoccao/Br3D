@@ -234,6 +234,8 @@
     <Content Include="br3d_icon.ico" />
     <None Include="Images\orthographic.png" />
     <None Include="Images\perspective.png" />
+    <None Include="Images\2d_32px.png" />
+    <None Include="Images\3d_32px.png" />
     <Content Include="Install\CertificateFile_pfx\signtool.exe" />
     <Content Include="Install\Setup_Br3D.iss" />
     <None Include="wyUpdate.exe">

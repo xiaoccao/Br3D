@@ -28,12 +28,18 @@ namespace hanee.ThreeD
         public static Color drawingColor = Color.Black;
         public static Font drawingFont = new Font("Tahoma", 10.0f, FontStyle.Bold);
         public System.Drawing.Point cursorPoint;
+        System.Drawing.Point lastMouseDownPoint{ get; set; }
         public bool displayHelp = true;
         public bool TopViewOnly = false;
         public Snapping Snapping = null;
 
         // property grid를 지정하면 객체 선택시 property grid에 속성이 표시됨
         public PropertyGridHelper propertyGridHelper { get; set; }
+        
+        
+        // 배경색
+        Color backgroundTopColor { get; set; }
+        Color backgroundBottomColor { get; set; }
 
         // 투명도 옵션 설정
         public TranparencyMode Transparency
@@ -84,6 +90,8 @@ namespace hanee.ThreeD
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
+            lastMouseDownPoint = e.Location;
+
             base.OnMouseDown(e);
 
             if (this.ActionMode != actionType.None)
@@ -302,12 +310,23 @@ namespace hanee.ThreeD
             Invalidate();
         }
 
+        public void SaveBackgroundColor()
+        {
+            backgroundTopColor = ActiveViewport.Background.TopColor;
+            backgroundBottomColor = ActiveViewport.Background.BottomColor;
+        }
+
         // 2D view로 설정한다.
         public void Set2DView()
         {
             TopViewOnly = true;
             ActiveViewport.Camera.ProjectionMode = projectionType.Orthographic;
             SetView(viewType.Top, true, true);
+
+            // 배경을 검은색으로
+            ActiveViewport.Background.BottomColor = Color.Black;
+            ActiveViewport.Background.TopColor = Color.Black;
+            ActiveViewport.DisplayMode = displayType.Wireframe;
         }
 
         // 3D view로 설정한다.
@@ -316,6 +335,11 @@ namespace hanee.ThreeD
             TopViewOnly = false;
             ActiveViewport.Camera.ProjectionMode = projectionType.Perspective;
             SetView(viewType.Isometric, true, true);
+
+            // 배경을 검은색으로
+            ActiveViewport.Background.BottomColor = backgroundBottomColor;
+            ActiveViewport.Background.TopColor = backgroundTopColor;
+            ActiveViewport.DisplayMode = displayType.Rendered;
         }
 
 
@@ -733,7 +757,7 @@ namespace hanee.ThreeD
             // 2D view일 때는 좌우로만 회전하도록 한다.
             if (TopViewOnly && e.Button == MouseButtons.Middle && Control.ModifierKeys == Keys.Control)
             {
-                System.Windows.Forms.MouseEventArgs eNew = new MouseEventArgs(e.Button, e.Clicks, e.X, ActionBase.Point.Y, e.Delta);
+                System.Windows.Forms.MouseEventArgs eNew = new MouseEventArgs(e.Button, e.Clicks, e.X, lastMouseDownPoint.Y, e.Delta);
                 base.OnMouseMove(eNew);
             }
             else

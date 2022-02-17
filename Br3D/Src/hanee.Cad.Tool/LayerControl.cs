@@ -52,11 +52,9 @@ namespace hanee.Cad.Tool
             this.design = design;
             gridControl1.DataSource = design.Layers;
             
-
-            int idx = 0;
-
             gridView1.Columns.ForEach(x => x.Visible = false);
 
+            int idx = 0;
             SetColumn(Field.visible.GetDescription(), idx++, LanguageHelper.Tr("Visible"));
             SetColumn(Field.name.GetDescription(), idx++, LanguageHelper.Tr("Name"));
             SetColumn(Field.color.GetDescription(), idx++, LanguageHelper.Tr("Color"));
@@ -76,12 +74,15 @@ namespace hanee.Cad.Tool
             gridControl1.RepositoryItems.Add(checkEdit);
             gridView1.Columns[Field.locked.GetDescription()].ColumnEdit = checkEdit;
             gridView1.Columns[Field.visible.GetDescription()].ColumnEdit = checkEdit;
+
+            RepositoryItemColorEdit colorEdit = new RepositoryItemColorEdit();
+            gridControl1.RepositoryItems.Add(colorEdit);
+            gridView1.Columns[Field.color.GetDescription()].ColumnEdit = colorEdit;
+
             foreach (RepositoryItem item in gridControl1.RepositoryItems)
             {
                 item.EditValueChanged += Item_EditValueChanged;
-                
             }
-         
         }
 
         private void Item_EditValueChanged(object sender, EventArgs e)

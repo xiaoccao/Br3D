@@ -18,6 +18,20 @@ namespace hanee.ThreeD
     // Model, Drawings 모두를 위한 헬퍼
     public static class EnvironmentHelper
     {
+        // text를 모두 regen한다.
+        static public void RegenAllTexts(this Environment environment, double deviation=0.001)
+        {
+            var regenParams = new RegenParams(deviation, environment);
+            foreach (var ent in environment.Entities)
+            {
+                var text = ent as devDept.Eyeshot.Entities.Text;
+                if (text == null)
+                    continue;
+
+                text.Regen(regenParams);
+            }
+        }
+
         static public void RunPaintBackBuffer(this Environment environment)
         {
             //if (environment is BRDrawings)

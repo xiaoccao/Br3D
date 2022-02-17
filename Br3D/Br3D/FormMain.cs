@@ -1,6 +1,7 @@
 ﻿using devDept.Eyeshot;
 using devDept.Eyeshot.Entities;
 using devDept.Eyeshot.Translators;
+using devDept.Geometry;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraEditors;
 using hanee.Cad.Tool;
@@ -58,11 +59,21 @@ namespace Br3D
 
             InitToolbar();
             Translate();
+
+            
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
             ViewportSingle();
+
+            // test
+            Text t = new Text(new Point3D(0, 0, 0), "asdf", 12);
+
+            design.TextStyles[0].FontFamilyName = "Arial";
+
+            design.Entities.Regen();
+            design.Entities.Add(t);
         }
 
 
@@ -413,6 +424,13 @@ namespace Br3D
             functionByElement.Add(tileNavItemCheckForUpdate, CheckForUpdate);
             functionByElement.Add(tileNavItemAbout, About);
             functionByElement.Add(tileNavItemLayer, Layer);
+            functionByElement.Add(tileNavItemTextStyle, TextStyle);
+        }
+
+        void TextStyle()
+        {
+            ActionTextStyle ac = new ActionTextStyle(design, this);
+            ac.Run();
         }
 
         void Layer()
@@ -549,6 +567,8 @@ namespace Br3D
         {
             if (ActionLayer.formLayer != null)
                 ActionLayer.formLayer.RefreshDataSource();
+            if (ActionTextStyle.formTextStyle != null)
+                ActionTextStyle.formTextStyle.RefreshDataSource();
         }
 
         private void navButtonMain_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)

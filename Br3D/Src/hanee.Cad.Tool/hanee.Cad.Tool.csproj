@@ -97,6 +97,7 @@
     <Compile Include="ActionLayer.cs" />
     <Compile Include="ActionList.cs" />
     <Compile Include="ActionMemo.cs" />
+    <Compile Include="ActionTextStyle.cs" />
     <Compile Include="Define.cs" />
     <Compile Include="DistanceText.cs" />
     <Compile Include="FormFilter.cs">
@@ -123,6 +124,12 @@
     <Compile Include="FormResult.Designer.cs">
       <DependentUpon>FormResult.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTextStyle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTextStyle.Designer.cs">
+      <DependentUpon>FormTextStyle.cs</DependentUpon>
+    </Compile>
     <Compile Include="LayerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -136,6 +143,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TextStyleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TextStyleControl.Designer.cs">
+      <DependentUpon>TextStyleControl.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +174,9 @@
     <EmbeddedResource Include="FormResult.resx">
       <DependentUpon>FormResult.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormTextStyle.resx">
+      <DependentUpon>FormTextStyle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LayerControl.resx">
       <DependentUpon>LayerControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,6 +184,9 @@
     <EmbeddedResource Include="Resources\Resource1.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextStyleControl.resx">
+      <DependentUpon>TextStyleControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

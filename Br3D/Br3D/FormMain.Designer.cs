@@ -31,32 +31,34 @@ namespace Br3D
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement3 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement4 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement5 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement6 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement13 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement8 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement7 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement14 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement9 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement10 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement11 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement12 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement14 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement13 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement15 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement16 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement17 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement24 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement20 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement18 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement19 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement25 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement21 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement19 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement20 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement22 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement23 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement25 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement24 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement26 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement27 = new DevExpress.XtraEditors.TileItemElement();
             DevExpress.XtraEditors.TileItemElement tileItemElement28 = new DevExpress.XtraEditors.TileItemElement();
+            DevExpress.XtraEditors.TileItemElement tileItemElement29 = new DevExpress.XtraEditors.TileItemElement();
             devDept.Eyeshot.CancelToolBarButton cancelToolBarButton1 = new devDept.Eyeshot.CancelToolBarButton("Cancel", devDept.Eyeshot.ToolBarButton.styleType.ToggleButton, true, true);
             devDept.Eyeshot.ProgressBar progressBar1 = new devDept.Eyeshot.ProgressBar(devDept.Eyeshot.ProgressBar.styleType.Circular, 0, "Idle", System.Drawing.Color.Black, System.Drawing.Color.Transparent, System.Drawing.Color.Green, 1D, true, cancelToolBarButton1, false, 0.1D, 0.333D, true);
             devDept.Graphics.BackgroundSettings backgroundSettings1 = new devDept.Graphics.BackgroundSettings(devDept.Graphics.backgroundStyleType.LinearGradient, System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(82)))), ((int)(((byte)(103))))), System.Drawing.Color.DodgerBlue, System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(32)))), ((int)(((byte)(41))))), 0.75D, null, devDept.Graphics.colorThemeType.Auto, 0.33D);
@@ -248,9 +250,10 @@ namespace Br3D
             grid4}, new devDept.Eyeshot.OriginSymbol[] {
             originSymbol4}, false, rotateSettings4, zoomSettings4, panSettings4, navigationSettings4, coordinateSystemIcon4, viewCubeIcon4, savedViewsManager4, devDept.Eyeshot.viewType.Right);
             DevExpress.XtraEditors.TileItemElement tileItemElement2 = new DevExpress.XtraEditors.TileItemElement();
-            DevExpress.XtraEditors.TileItemElement tileItemElement1 = new DevExpress.XtraEditors.TileItemElement();
             this.tileNavPaneViewport = new DevExpress.XtraBars.Navigation.TileNavPane();
             this.navButtonHome = new DevExpress.XtraBars.Navigation.NavButton();
+            this.tileNavCategoryTools = new DevExpress.XtraBars.Navigation.TileNavCategory();
+            this.tileNavItemLayer = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavCategoryAnnotation = new DevExpress.XtraBars.Navigation.TileNavCategory();
             this.tileNavItemCoordinates = new DevExpress.XtraBars.Navigation.TileNavItem();
             this.tileNavItemDistance = new DevExpress.XtraBars.Navigation.TileNavItem();
@@ -284,8 +287,7 @@ namespace Br3D
             this.dockPanel3_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.treeListObject = new DevExpress.XtraTreeList.TreeList();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
-            this.tileNavCategoryTools = new DevExpress.XtraBars.Navigation.TileNavCategory();
-            this.tileNavItemLayer = new DevExpress.XtraBars.Navigation.TileNavItem();
+            this.tileNavItemTextStyle = new DevExpress.XtraBars.Navigation.TileNavItem();
             ((System.ComponentModel.ISupportInitialize)(this.tileNavPaneViewport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hDesign)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
@@ -331,6 +333,33 @@ namespace Br3D
             this.navButtonHome.Name = "navButtonHome";
             this.navButtonHome.ElementClick += new DevExpress.XtraBars.Navigation.NavElementClickEventHandler(this.navButtonMain_ElementClick);
             // 
+            // tileNavCategoryTools
+            // 
+            this.tileNavCategoryTools.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Right;
+            this.tileNavCategoryTools.Caption = "Tools";
+            this.tileNavCategoryTools.Items.AddRange(new DevExpress.XtraBars.Navigation.TileNavItem[] {
+            this.tileNavItemLayer,
+            this.tileNavItemTextStyle});
+            this.tileNavCategoryTools.Name = "tileNavCategoryTools";
+            // 
+            // 
+            // 
+            this.tileNavCategoryTools.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement3.Text = "Tools";
+            this.tileNavCategoryTools.Tile.Elements.Add(tileItemElement3);
+            // 
+            // tileNavItemLayer
+            // 
+            this.tileNavItemLayer.Caption = "Layer";
+            this.tileNavItemLayer.Name = "tileNavItemLayer";
+            // 
+            // 
+            // 
+            this.tileNavItemLayer.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement1.Text = "Layer";
+            this.tileNavItemLayer.Tile.Elements.Add(tileItemElement1);
+            this.tileNavItemLayer.Tile.Name = "tileBarItem1";
+            // 
             // tileNavCategoryAnnotation
             // 
             this.tileNavCategoryAnnotation.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Right;
@@ -346,8 +375,8 @@ namespace Br3D
             // 
             // 
             this.tileNavCategoryAnnotation.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement7.Text = "Annotation";
-            this.tileNavCategoryAnnotation.Tile.Elements.Add(tileItemElement7);
+            tileItemElement8.Text = "Annotation";
+            this.tileNavCategoryAnnotation.Tile.Elements.Add(tileItemElement8);
             // 
             // tileNavItemCoordinates
             // 
@@ -357,9 +386,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemCoordinates.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement3.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemCoordinates.TileImageOptions.SvgImage")));
-            tileItemElement3.Text = "Coordinates";
-            this.tileNavItemCoordinates.Tile.Elements.Add(tileItemElement3);
+            tileItemElement4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemCoordinates.TileImageOptions.SvgImage")));
+            tileItemElement4.Text = "Coordinates";
+            this.tileNavItemCoordinates.Tile.Elements.Add(tileItemElement4);
             this.tileNavItemCoordinates.Tile.Name = "tileBarItem1";
             // 
             // tileNavItemDistance
@@ -370,9 +399,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemDistance.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement4.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemDistance.TileImageOptions.SvgImage")));
-            tileItemElement4.Text = "Distance";
-            this.tileNavItemDistance.Tile.Elements.Add(tileItemElement4);
+            tileItemElement5.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemDistance.TileImageOptions.SvgImage")));
+            tileItemElement5.Text = "Distance";
+            this.tileNavItemDistance.Tile.Elements.Add(tileItemElement5);
             this.tileNavItemDistance.Tile.Name = "tileBarItem2";
             // 
             // tileNavItemMemo
@@ -383,9 +412,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemMemo.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement5.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemMemo.TileImageOptions.SvgImage")));
-            tileItemElement5.Text = "Memo";
-            this.tileNavItemMemo.Tile.Elements.Add(tileItemElement5);
+            tileItemElement6.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemMemo.TileImageOptions.SvgImage")));
+            tileItemElement6.Text = "Memo";
+            this.tileNavItemMemo.Tile.Elements.Add(tileItemElement6);
             this.tileNavItemMemo.Tile.Name = "tileBarItem3";
             // 
             // tileNavItemClearAnnotations
@@ -396,9 +425,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemClearAnnotations.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement6.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemClearAnnotations.TileImageOptions.SvgImage")));
-            tileItemElement6.Text = "Clear Annotations";
-            this.tileNavItemClearAnnotations.Tile.Elements.Add(tileItemElement6);
+            tileItemElement7.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemClearAnnotations.TileImageOptions.SvgImage")));
+            tileItemElement7.Text = "Clear Annotations";
+            this.tileNavItemClearAnnotations.Tile.Elements.Add(tileItemElement7);
             this.tileNavItemClearAnnotations.Tile.Name = "tileBarItem3";
             // 
             // tileNavCategoryOsnap
@@ -418,8 +447,8 @@ namespace Br3D
             // 
             // 
             this.tileNavCategoryOsnap.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement13.Text = "Osnap";
-            this.tileNavCategoryOsnap.Tile.Elements.Add(tileItemElement13);
+            tileItemElement14.Text = "Osnap";
+            this.tileNavCategoryOsnap.Tile.Elements.Add(tileItemElement14);
             // 
             // tileNavItemEnd
             // 
@@ -429,9 +458,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemEnd.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement8.ImageOptions.Image = global::Br3D.Properties.Resources.snap_endpoint_small;
-            tileItemElement8.Text = "End";
-            this.tileNavItemEnd.Tile.Elements.Add(tileItemElement8);
+            tileItemElement9.ImageOptions.Image = global::Br3D.Properties.Resources.snap_endpoint_small;
+            tileItemElement9.Text = "End";
+            this.tileNavItemEnd.Tile.Elements.Add(tileItemElement9);
             this.tileNavItemEnd.Tile.Name = "tileBarItem1";
             // 
             // tileNavItemIntersection
@@ -442,9 +471,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemIntersection.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement9.ImageOptions.Image = global::Br3D.Properties.Resources.snap_intersection_small;
-            tileItemElement9.Text = "Intersection";
-            this.tileNavItemIntersection.Tile.Elements.Add(tileItemElement9);
+            tileItemElement10.ImageOptions.Image = global::Br3D.Properties.Resources.snap_intersection_small;
+            tileItemElement10.Text = "Intersection";
+            this.tileNavItemIntersection.Tile.Elements.Add(tileItemElement10);
             this.tileNavItemIntersection.Tile.Name = "tileBarItem5";
             // 
             // tileNavItemMiddle
@@ -455,9 +484,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemMiddle.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement10.ImageOptions.Image = global::Br3D.Properties.Resources.snap_middle_small;
-            tileItemElement10.Text = "Middle";
-            this.tileNavItemMiddle.Tile.Elements.Add(tileItemElement10);
+            tileItemElement11.ImageOptions.Image = global::Br3D.Properties.Resources.snap_middle_small;
+            tileItemElement11.Text = "Middle";
+            this.tileNavItemMiddle.Tile.Elements.Add(tileItemElement11);
             this.tileNavItemMiddle.Tile.Name = "tileBarItem2";
             // 
             // tileNavItemCenter
@@ -468,9 +497,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemCenter.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement11.ImageOptions.Image = global::Br3D.Properties.Resources.snap_center_small;
-            tileItemElement11.Text = "Center";
-            this.tileNavItemCenter.Tile.Elements.Add(tileItemElement11);
+            tileItemElement12.ImageOptions.Image = global::Br3D.Properties.Resources.snap_center_small;
+            tileItemElement12.Text = "Center";
+            this.tileNavItemCenter.Tile.Elements.Add(tileItemElement12);
             this.tileNavItemCenter.Tile.Name = "tileBarItem3";
             // 
             // tileNavItemPoint
@@ -481,9 +510,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemPoint.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement12.ImageOptions.Image = global::Br3D.Properties.Resources.snap_node_small;
-            tileItemElement12.Text = "Point";
-            this.tileNavItemPoint.Tile.Elements.Add(tileItemElement12);
+            tileItemElement13.ImageOptions.Image = global::Br3D.Properties.Resources.snap_node_small;
+            tileItemElement13.Text = "Point";
+            this.tileNavItemPoint.Tile.Elements.Add(tileItemElement13);
             this.tileNavItemPoint.Tile.Name = "tileBarItem4";
             // 
             // tileNavCategoryViewport
@@ -510,9 +539,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemViewportsingle.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement14.ImageOptions.Image = global::Br3D.Properties.Resources.view_single;
-            tileItemElement14.Text = "Single";
-            this.tileNavItemViewportsingle.Tile.Elements.Add(tileItemElement14);
+            tileItemElement15.ImageOptions.Image = global::Br3D.Properties.Resources.view_single;
+            tileItemElement15.Text = "Single";
+            this.tileNavItemViewportsingle.Tile.Elements.Add(tileItemElement15);
             this.tileNavItemViewportsingle.Tile.Name = "tileBarItem1";
             // 
             // tileNavItemViewport1x1
@@ -523,9 +552,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemViewport1x1.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement15.ImageOptions.Image = global::Br3D.Properties.Resources.view_1x1;
-            tileItemElement15.Text = "1x1";
-            this.tileNavItemViewport1x1.Tile.Elements.Add(tileItemElement15);
+            tileItemElement16.ImageOptions.Image = global::Br3D.Properties.Resources.view_1x1;
+            tileItemElement16.Text = "1x1";
+            this.tileNavItemViewport1x1.Tile.Elements.Add(tileItemElement16);
             this.tileNavItemViewport1x1.Tile.Name = "tileBarItem2";
             // 
             // tileNavItemViewport1x2
@@ -536,9 +565,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemViewport1x2.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement16.ImageOptions.Image = global::Br3D.Properties.Resources.view_1x2;
-            tileItemElement16.Text = "1x2";
-            this.tileNavItemViewport1x2.Tile.Elements.Add(tileItemElement16);
+            tileItemElement17.ImageOptions.Image = global::Br3D.Properties.Resources.view_1x2;
+            tileItemElement17.Text = "1x2";
+            this.tileNavItemViewport1x2.Tile.Elements.Add(tileItemElement17);
             this.tileNavItemViewport1x2.Tile.Name = "tileBarItem3";
             // 
             // tileNavItemViewport2x2
@@ -549,9 +578,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemViewport2x2.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement17.ImageOptions.Image = global::Br3D.Properties.Resources.view_2x2;
-            tileItemElement17.Text = "2x2";
-            this.tileNavItemViewport2x2.Tile.Elements.Add(tileItemElement17);
+            tileItemElement18.ImageOptions.Image = global::Br3D.Properties.Resources.view_2x2;
+            tileItemElement18.Text = "2x2";
+            this.tileNavItemViewport2x2.Tile.Elements.Add(tileItemElement18);
             this.tileNavItemViewport2x2.Tile.Name = "tileBarItem4";
             // 
             // tileNavCategoryOptions
@@ -569,8 +598,8 @@ namespace Br3D
             // 
             // 
             this.tileNavCategoryOptions.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement24.Text = "Options";
-            this.tileNavCategoryOptions.Tile.Elements.Add(tileItemElement24);
+            tileItemElement25.Text = "Options";
+            this.tileNavCategoryOptions.Tile.Elements.Add(tileItemElement25);
             // 
             // tileNavItemLanguage
             // 
@@ -583,9 +612,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemLanguage.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement20.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemLanguage.TileImageOptions.SvgImage")));
-            tileItemElement20.Text = "Language";
-            this.tileNavItemLanguage.Tile.Elements.Add(tileItemElement20);
+            tileItemElement21.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemLanguage.TileImageOptions.SvgImage")));
+            tileItemElement21.Text = "Language";
+            this.tileNavItemLanguage.Tile.Elements.Add(tileItemElement21);
             this.tileNavItemLanguage.Tile.Name = "tileBarItem1";
             // 
             // tileNavSubItemKorean
@@ -596,9 +625,9 @@ namespace Br3D
             // 
             // 
             this.tileNavSubItemKorean.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement18.ImageOptions.Image = global::Br3D.Properties.Resources.south_korea_16px;
-            tileItemElement18.Text = "한국어";
-            this.tileNavSubItemKorean.Tile.Elements.Add(tileItemElement18);
+            tileItemElement19.ImageOptions.Image = global::Br3D.Properties.Resources.south_korea_16px;
+            tileItemElement19.Text = "한국어";
+            this.tileNavSubItemKorean.Tile.Elements.Add(tileItemElement19);
             this.tileNavSubItemKorean.Tile.Name = "tileBarItem2";
             // 
             // tileNavSubItemEnglish
@@ -609,9 +638,9 @@ namespace Br3D
             // 
             // 
             this.tileNavSubItemEnglish.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement19.ImageOptions.Image = global::Br3D.Properties.Resources.usa_16px;
-            tileItemElement19.Text = "English";
-            this.tileNavSubItemEnglish.Tile.Elements.Add(tileItemElement19);
+            tileItemElement20.ImageOptions.Image = global::Br3D.Properties.Resources.usa_16px;
+            tileItemElement20.Text = "English";
+            this.tileNavSubItemEnglish.Tile.Elements.Add(tileItemElement20);
             this.tileNavSubItemEnglish.Tile.Name = "tileBarItem3";
             // 
             // tileNavItemCheckForUpdate
@@ -622,9 +651,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemCheckForUpdate.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement21.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemCheckForUpdate.TileImageOptions.SvgImage")));
-            tileItemElement21.Text = "Check For Update";
-            this.tileNavItemCheckForUpdate.Tile.Elements.Add(tileItemElement21);
+            tileItemElement22.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemCheckForUpdate.TileImageOptions.SvgImage")));
+            tileItemElement22.Text = "Check For Update";
+            this.tileNavItemCheckForUpdate.Tile.Elements.Add(tileItemElement22);
             this.tileNavItemCheckForUpdate.Tile.Name = "tileBarItem1";
             // 
             // tileNavItemHomePage
@@ -635,9 +664,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemHomePage.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement22.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemHomePage.TileImageOptions.SvgImage")));
-            tileItemElement22.Text = "Homepage";
-            this.tileNavItemHomePage.Tile.Elements.Add(tileItemElement22);
+            tileItemElement23.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemHomePage.TileImageOptions.SvgImage")));
+            tileItemElement23.Text = "Homepage";
+            this.tileNavItemHomePage.Tile.Elements.Add(tileItemElement23);
             this.tileNavItemHomePage.Tile.Name = "tileBarItem1";
             // 
             // tileNavItemAbout
@@ -648,9 +677,9 @@ namespace Br3D
             // 
             // 
             this.tileNavItemAbout.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement23.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemAbout.TileImageOptions.SvgImage")));
-            tileItemElement23.Text = "About";
-            this.tileNavItemAbout.Tile.Elements.Add(tileItemElement23);
+            tileItemElement24.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemAbout.TileImageOptions.SvgImage")));
+            tileItemElement24.Text = "About";
+            this.tileNavItemAbout.Tile.Elements.Add(tileItemElement24);
             this.tileNavItemAbout.Tile.Name = "tileBarItem2";
             // 
             // tileNavItemOpen
@@ -661,10 +690,10 @@ namespace Br3D
             // 
             // 
             this.tileNavItemOpen.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement25.ImageOptions.Image = global::Br3D.Properties.Resources.view_single;
-            tileItemElement25.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemOpen.TileImageOptions.SvgImage")));
-            tileItemElement25.Text = "Open";
-            this.tileNavItemOpen.Tile.Elements.Add(tileItemElement25);
+            tileItemElement26.ImageOptions.Image = global::Br3D.Properties.Resources.view_single;
+            tileItemElement26.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemOpen.TileImageOptions.SvgImage")));
+            tileItemElement26.Text = "Open";
+            this.tileNavItemOpen.Tile.Elements.Add(tileItemElement26);
             this.tileNavItemOpen.Tile.Name = "tileBarItem4";
             // 
             // tileNavItemSaveAs
@@ -675,10 +704,10 @@ namespace Br3D
             // 
             // 
             this.tileNavItemSaveAs.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement26.ImageOptions.Image = global::Br3D.Properties.Resources.view_1x1;
-            tileItemElement26.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemSaveAs.TileImageOptions.SvgImage")));
-            tileItemElement26.Text = "Save As";
-            this.tileNavItemSaveAs.Tile.Elements.Add(tileItemElement26);
+            tileItemElement27.ImageOptions.Image = global::Br3D.Properties.Resources.view_1x1;
+            tileItemElement27.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemSaveAs.TileImageOptions.SvgImage")));
+            tileItemElement27.Text = "Save As";
+            this.tileNavItemSaveAs.Tile.Elements.Add(tileItemElement27);
             this.tileNavItemSaveAs.Tile.Name = "tileBarItem5";
             // 
             // tileNavItemSaveImage
@@ -689,10 +718,10 @@ namespace Br3D
             // 
             // 
             this.tileNavItemSaveImage.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement27.ImageOptions.Image = global::Br3D.Properties.Resources.view_1x2;
-            tileItemElement27.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemSaveImage.TileImageOptions.SvgImage")));
-            tileItemElement27.Text = "Save Image";
-            this.tileNavItemSaveImage.Tile.Elements.Add(tileItemElement27);
+            tileItemElement28.ImageOptions.Image = global::Br3D.Properties.Resources.view_1x2;
+            tileItemElement28.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemSaveImage.TileImageOptions.SvgImage")));
+            tileItemElement28.Text = "Save Image";
+            this.tileNavItemSaveImage.Tile.Elements.Add(tileItemElement28);
             this.tileNavItemSaveImage.Tile.Name = "tileBarItem1";
             // 
             // tileNavItemExit
@@ -703,10 +732,10 @@ namespace Br3D
             // 
             // 
             this.tileNavItemExit.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement28.ImageOptions.Image = global::Br3D.Properties.Resources.view_2x2;
-            tileItemElement28.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemExit.TileImageOptions.SvgImage")));
-            tileItemElement28.Text = "Exit";
-            this.tileNavItemExit.Tile.Elements.Add(tileItemElement28);
+            tileItemElement29.ImageOptions.Image = global::Br3D.Properties.Resources.view_2x2;
+            tileItemElement29.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("tileNavItemExit.TileImageOptions.SvgImage")));
+            tileItemElement29.Text = "Exit";
+            this.tileNavItemExit.Tile.Elements.Add(tileItemElement29);
             this.tileNavItemExit.Tile.Name = "tileBarItem2";
             // 
             // hDesign
@@ -776,31 +805,17 @@ namespace Br3D
             this.treeListObject.Size = new System.Drawing.Size(217, 616);
             this.treeListObject.TabIndex = 0;
             // 
-            // tileNavCategoryTools
+            // tileNavItemTextStyle
             // 
-            this.tileNavCategoryTools.Alignment = DevExpress.XtraBars.Navigation.NavButtonAlignment.Right;
-            this.tileNavCategoryTools.Caption = "Tools";
-            this.tileNavCategoryTools.Items.AddRange(new DevExpress.XtraBars.Navigation.TileNavItem[] {
-            this.tileNavItemLayer});
-            this.tileNavCategoryTools.Name = "tileNavCategoryTools";
-            // 
-            // 
-            // 
-            this.tileNavCategoryTools.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement2.Text = "Tools";
-            this.tileNavCategoryTools.Tile.Elements.Add(tileItemElement2);
-            // 
-            // tileNavItemLayer
-            // 
-            this.tileNavItemLayer.Caption = "Layer";
-            this.tileNavItemLayer.Name = "tileNavItemLayer";
+            this.tileNavItemTextStyle.Caption = "Text Style";
+            this.tileNavItemTextStyle.Name = "tileNavItemTextStyle";
             // 
             // tileBarItem1
             // 
-            this.tileNavItemLayer.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
-            tileItemElement1.Text = "Layer";
-            this.tileNavItemLayer.Tile.Elements.Add(tileItemElement1);
-            this.tileNavItemLayer.Tile.Name = "tileBarItem1";
+            this.tileNavItemTextStyle.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty;
+            tileItemElement2.Text = "Text Style";
+            this.tileNavItemTextStyle.Tile.Elements.Add(tileItemElement2);
+            this.tileNavItemTextStyle.Tile.Name = "tileBarItem1";
             // 
             // FormMain
             // 
@@ -864,5 +879,6 @@ namespace Br3D
         private DevExpress.XtraBars.Navigation.TileNavItem tileNavItemAbout;
         private DevExpress.XtraBars.Navigation.TileNavCategory tileNavCategoryTools;
         private DevExpress.XtraBars.Navigation.TileNavItem tileNavItemLayer;
+        private DevExpress.XtraBars.Navigation.TileNavItem tileNavItemTextStyle;
     }
 }

@@ -25,5 +25,35 @@ namespace hanee.Cad.Tool
         {
             simpleButtonClose.Text = LanguageHelper.Tr("Close");
         }
+
+        private void simpleButtonAdd_Click(object sender, EventArgs e)
+        {
+            string newLayerName = "New Layer";
+            int num = 1;
+            while (true)
+            {
+                newLayerName = $"New Layer{num++}";
+                if (!design.Layers.Contains(newLayerName))
+                    break;
+            }
+            design.Layers.Add(newLayerName);
+            RefreshDataSource();
+        }
+
+        private void simpleButtonDelete_Click(object sender, EventArgs e)
+        {
+            layerControl1.GetGridView().DeleteSelectedRows();
+        }
+
+        private void layerControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void simpleButtonClose_Click(object sender, EventArgs e)
+        {
+            DialogResult = System.Windows.Forms.DialogResult.OK;
+            Close();
+        }
     }
 }

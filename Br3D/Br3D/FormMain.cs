@@ -417,7 +417,7 @@ namespace Br3D
 
         void Layer()
         {
-            ActionLayer ac = new ActionLayer(design);
+            ActionLayer ac = new ActionLayer(design, this);
             ac.Run();
         }
 

@@ -56,11 +56,12 @@ namespace Br3D
             InitTileElementMethod();
             InitTileElementStatus();
             InitObjectTreeList();
+            InitPropertyGrid();
 
             InitToolbar();
             Translate();
 
-            
+
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -181,7 +182,7 @@ namespace Br3D
                     displayModelToolbar.Buttons.Add(toolBarButtonOrthographicMode);
                     displayModelToolbar.Buttons.Add(toolBarSeparator);
                     displayModelToolbar.Buttons.Add(toolBarButton2DMode);
-                    //displayModelToolbar.Buttons.Add(toolBarButton3DMode);
+                    displayModelToolbar.Buttons.Add(toolBarButton3DMode);
                 }
 
                 vp.Rotate.MouseButton = new MouseButton(MouseButtons.Middle, modifierKeys.Ctrl);
@@ -261,6 +262,20 @@ namespace Br3D
             design.Rendered.ShadowMode = devDept.Graphics.shadowType.None;
         }
 
+        void RefreshPropertyGridControl(object selectedObj)
+        {
+            if (selectedObj is Entity)
+            {
+                EntityProperties ep = new EntityProperties(selectedObj as Entity);
+                propertyGridControl1.SelectedObject = ep;
+            }
+            else
+            {
+                propertyGridControl1.SelectedObject = selectedObj;
+
+            }
+        }
+
         private void Design_MouseUp(object sender, MouseEventArgs e)
         {
             // tree에서 선택
@@ -269,23 +284,52 @@ namespace Br3D
             if (design.ActionMode != actionType.None)
                 return;
 
-
-
             if (e.Button == MouseButtons.Left)
             {
                 treeListObject.ClearSelection();
                 var item = design.GetItemUnderMouseCursor(e.Location);
                 if (item == null)
+                {
+                    RefreshPropertyGridControl(null);
                     return;
+                }
+
+                RefreshPropertyGridControl(item.Item);
 
                 var node = treeListObject.FindNode(x => x.Tag == item.Item);
                 if (node == null)
                     return;
                 if (node.ParentNode != null)
                     node.ParentNode.Expand();
+
                 treeListObject.SelectNode(node);
                 treeListObject.TopVisibleNodeIndex = node.Id;
 
+            }
+        }
+
+
+        private void InitPropertyGrid()
+        {
+            propertyGridControl1.CellValueChanged += PropertyGridControl1_CellValueChanged;
+        }
+
+        private void PropertyGridControl1_CellValueChanged(object sender, DevExpress.XtraVerticalGrid.Events.CellValueChangedEventArgs e)
+        {
+            var entProperties = propertyGridControl1.SelectedObject as EntityProperties;
+            if (entProperties == null)
+                return;
+            var ent = entProperties.entity;
+            try
+            {
+                design.Entities.Regen();
+                propertyGridControl1.Refresh();
+                design.Invalidate();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -577,7 +621,7 @@ namespace Br3D
                 ActionLayer.formLayer.RefreshDataSource();
             if (ActionTextStyle.formTextStyle != null)
                 ActionTextStyle.formTextStyle.RefreshDataSource();
-            if (ActionLineType.formLineType!= null)
+            if (ActionLineType.formLineType != null)
                 ActionLineType.formLineType.RefreshDataSource();
         }
 

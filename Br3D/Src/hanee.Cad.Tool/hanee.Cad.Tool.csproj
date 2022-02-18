@@ -95,9 +95,16 @@
     <Compile Include="ActionFilter.cs" />
     <Compile Include="ActionID.cs" />
     <Compile Include="ActionLayer.cs" />
+    <Compile Include="ActionLineType.cs" />
     <Compile Include="ActionList.cs" />
     <Compile Include="ActionMemo.cs" />
     <Compile Include="ActionTextStyle.cs" />
+    <Compile Include="LineTypeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LineTypeControl.Designer.cs">
+      <DependentUpon>LineTypeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Define.cs" />
     <Compile Include="DistanceText.cs" />
     <Compile Include="FormFilter.cs">
@@ -117,6 +124,12 @@
     </Compile>
     <Compile Include="FormLayer.Designer.cs">
       <DependentUpon>FormLayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLineType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLineType.Designer.cs">
+      <DependentUpon>FormLineType.cs</DependentUpon>
     </Compile>
     <Compile Include="FormResult.cs">
       <SubType>Form</SubType>
@@ -162,6 +175,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LineTypeControl.resx">
+      <DependentUpon>LineTypeControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFilter.resx">
       <DependentUpon>FormFilter.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormLayer.resx">
       <DependentUpon>FormLayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLineType.resx">
+      <DependentUpon>FormLineType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormResult.resx">
       <DependentUpon>FormResult.cs</DependentUpon>

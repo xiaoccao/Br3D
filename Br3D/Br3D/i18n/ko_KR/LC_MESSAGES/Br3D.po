@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-02-13 17:15+0900\n"
-"PO-Revision-Date: 2022-02-13 17:15+0900\n"
+"POT-Creation-Date: 2022-02-18 08:51+0900\n"
+"PO-Revision-Date: 2022-02-18 08:51+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -11,109 +11,194 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.0\n"
-"X-Poedit-Basepath: ../../..\n"
+"X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-KeywordsList: Tr\n"
-"X-Poedit-SearchPath-0: i18n/ko_KR\n"
-"X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPath-0: Br3D/i18n/ko_KR\n"
+"X-Poedit-SearchPath-1: Br3D\n"
+"X-Poedit-SearchPath-2: Src\n"
 
-#: FormMain.cs:101
+#: Br3D/FormMain.cs:117
 msgid "Home"
 msgstr "홈"
 
-#: FormMain.cs:104
+#: Br3D/FormMain.cs:120
 msgid "Options"
 msgstr "옵션"
 
-#: FormMain.cs:105
+#: Br3D/FormMain.cs:121
 msgid "Osnap"
 msgstr "객체 스냅"
 
-#: FormMain.cs:106
+#: Br3D/FormMain.cs:122
 msgid "Annotation"
 msgstr "주석"
 
-#: FormMain.cs:107
+#: Br3D/FormMain.cs:123
 msgid "Viewport"
 msgstr "뷰 포트"
 
-#: FormMain.cs:111
+#: Br3D/FormMain.cs:124
+msgid "Tools"
+msgstr "도구"
+
+#: Br3D/FormMain.cs:128
 msgid "Open"
 msgstr "열기"
 
-#: FormMain.cs:112
+#: Br3D/FormMain.cs:129
 msgid "Save As"
 msgstr "저장"
 
-#: FormMain.cs:113
+#: Br3D/FormMain.cs:130
 msgid "Save Image"
 msgstr "이미지 저장"
 
-#: FormMain.cs:114
+#: Br3D/FormMain.cs:131
 msgid "Exit"
 msgstr "종료"
 
-#: FormMain.cs:115
+#: Br3D/FormMain.cs:132
 msgid "End Point"
 msgstr "끝점"
 
-#: FormMain.cs:116
+#: Br3D/FormMain.cs:133
 msgid "Intersection Point"
 msgstr "교차점"
 
-#: FormMain.cs:117
+#: Br3D/FormMain.cs:134
 msgid "Center Point"
 msgstr "중심점"
 
-#: FormMain.cs:118
+#: Br3D/FormMain.cs:135
 msgid "Point"
 msgstr "점"
 
-#: FormMain.cs:119
+#: Br3D/FormMain.cs:136
 msgid "Middle Point"
 msgstr "중간점"
 
-#: FormMain.cs:120
+#: Br3D/FormMain.cs:137
 msgid "Coordinates"
 msgstr "좌표"
 
-#: FormMain.cs:121
+#: Br3D/FormMain.cs:138
 msgid "Distance"
 msgstr "거리"
 
-#: FormMain.cs:122
+#: Br3D/FormMain.cs:139
 msgid "Memo"
 msgstr "메모"
 
-#: FormMain.cs:123
+#: Br3D/FormMain.cs:140
 msgid "Clear Annotations"
 msgstr "주석 제거"
 
-#: FormMain.cs:124
+#: Br3D/FormMain.cs:141
 msgid "Language"
 msgstr "언어"
 
-#: FormMain.cs:126
+#: Br3D/FormMain.cs:143
 msgid "Check For Update"
 msgstr "업데이트 체크"
 
-#: FormMain.cs:127
+#: Br3D/FormMain.cs:144
 msgid "Homepage"
 msgstr "홈페이지"
 
-#: FormMain.cs:128
+#: Br3D/FormMain.cs:145
 msgid "About"
 msgstr "About"
 
-#: FormMain.cs:135
+#: Br3D/FormMain.cs:147
+msgid "Layer"
+msgstr "레이어"
+
+#: Br3D/FormMain.cs:148 Src/hanee.Cad.Tool/FormLineType.cs:37
+msgid "Line Type"
+msgstr "라인 타입"
+
+#: Br3D/FormMain.cs:149
+msgid "Text Style"
+msgstr "텍스트 스타일"
+
+#: Br3D/FormMain.cs:154
 msgid "Object Tree"
 msgstr "객체 트리"
 
-#: FormMain.cs:372
+#: Br3D/FormMain.cs:465
 msgid "Update check failed! - wyUpdate.exe not found!"
 msgstr "업데이트 체크 실패! - wyUpdate.exe가 없습니다!"
 
-#~ msgid "Tool"
-#~ msgstr "도구"
+#: Src/hanee.Cad.Tool/FormLayer.cs:26 Src/hanee.Cad.Tool/FormLineType.cs:38
+#: Src/hanee.Cad.Tool/FormTextStyle.cs:29
+msgid "Close"
+msgstr "닫기"
+
+#: Src/hanee.Cad.Tool/FormTextStyle.cs:26
+msgid "Text style"
+msgstr "텍스트 스타일"
+
+#: Src/hanee.Cad.Tool/FormTextStyle.cs:27
+msgid "Add"
+msgstr "추가"
+
+#: Src/hanee.Cad.Tool/FormTextStyle.cs:28
+msgid "Delete"
+msgstr "삭제"
+
+#: Src/hanee.Cad.Tool/LayerControl.cs:58
+msgid "Visible"
+msgstr "보기"
+
+#: Src/hanee.Cad.Tool/LayerControl.cs:59
+#: Src/hanee.Cad.Tool/LineTypeControl.cs:57
+#: Src/hanee.Cad.Tool/TextStyleControl.cs:58
+msgid "Name"
+msgstr "이름"
+
+#: Src/hanee.Cad.Tool/LayerControl.cs:60
+msgid "Color"
+msgstr "색상"
+
+#: Src/hanee.Cad.Tool/LayerControl.cs:61
+msgid "Locked"
+msgstr "잠금"
+
+#: Src/hanee.Cad.Tool/LayerControl.cs:62
+msgid "Line Type Name"
+msgstr "라인 타입명"
+
+#: Src/hanee.Cad.Tool/LayerControl.cs:63
+msgid "Line Weight"
+msgstr "선 두께"
+
+#: Src/hanee.Cad.Tool/LayerControl.cs:64
+msgid "Material Name"
+msgstr "머터리얼명"
+
+#: Src/hanee.Cad.Tool/LineTypeControl.cs:59
+msgid "Description"
+msgstr "설명"
+
+#: Src/hanee.Cad.Tool/LineTypeControl.cs:60
+msgid "Length"
+msgstr "길이"
+
+#: Src/hanee.Cad.Tool/TextStyleControl.cs:59
+msgid "Font"
+msgstr "폰트"
+
+#: Src/hanee.Cad.Tool/TextStyleControl.cs:60
+msgid "Shx File Name"
+msgstr "SHX 파일명"
+
+#: Src/hanee.Cad.Tool/TextStyleControl.cs:61
+msgid "Style"
+msgstr "스타일"
+
+#: Src/hanee.Cad.Tool/TextStyleControl.cs:62
+msgid "WidthFactor"
+msgstr "폭 비율"
 
 #~ msgid "System"
 #~ msgstr "시스템"
@@ -178,9 +263,6 @@ msgstr "업데이트 체크 실패! - wyUpdate.exe가 없습니다!"
 #~ msgid "Rename"
 #~ msgstr "이름변경"
 
-#~ msgid "Delete"
-#~ msgstr "삭제"
-
 #~ msgid "Open file path"
 #~ msgstr "파일 경로 열기"
 
@@ -219,9 +301,6 @@ msgstr "업데이트 체크 실패! - wyUpdate.exe가 없습니다!"
 
 #~ msgid "Restore"
 #~ msgstr "복원"
-
-#~ msgid "Color"
-#~ msgstr "색상"
 
 #~ msgid "Hotkey"
 #~ msgstr "단축키"
@@ -350,9 +429,6 @@ msgstr "업데이트 체크 실패! - wyUpdate.exe가 없습니다!"
 #~ msgid "Best"
 #~ msgstr "최대압축"
 
-#~ msgid "Name"
-#~ msgstr "이름"
-
 #~ msgid "Default color?"
 #~ msgstr "색을 초기화 합니까?"
 
@@ -386,12 +462,6 @@ msgstr "업데이트 체크 실패! - wyUpdate.exe가 없습니다!"
 #~ msgid "Watch options"
 #~ msgstr "감시 옵션"
 
-#~ msgid "Add"
-#~ msgstr "추가"
-
-#~ msgid "Close"
-#~ msgstr "닫기"
-
 #~ msgid "Watch items"
 #~ msgstr "감시 항목"
 
@@ -418,9 +488,6 @@ msgstr "업데이트 체크 실패! - wyUpdate.exe가 없습니다!"
 
 #~ msgid "Dark"
 #~ msgstr "어두움"
-
-#~ msgid "Light"
-#~ msgstr "밝음"
 
 #~ msgid "Mono(Dark)"
 #~ msgstr "단색(어두움)"
@@ -509,9 +576,6 @@ msgstr "업데이트 체크 실패! - wyUpdate.exe가 없습니다!"
 #~ msgid "Size"
 #~ msgstr "크기"
 
-#~ msgid "Type"
-#~ msgstr "유형"
-
 #~ msgid "Are you sure you want to <b>delete</b> a file/folder?"
 #~ msgstr "파일/폴더를 정말 <b>삭제</b>하시겠습니까?"
 
@@ -553,9 +617,6 @@ msgstr "업데이트 체크 실패! - wyUpdate.exe가 없습니다!"
 
 #~ msgid "Compression"
 #~ msgstr "압축"
-
-#~ msgid "Filename"
-#~ msgstr "파일명"
 
 #~ msgid "Compression level"
 #~ msgstr "압축 수준"

@@ -43,9 +43,9 @@ namespace hanee.Cad.Tool
             this.sidePanel1.Controls.Add(this.simpleButtonAdd);
             this.sidePanel1.Controls.Add(this.simpleButtonClose);
             this.sidePanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.sidePanel1.Location = new System.Drawing.Point(0, 258);
+            this.sidePanel1.Location = new System.Drawing.Point(0, 241);
             this.sidePanel1.Name = "sidePanel1";
-            this.sidePanel1.Size = new System.Drawing.Size(642, 40);
+            this.sidePanel1.Size = new System.Drawing.Size(642, 37);
             this.sidePanel1.TabIndex = 0;
             this.sidePanel1.Text = "sidePanel1";
             // 
@@ -54,9 +54,10 @@ namespace hanee.Cad.Tool
             this.simpleButtonDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.simpleButtonDel.Location = new System.Drawing.Point(93, 6);
             this.simpleButtonDel.Name = "simpleButtonDel";
-            this.simpleButtonDel.Size = new System.Drawing.Size(75, 25);
+            this.simpleButtonDel.Size = new System.Drawing.Size(75, 23);
             this.simpleButtonDel.TabIndex = 2;
             this.simpleButtonDel.Text = "Delete";
+            this.simpleButtonDel.Visible = false;
             this.simpleButtonDel.Click += new System.EventHandler(this.simpleButtonDel_Click);
             // 
             // simpleButtonAdd
@@ -64,9 +65,10 @@ namespace hanee.Cad.Tool
             this.simpleButtonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.simpleButtonAdd.Location = new System.Drawing.Point(12, 6);
             this.simpleButtonAdd.Name = "simpleButtonAdd";
-            this.simpleButtonAdd.Size = new System.Drawing.Size(75, 25);
+            this.simpleButtonAdd.Size = new System.Drawing.Size(75, 23);
             this.simpleButtonAdd.TabIndex = 1;
             this.simpleButtonAdd.Text = "Add";
+            this.simpleButtonAdd.Visible = false;
             this.simpleButtonAdd.Click += new System.EventHandler(this.simpleButtonAdd_Click);
             // 
             // simpleButtonClose
@@ -74,7 +76,7 @@ namespace hanee.Cad.Tool
             this.simpleButtonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.simpleButtonClose.Location = new System.Drawing.Point(555, 6);
             this.simpleButtonClose.Name = "simpleButtonClose";
-            this.simpleButtonClose.Size = new System.Drawing.Size(75, 25);
+            this.simpleButtonClose.Size = new System.Drawing.Size(75, 23);
             this.simpleButtonClose.TabIndex = 0;
             this.simpleButtonClose.Text = "Close";
             this.simpleButtonClose.Click += new System.EventHandler(this.simpleButtonClose_Click);
@@ -84,14 +86,14 @@ namespace hanee.Cad.Tool
             this.textStyleControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textStyleControl1.Location = new System.Drawing.Point(0, 0);
             this.textStyleControl1.Name = "textStyleControl1";
-            this.textStyleControl1.Size = new System.Drawing.Size(642, 258);
+            this.textStyleControl1.Size = new System.Drawing.Size(642, 241);
             this.textStyleControl1.TabIndex = 1;
             // 
             // FormTextStyle
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(642, 298);
+            this.ClientSize = new System.Drawing.Size(642, 278);
             this.Controls.Add(this.textStyleControl1);
             this.Controls.Add(this.sidePanel1);
             this.Name = "FormTextStyle";

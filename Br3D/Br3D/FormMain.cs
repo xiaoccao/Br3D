@@ -121,6 +121,7 @@ namespace Br3D
             tileNavCategoryOsnap.Caption = LanguageHelper.Tr("Osnap");
             tileNavCategoryAnnotation.Caption = LanguageHelper.Tr("Annotation");
             tileNavCategoryViewport.Caption = LanguageHelper.Tr("Viewport");
+            tileNavCategoryTools.Caption = LanguageHelper.Tr("Tools");
 
 
             //tile
@@ -144,8 +145,8 @@ namespace Br3D
             SetTileText(tileNavItemAbout, LanguageHelper.Tr("About"));
 
             SetTileText(tileNavItemLayer, LanguageHelper.Tr("Layer"));
-
-
+            SetTileText(tileNavItemLineType, LanguageHelper.Tr("Line Type"));
+            SetTileText(tileNavItemTextStyle, LanguageHelper.Tr("Text Style"));
 
             // sub tile
 
@@ -425,6 +426,13 @@ namespace Br3D
             functionByElement.Add(tileNavItemAbout, About);
             functionByElement.Add(tileNavItemLayer, Layer);
             functionByElement.Add(tileNavItemTextStyle, TextStyle);
+            functionByElement.Add(tileNavItemLineType, LineType);
+        }
+
+        void LineType()
+        {
+            ActionLineType ac = new ActionLineType(design, this);
+            ac.Run();
         }
 
         void TextStyle()
@@ -569,6 +577,8 @@ namespace Br3D
                 ActionLayer.formLayer.RefreshDataSource();
             if (ActionTextStyle.formTextStyle != null)
                 ActionTextStyle.formTextStyle.RefreshDataSource();
+            if (ActionLineType.formLineType!= null)
+                ActionLineType.formLineType.RefreshDataSource();
         }
 
         private void navButtonMain_ElementClick(object sender, DevExpress.XtraBars.Navigation.NavElementEventArgs e)

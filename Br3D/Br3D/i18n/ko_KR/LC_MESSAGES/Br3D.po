@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-02-18 08:51+0900\n"
-"PO-Revision-Date: 2022-02-18 08:51+0900\n"
+"POT-Creation-Date: 2022-02-18 20:30+0900\n"
+"PO-Revision-Date: 2022-02-18 20:30+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -17,115 +17,151 @@ msgstr ""
 "X-Poedit-SearchPath-1: Br3D\n"
 "X-Poedit-SearchPath-2: Src\n"
 
-#: Br3D/FormMain.cs:117
+#: Br3D/Define.cs:7 Src/hanee.Cad.Tool/LayerControl.cs:63
+msgid "Line Weight"
+msgstr "선 두께"
+
+#: Br3D/Define.cs:8
+msgid "Line Weight Method"
+msgstr "선 두께 지정방법"
+
+#: Br3D/Define.cs:9 Br3D/FormMain.cs:149 Src/hanee.Cad.Tool/FormLineType.cs:37
+msgid "Line Type"
+msgstr "선 타입"
+
+#: Br3D/Define.cs:10
+msgid "Line Type Method"
+msgstr "선 타입 지정방법"
+
+#: Br3D/Define.cs:11
+msgid "Line Type Scale"
+msgstr "선 타입 축적"
+
+#: Br3D/Define.cs:12
+msgid "Color Method"
+msgstr "색 지정방법"
+
+#: Br3D/Define.cs:13
+msgid "General"
+msgstr "일반"
+
+#: Br3D/Define.cs:14
+msgid "Define"
+msgstr "정의"
+
+#: Br3D/Define.cs:15
+msgid "Scale"
+msgstr "스케일"
+
+#: Br3D/Define.cs:16
+msgid "Method"
+msgstr "지정방법"
+
+#: Br3D/FormMain.cs:118
 msgid "Home"
 msgstr "홈"
 
-#: Br3D/FormMain.cs:120
+#: Br3D/FormMain.cs:121
 msgid "Options"
 msgstr "옵션"
 
-#: Br3D/FormMain.cs:121
+#: Br3D/FormMain.cs:122
 msgid "Osnap"
 msgstr "객체 스냅"
 
-#: Br3D/FormMain.cs:122
+#: Br3D/FormMain.cs:123
 msgid "Annotation"
 msgstr "주석"
 
-#: Br3D/FormMain.cs:123
+#: Br3D/FormMain.cs:124
 msgid "Viewport"
 msgstr "뷰 포트"
 
-#: Br3D/FormMain.cs:124
+#: Br3D/FormMain.cs:125
 msgid "Tools"
 msgstr "도구"
 
-#: Br3D/FormMain.cs:128
+#: Br3D/FormMain.cs:129
 msgid "Open"
 msgstr "열기"
 
-#: Br3D/FormMain.cs:129
+#: Br3D/FormMain.cs:130
 msgid "Save As"
 msgstr "저장"
 
-#: Br3D/FormMain.cs:130
+#: Br3D/FormMain.cs:131
 msgid "Save Image"
 msgstr "이미지 저장"
 
-#: Br3D/FormMain.cs:131
+#: Br3D/FormMain.cs:132
 msgid "Exit"
 msgstr "종료"
 
-#: Br3D/FormMain.cs:132
+#: Br3D/FormMain.cs:133
 msgid "End Point"
 msgstr "끝점"
 
-#: Br3D/FormMain.cs:133
+#: Br3D/FormMain.cs:134
 msgid "Intersection Point"
 msgstr "교차점"
 
-#: Br3D/FormMain.cs:134
+#: Br3D/FormMain.cs:135
 msgid "Center Point"
 msgstr "중심점"
 
-#: Br3D/FormMain.cs:135
+#: Br3D/FormMain.cs:136
 msgid "Point"
 msgstr "점"
 
-#: Br3D/FormMain.cs:136
+#: Br3D/FormMain.cs:137
 msgid "Middle Point"
 msgstr "중간점"
 
-#: Br3D/FormMain.cs:137
+#: Br3D/FormMain.cs:138
 msgid "Coordinates"
 msgstr "좌표"
 
-#: Br3D/FormMain.cs:138
+#: Br3D/FormMain.cs:139
 msgid "Distance"
 msgstr "거리"
 
-#: Br3D/FormMain.cs:139
+#: Br3D/FormMain.cs:140
 msgid "Memo"
 msgstr "메모"
 
-#: Br3D/FormMain.cs:140
+#: Br3D/FormMain.cs:141
 msgid "Clear Annotations"
 msgstr "주석 제거"
 
-#: Br3D/FormMain.cs:141
+#: Br3D/FormMain.cs:142
 msgid "Language"
 msgstr "언어"
 
-#: Br3D/FormMain.cs:143
+#: Br3D/FormMain.cs:144
 msgid "Check For Update"
 msgstr "업데이트 체크"
 
-#: Br3D/FormMain.cs:144
+#: Br3D/FormMain.cs:145
 msgid "Homepage"
 msgstr "홈페이지"
 
-#: Br3D/FormMain.cs:145
+#: Br3D/FormMain.cs:146
 msgid "About"
 msgstr "About"
 
-#: Br3D/FormMain.cs:147
+#: Br3D/FormMain.cs:148
 msgid "Layer"
 msgstr "레이어"
 
-#: Br3D/FormMain.cs:148 Src/hanee.Cad.Tool/FormLineType.cs:37
-msgid "Line Type"
-msgstr "라인 타입"
-
-#: Br3D/FormMain.cs:149
+#: Br3D/FormMain.cs:150
 msgid "Text Style"
 msgstr "텍스트 스타일"
 
-#: Br3D/FormMain.cs:154
+#: Br3D/FormMain.cs:155
 msgid "Object Tree"
 msgstr "객체 트리"
 
-#: Br3D/FormMain.cs:465
+#: Br3D/FormMain.cs:513
 msgid "Update check failed! - wyUpdate.exe not found!"
 msgstr "업데이트 체크 실패! - wyUpdate.exe가 없습니다!"
 
@@ -166,11 +202,7 @@ msgstr "잠금"
 
 #: Src/hanee.Cad.Tool/LayerControl.cs:62
 msgid "Line Type Name"
-msgstr "라인 타입명"
-
-#: Src/hanee.Cad.Tool/LayerControl.cs:63
-msgid "Line Weight"
-msgstr "선 두께"
+msgstr "선 타입명"
 
 #: Src/hanee.Cad.Tool/LayerControl.cs:64
 msgid "Material Name"
@@ -337,9 +369,6 @@ msgstr "폭 비율"
 
 #~ msgid "Hotkeys"
 #~ msgstr "단축키"
-
-#~ msgid "General"
-#~ msgstr "일반"
 
 #~ msgid "Default values"
 #~ msgstr "기본값"
@@ -744,9 +773,6 @@ msgstr "폭 비율"
 
 #~ msgid "Restore selected items"
 #~ msgstr "선택한 항목 복원"
-
-#~ msgid "Undefined"
-#~ msgstr "지정되지 않음"
 
 #~ msgid "Copy to right"
 #~ msgstr "오른쪽으로 복사"

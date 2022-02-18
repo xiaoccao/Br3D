@@ -88,7 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionBase.cs" />
+    <Compile Include="CategoryEx.cs" />
     <Compile Include="DimensionOptionsHelper.cs" />
+    <Compile Include="DisplayNameEx.cs" />
     <Compile Include="EntityColor.cs" />
     <Compile Include="EventParams.cs" />
     <Compile Include="FileHelper.cs" />

@@ -268,12 +268,16 @@ namespace Br3D
             {
                 EntityProperties ep = new EntityProperties(selectedObj as Entity);
                 propertyGridControl1.SelectedObject = ep;
+                
             }
             else
             {
                 propertyGridControl1.SelectedObject = selectedObj;
 
             }
+
+            propertyGridControl1.BestFit();
+
         }
 
         private void Design_MouseUp(object sender, MouseEventArgs e)
@@ -322,8 +326,14 @@ namespace Br3D
             var ent = entProperties.entity;
             try
             {
+                // 선타입 변경시 해당 선타입이 있어야 변경해준다.
+                if (e.Row.Name == "rowlineType")
+                {
+                    if (!design.LineTypes.Contains(e.Value.ToString()))
+                        return;
+                }
                 design.Entities.Regen();
-                propertyGridControl1.Refresh();
+                propertyGridControl1.UpdateData();
                 design.Invalidate();
 
             }

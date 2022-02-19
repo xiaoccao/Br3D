@@ -98,6 +98,10 @@
     <Compile Include="ActionLineType.cs" />
     <Compile Include="ActionList.cs" />
     <Compile Include="ActionMemo.cs" />
+    <Compile Include="ActionNewSketch.cs" />
+    <Compile Include="ActionSaveSketch.cs" />
+    <Compile Include="ActionSketchCircle.cs" />
+    <Compile Include="ActionSketchSlot.cs" />
     <Compile Include="ActionTextStyle.cs" />
     <Compile Include="LineTypeControl.cs">
       <SubType>UserControl</SubType>
@@ -157,6 +161,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <Compile Include="SketchManagerHelper.cs" />
     <Compile Include="TextStyleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -39,7 +39,8 @@ namespace Br3D
             design.WorkFailed += Design_WorkFailed;
             design.MouseUp += Design_MouseUp;
             design.MouseMove += Design_MouseMove;
-
+            design.SketchManager.EditStarted += SketchManager_EditStarted;
+            design.SketchManager.EditEnded += SketchManager_EditEnded;
             hDesign.SaveBackgroundColor();
 
             foreach (Viewport vp in design.Viewports)
@@ -57,11 +58,32 @@ namespace Br3D
             InitTileElementStatus();
             InitObjectTreeList();
             InitPropertyGrid();
+            InitSketchManager();
 
             InitToolbar();
             Translate();
 
 
+        }
+
+        // sketch manager 초기화
+        private void InitSketchManager()
+        {
+            design.SketchManager.ShowFilledRegion = true;
+            tileNavItemSaveSketch.Tile.Enabled = false;
+        }
+
+        private void SketchManager_EditEnded(object source, EventArgs e)
+        {
+            tileNavItemNewSketch.Tile.Enabled = true;
+            tileNavItemSaveSketch.Tile.Enabled = false;
+        }
+
+        // 편집시작하면 new를 가리고, save를 활성화
+        private void SketchManager_EditStarted(object source, EventArgs e)
+        {
+            tileNavItemNewSketch.Tile.Enabled = false;
+            tileNavItemSaveSketch.Tile.Enabled = true;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -323,6 +345,7 @@ namespace Br3D
             var entProperties = propertyGridControl1.SelectedObject as EntityProperties;
             if (entProperties == null)
                 return;
+
             var ent = entProperties.entity;
             try
             {
@@ -413,6 +436,13 @@ namespace Br3D
                 if (result != null)
                     entities.AddRange(result);
             }
+            else if (node.Tag is HatchPattern)
+            {
+                var hatchPatternName = ((HatchPattern)node.Tag).Name;
+                var result = design.Entities.FindAll(x => x is Hatch && ((Hatch)x).PatternName == hatchPatternName);
+                if (result != null)
+                    entities.AddRange(result);
+            }
             else if (node.Tag is TextStyle)
             {
                 var textStyleName = ((TextStyle)node.Tag).Name;
@@ -481,6 +511,39 @@ namespace Br3D
             functionByElement.Add(tileNavItemLayer, Layer);
             functionByElement.Add(tileNavItemTextStyle, TextStyle);
             functionByElement.Add(tileNavItemLineType, LineType);
+
+
+            functionByElement.Add(tileNavItemNewSketch, NewSketch);
+            functionByElement.Add(tileNavItemSaveSketch, SaveSketch);
+            functionByElement.Add(tileNavItemSketchSlot, SketchSlot);
+            functionByElement.Add(tileNavItemSketchCircle, SketchCircle);
+        }
+
+
+        void NewSketch()
+        {
+            ActionNewSketch ac = new ActionNewSketch(design);
+            ac.Run();
+
+            ObjectTreeListHelper.RegenAsync(treeListObject, design, false);
+        }
+
+        void SaveSketch()
+        {
+            ActionSaveSketch ac = new ActionSaveSketch(design);
+            ac.Run();
+        }
+
+        async void SketchCircle()
+        {
+            ActionSketchCircle ac = new ActionSketchCircle(design);
+            await ac.RunAsync();
+        }
+
+        async void SketchSlot()
+        {
+            ActionSketchSlot ac = new ActionSketchSlot(design);
+            await ac.RunAsync();
         }
 
         void LineType()

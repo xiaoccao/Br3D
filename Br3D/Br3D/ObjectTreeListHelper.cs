@@ -140,8 +140,8 @@ namespace Br3D
                 AddTreeNode(rootData, properties, item, ref id);
             }
 
-            // 모든 block
-            foreach (var item in model.Blocks)
+            // 모든 hatch patterns
+            foreach (var item in model.HatchPatterns)
             {
                 List<string> properties = GetTreeNodeProperties(item);
                 if (properties == null || properties.Count == 0)
@@ -160,7 +160,15 @@ namespace Br3D
                 AddTreeNode(rootData, properties, item, ref id);
             }
 
+            // 모든 block
+            foreach (var item in model.Blocks)
+            {
+                List<string> properties = GetTreeNodeProperties(item);
+                if (properties == null || properties.Count == 0)
+                    continue;
 
+                AddTreeNode(rootData, properties, item, ref id);
+            }
             return ConvertTreeDataToTreeOptions(rootData);
         }
 
@@ -322,6 +330,11 @@ namespace Br3D
             {
                 properties.Add("LineType");
                 properties.Add(((LineType)ent).Name);
+            }
+            else if (ent is HatchPattern)
+            {
+                properties.Add("HatchPattern");
+                properties.Add(((HatchPattern)ent).Name);
             }
             else if (ent is TextStyle)
             {

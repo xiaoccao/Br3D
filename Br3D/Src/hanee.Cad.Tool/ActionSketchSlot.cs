@@ -4,19 +4,22 @@ using devDept.Geometry;
 using hanee.ThreeD;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Point = devDept.Eyeshot.Entities.Point;
 
 namespace hanee.Cad.Tool
 {
-    public class ActionSketchSlot : ActionBase
+    public class ActionSketchSlot : ActionSketchBase
     {
-        Point3D startPoint, endPoint, radiusPoint;
-
+        UClick startPoint, endPoint, radiusPoint;
+        
         public ActionSketchSlot(Workspace environment) : base(environment)
         {
         }
 
         public override async void Run()
         { await RunAsync(); }
+
+
 
         double SlotRad(Point2D start, Point2D end, Point2D radial)
         {
@@ -62,7 +65,10 @@ namespace hanee.Cad.Tool
                 return;
             }
 
-            ActionBase.previewEntity = ThreePointsSlot(startPoint, endPoint == null ? point3D : endPoint, radiusPoint == null ? point3D : radiusPoint);
+            var pt1 = startPoint.Position;
+            var pt2 = endPoint == null ? GetCurrentUClick()?.Position : endPoint.Position;
+            var pt3 = radiusPoint == null ? GetCurrentUClick()?.Position : radiusPoint.Position;
+            ActionBase.previewEntity = ThreePointsSlot(pt1, pt2, pt3);
         }
 
 
@@ -70,18 +76,18 @@ namespace hanee.Cad.Tool
         public async Task RunAsync()
         {
             StartAction();
-            var design = GetDesign();
+            var design = GetDesign() as HDesign;
             var sketchManager = design.SketchManager;
-            
+
             while (true)
             {
-                startPoint = await GetPoint3D("Start point");
+                startPoint = await GetUClick("Start point");
                 if (IsCanceled())
                     break;
-                endPoint = await GetPoint3D("End point");
+                endPoint = await GetUClick("End point");
                 if (IsCanceled())
                     break;
-                radiusPoint = await GetPoint3D("Radius point");
+                radiusPoint = await GetUClick("Radius point");
                 if (IsCanceled())
                     break;
 
@@ -89,26 +95,25 @@ namespace hanee.Cad.Tool
                     break;
 
                 // slot 추가
-                var plane = sketchManager.SketchPlane;
-                var startPoint2D = plane.Project(startPoint);
-                var endPoint2D = plane.Project(endPoint);
-                var radiusPoint2D = plane.Project(radiusPoint);
+                double radius = SlotRad(startPoint.Position, endPoint.Position, radiusPoint.Position);
+                var slot = sketchManager.AddSlot(startPoint.Position.X, startPoint.Position.Y, startPoint.Position.DistanceTo(endPoint.Position), radius, (endPoint.Position - startPoint.Position).AsVector.Angle);
+                
 
-                var slot = sketchManager.AddSlot(startPoint2D.X, startPoint2D.Y, startPoint2D.DistanceTo(endPoint2D), SlotRad(startPoint2D, endPoint2D, radiusPoint2D), (endPoint2D - startPoint2D).AsVector.Angle);
-                sketchManager.UpdateAndInvalidate(true);
+                Circle c1 = slot[3] as Circle;
+                Circle c2 = slot[1] as Circle;
+
+                if (startPoint.Entity is Point)
+                    sketchManager.CreateJoinConstraint(startPoint.Entity as Point, sketchManager.CenterPoint(c1));
+
+                if (endPoint.Entity is Point)
+                    sketchManager.CreateJoinConstraint(endPoint.Entity as Point, sketchManager.CenterPoint(c2));
 
                 startPoint = null;
                 endPoint = null;
                 radiusPoint = null;
 
-                //Circle c1 = slot[3] as Circle;
-                //Circle c2 = slot[1] as Circle;
-
-                //if (Clicks[0].Entity is Point)
-                //    Design.SketchManager.CreateJoinConstraint((Point)Clicks[0].Entity, Design.SketchManager.CenterPoint(c1));
-
-                //if (Clicks[1].Entity is Point)
-                //    Design.SketchManager.CreateJoinConstraint((Point)Clicks[1].Entity, Design.SketchManager.CenterPoint(c2));
+                sketchManager.UpdateAndInvalidate(true);
+                design.Invalidate();
             }
 
             EndAction();

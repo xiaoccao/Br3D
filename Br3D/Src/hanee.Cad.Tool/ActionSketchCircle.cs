@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Point = devDept.Eyeshot.Entities.Point;
 
 namespace hanee.Cad.Tool
 {
-    public class ActionSketchCircle : ActionBase
+    public class ActionSketchCircle : ActionSketchBase
     {
-        Point3D centerPoint, radiusPoint;
+        UClick centerPoint, radiusPoint;
 
         public ActionSketchCircle(Workspace environment) : base(environment)
         {
@@ -30,46 +31,47 @@ namespace hanee.Cad.Tool
                 return;
             }
 
-            var design = GetDesign();
             if (!design.SketchManager.Editing)
                 return;
 
-            var plane = design.SketchManager.SketchPlane;
-            var centerPoint2D = plane.Project(centerPoint);
-            var radiusPoint2D = plane.Project(radiusPoint == null ? point3D : radiusPoint);
-            double radius = centerPoint2D.DistanceTo(radiusPoint2D);
+            var pt1 = centerPoint.Position;
+            var pt2 = radiusPoint == null ? GetCurrentUClick().Position : radiusPoint.Position;
+            double radius = pt1.DistanceTo(pt2);
             if (radius == 0)
                 radius = 0.001;
 
-            ActionBase.previewEntity = new Circle(plane, centerPoint2D, radius);
+            ActionBase.previewEntity = new Circle(sketchManager.SketchPlane, pt1, radius);
+        }
+
+        public void AddCircle(UClick center, UClick point)
+        {
+            Circle circle = sketchManager.AddCircle(center.Position, point.Position);
+
+            if (center.Entity != null)
+                sketchManager.CreateJoinConstraint(sketchManager.CenterPoint(circle), center.Entity);
+
+            if (point.Entity != null && point.Entity is Point)
+                sketchManager.CreateJoinConstraint((Point)point.Entity, circle);
         }
 
         public async Task RunAsync()
         {
             StartAction();
-            var design = GetDesign();
-            var sketchManager = design.SketchManager;
 
             while (true)
             {
-                centerPoint = await GetPoint3D("Center point");
+                centerPoint = await GetUClick("Center point");
                 if (IsCanceled())
                     break;
                 
-                radiusPoint = await GetPoint3D("Radius point");
+                radiusPoint = await GetUClick("Radius point");
                 if (IsCanceled())
                     break;
 
                 if (!sketchManager.IsValid())
                     break;
 
-                // slot 추가
-                var plane = sketchManager.SketchPlane;
-                var centerPoint2D = plane.Project(centerPoint);
-                var radiusPoint2D = plane.Project(radiusPoint);
-                double radius = centerPoint2D.DistanceTo(radiusPoint2D);
-
-                var slot = sketchManager.AddCircle(centerPoint2D, radius);
+                AddCircle(centerPoint, radiusPoint);
                 sketchManager.UpdateAndInvalidate(true);
 
                 centerPoint = null;

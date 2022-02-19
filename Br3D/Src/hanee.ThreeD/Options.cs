@@ -38,7 +38,7 @@ namespace hanee.ThreeD
                     }
                 }
             }
-            catch (Exception ex)
+            catch/* (Exception ex)*/
             {
 #if DEBUG
                 //MessageBox.Show(ex.Message);
@@ -68,7 +68,7 @@ namespace hanee.ThreeD
                     }
                 }
             }
-            catch (Exception ex)
+            catch/* (Exception ex)*/
             {
                 //MessageBox.Show("Save options faild.", ex.Message);
             }

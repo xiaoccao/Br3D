@@ -67,7 +67,7 @@ namespace hanee.ThreeD
         }
 
         objectSnapType activeObjectSnap = objectSnapType.None;
-        SnapPoint snap;
+        public SnapPoint snap;
         SnapPoint[] snapPoints;
         bool currentlySnapping = false;
 
@@ -80,6 +80,10 @@ namespace hanee.ThreeD
 
         public int SnapSymbolSize { get; set; }
 
+        public SnapPoint GetSnap()
+        {
+            return snap;
+        }
         // snap된 포인트
         public Point3D GetSnapPoint()
         {
@@ -285,7 +289,7 @@ namespace hanee.ThreeD
             if (activeObjectSnap.HasFlag(objectSnapType.Point) == true)
             {
                 Point3D point3d = point.Vertices[0];
-                pointSnapPoints.Add(new SnapPoint(point3d, objectSnapType.Point));
+                pointSnapPoints.Add(new SnapPoint(point3d, objectSnapType.Point, point));
             }
 
             return pointSnapPoints.ToArray();
@@ -297,13 +301,13 @@ namespace hanee.ThreeD
             List<SnapPoint> lineSnapPoints = new List<SnapPoint>();
             if (activeObjectSnap.HasFlag(objectSnapType.End) == true)
             {
-                lineSnapPoints.Add(new SnapPoint(line.StartPoint, objectSnapType.End));
-                lineSnapPoints.Add(new SnapPoint(line.EndPoint, objectSnapType.End));
+                lineSnapPoints.Add(new SnapPoint(line.StartPoint, objectSnapType.End, line));
+                lineSnapPoints.Add(new SnapPoint(line.EndPoint, objectSnapType.End, line));
             }
 
             if (activeObjectSnap.HasFlag(objectSnapType.Mid))
             {
-                lineSnapPoints.Add(new SnapPoint(line.MidPoint, objectSnapType.Mid));
+                lineSnapPoints.Add(new SnapPoint(line.MidPoint, objectSnapType.Mid, line));
             }
 
             return lineSnapPoints.ToArray();
@@ -317,14 +321,14 @@ namespace hanee.ThreeD
             if (activeObjectSnap.HasFlag(objectSnapType.End))
             {
                 foreach (Point3D point in polyline.Vertices)
-                    polyLineSnapPoints.Add(new SnapPoint(point, objectSnapType.End));
+                    polyLineSnapPoints.Add(new SnapPoint(point, objectSnapType.End, polyline));
             }
 
             if (activeObjectSnap.HasFlag(objectSnapType.Mid))
             {
                 for (int ix = 1; ix < polyline.Vertices.Length; ++ix)
                 {
-                    polyLineSnapPoints.Add(new SnapPoint((polyline.Vertices[ix - 1] + polyline.Vertices[ix]) / 2, objectSnapType.Mid));
+                    polyLineSnapPoints.Add(new SnapPoint((polyline.Vertices[ix - 1] + polyline.Vertices[ix]) / 2, objectSnapType.Mid, polyline));
                 }
             }
 
@@ -338,7 +342,7 @@ namespace hanee.ThreeD
                     {
                         foreach (var mp in matchPoints)
                         {
-                            polyLineSnapPoints.Add(new SnapPoint(mp, objectSnapType.Intersect));
+                            polyLineSnapPoints.Add(new SnapPoint(mp, objectSnapType.Intersect, polyline));
                         }
                     }
                 }
@@ -376,18 +380,18 @@ namespace hanee.ThreeD
 
             if (activeObjectSnap.HasFlag(objectSnapType.End))
             {
-                arcSnapPoints.Add(new SnapPoint(arc.StartPoint, objectSnapType.End));
-                arcSnapPoints.Add(new SnapPoint(arc.EndPoint, objectSnapType.End));
+                arcSnapPoints.Add(new SnapPoint(arc.StartPoint, objectSnapType.End, arc));
+                arcSnapPoints.Add(new SnapPoint(arc.EndPoint, objectSnapType.End, arc));
             }
 
             if (activeObjectSnap.HasFlag(objectSnapType.Mid))
             {
-                arcSnapPoints.Add(new SnapPoint(arc.MidPoint, objectSnapType.Mid));
+                arcSnapPoints.Add(new SnapPoint(arc.MidPoint, objectSnapType.Mid, arc));
             }
 
             if (activeObjectSnap.HasFlag(objectSnapType.Center))
             {
-                arcSnapPoints.Add(new SnapPoint(arc.Center, objectSnapType.Center));
+                arcSnapPoints.Add(new SnapPoint(arc.Center, objectSnapType.Center, arc));
             }
 
 
@@ -402,17 +406,17 @@ namespace hanee.ThreeD
 
             if (activeObjectSnap.HasFlag(objectSnapType.End))
             {
-                circleSnapPoints.Add(new SnapPoint(circle.EndPoint, objectSnapType.End));
+                circleSnapPoints.Add(new SnapPoint(circle.EndPoint, objectSnapType.End, circle));
             }
 
             if (activeObjectSnap.HasFlag(objectSnapType.Mid))
             {
-                circleSnapPoints.Add(new SnapPoint(circle.PointAt(circle.Domain.Mid), objectSnapType.Mid));
+                circleSnapPoints.Add(new SnapPoint(circle.PointAt(circle.Domain.Mid), objectSnapType.Mid, circle));
             }
 
             if (activeObjectSnap.HasFlag(objectSnapType.Center))
             {
-                circleSnapPoints.Add(new SnapPoint(circle.Center, objectSnapType.Center));
+                circleSnapPoints.Add(new SnapPoint(circle.Center, objectSnapType.Center, circle));
             }
 
             if (activeObjectSnap.HasFlag(objectSnapType.Quad))
@@ -422,10 +426,10 @@ namespace hanee.ThreeD
                 Point3D quad3 = new Point3D(circle.Center.X, circle.Center.Y - circle.Radius);
                 Point3D quad4 = new Point3D(circle.Center.X - circle.Radius, circle.Center.Y);
 
-                circleSnapPoints.Add(new SnapPoint(quad1, objectSnapType.Quad));
-                circleSnapPoints.Add(new SnapPoint(quad2, objectSnapType.Quad));
-                circleSnapPoints.Add(new SnapPoint(quad3, objectSnapType.Quad));
-                circleSnapPoints.Add(new SnapPoint(quad4, objectSnapType.Quad));
+                circleSnapPoints.Add(new SnapPoint(quad1, objectSnapType.Quad, circle));
+                circleSnapPoints.Add(new SnapPoint(quad2, objectSnapType.Quad, circle));
+                circleSnapPoints.Add(new SnapPoint(quad3, objectSnapType.Quad, circle));
+                circleSnapPoints.Add(new SnapPoint(quad4, objectSnapType.Quad, circle));
             }
 
 
@@ -439,13 +443,13 @@ namespace hanee.ThreeD
 
             if (activeObjectSnap.HasFlag(objectSnapType.End))
             {
-                curveSnapPoints.Add(new SnapPoint(curve.StartPoint, objectSnapType.End));
-                curveSnapPoints.Add(new SnapPoint(curve.EndPoint, objectSnapType.End));
+                curveSnapPoints.Add(new SnapPoint(curve.StartPoint, objectSnapType.End, curve));
+                curveSnapPoints.Add(new SnapPoint(curve.EndPoint, objectSnapType.End, curve));
             }
 
             if (activeObjectSnap.HasFlag(objectSnapType.Mid))
             {
-                curveSnapPoints.Add(new SnapPoint(curve.PointAt(0.5), objectSnapType.Mid));
+                curveSnapPoints.Add(new SnapPoint(curve.PointAt(0.5), objectSnapType.Mid, curve));
             }
 
 
@@ -459,13 +463,13 @@ namespace hanee.ThreeD
 
             if (activeObjectSnap.HasFlag(objectSnapType.End))
             {
-                elArcSnapPoints.Add(new SnapPoint(elArc.StartPoint, objectSnapType.End));
-                elArcSnapPoints.Add(new SnapPoint(elArc.EndPoint, objectSnapType.End));
+                elArcSnapPoints.Add(new SnapPoint(elArc.StartPoint, objectSnapType.End, elArc));
+                elArcSnapPoints.Add(new SnapPoint(elArc.EndPoint, objectSnapType.End, elArc));
             }
 
             if (activeObjectSnap.HasFlag(objectSnapType.Center))
             {
-                elArcSnapPoints.Add(new SnapPoint(elArc.Center, objectSnapType.Center));
+                elArcSnapPoints.Add(new SnapPoint(elArc.Center, objectSnapType.Center, elArc));
             }
 
             return elArcSnapPoints.ToArray();
@@ -479,17 +483,17 @@ namespace hanee.ThreeD
 
             if (activeObjectSnap.HasFlag(objectSnapType.End))
             {
-                ellipseSnapPoints.Add(new SnapPoint(ellipse.EndPoint, objectSnapType.End));
+                ellipseSnapPoints.Add(new SnapPoint(ellipse.EndPoint, objectSnapType.End, ellipse));
             }
 
             if (activeObjectSnap.HasFlag(objectSnapType.Mid))
             {
-                ellipseSnapPoints.Add(new SnapPoint(ellipse.PointAt(ellipse.Domain.Mid), objectSnapType.Mid));
+                ellipseSnapPoints.Add(new SnapPoint(ellipse.PointAt(ellipse.Domain.Mid), objectSnapType.Mid, ellipse));
             }
 
             if (activeObjectSnap.HasFlag(objectSnapType.Center))
             {
-                ellipseSnapPoints.Add(new SnapPoint(ellipse.Center, objectSnapType.Center));
+                ellipseSnapPoints.Add(new SnapPoint(ellipse.Center, objectSnapType.Center, ellipse));
             }
 
 
@@ -506,7 +510,7 @@ namespace hanee.ThreeD
                 for (int i = 0; i < mesh.Vertices.Length; i++)
                 {
                     Point3D pt = mesh.Vertices[i];
-                    meshSnapPoints.Add(new SnapPoint(pt, objectSnapType.End));
+                    meshSnapPoints.Add(new SnapPoint(pt, objectSnapType.End, mesh));
                 }
             }
             else if (activeObjectSnap.HasFlag(objectSnapType.Mid))
@@ -515,7 +519,7 @@ namespace hanee.ThreeD
                 {
                     Point3D pt1 = mesh.Vertices[edge.V1];
                     Point3D pt2 = mesh.Vertices[edge.V2];
-                    meshSnapPoints.Add(new SnapPoint((pt1 + pt2) / 2, objectSnapType.Mid));
+                    meshSnapPoints.Add(new SnapPoint((pt1 + pt2) / 2, objectSnapType.Mid, mesh));
                 }
             }
             
@@ -613,7 +617,7 @@ namespace hanee.ThreeD
                 if (SnapToGrid(ref pt3D))
                 {
                     List<SnapPoint> gridSnapPoints = new List<SnapPoint>();
-                    gridSnapPoints.Add(new SnapPoint(pt3D, objectSnapType.Grid));
+                    gridSnapPoints.Add(new SnapPoint(pt3D, objectSnapType.Grid, null));
                     snapPoints = gridSnapPoints.ToArray();
                 }
 
@@ -713,6 +717,7 @@ namespace hanee.ThreeD
         public class SnapPoint : devDept.Geometry.Point3D
         {
             public objectSnapType Type;
+            public Entity entity;
 
             public SnapPoint()
                 : base()
@@ -725,9 +730,10 @@ namespace hanee.ThreeD
                 this.Type = objectSnapType.None;
             }
 
-            public SnapPoint(Point3D point3D, objectSnapType objectSnapType) : base(point3D.X, point3D.Y, point3D.Z)
+            public SnapPoint(Point3D point3D, objectSnapType objectSnapType, Entity ent) : base(point3D.X, point3D.Y, point3D.Z)
             {
                 this.Type = objectSnapType;
+                this.entity = ent;
             }
 
             public override string ToString()

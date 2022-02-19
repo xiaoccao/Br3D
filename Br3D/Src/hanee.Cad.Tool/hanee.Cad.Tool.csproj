@@ -100,7 +100,9 @@
     <Compile Include="ActionMemo.cs" />
     <Compile Include="ActionNewSketch.cs" />
     <Compile Include="ActionSaveSketch.cs" />
+    <Compile Include="ActionSketchBase.cs" />
     <Compile Include="ActionSketchCircle.cs" />
+    <Compile Include="ActionSketchLine.cs" />
     <Compile Include="ActionSketchSlot.cs" />
     <Compile Include="ActionTextStyle.cs" />
     <Compile Include="LineTypeControl.cs">
@@ -168,6 +170,7 @@
     <Compile Include="TextStyleControl.Designer.cs">
       <DependentUpon>TextStyleControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UClick.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\hanee.Geometry\hanee.Geometry.csproj">

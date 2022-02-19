@@ -517,8 +517,27 @@ namespace Br3D
             functionByElement.Add(tileNavItemSaveSketch, SaveSketch);
             functionByElement.Add(tileNavItemSketchSlot, SketchSlot);
             functionByElement.Add(tileNavItemSketchCircle, SketchCircle);
+            functionByElement.Add(tileNavItemSketchLine, SketchLine);
         }
 
+
+
+        async void SketchLine()
+        {
+            ActionSketchLine ac = new ActionSketchLine(design);
+            await ac.RunAsync();
+        }
+        async void SketchCircle()
+        {
+            ActionSketchCircle ac = new ActionSketchCircle(design);
+            await ac.RunAsync();
+        }
+
+        async void SketchSlot()
+        {
+            ActionSketchSlot ac = new ActionSketchSlot(design);
+            await ac.RunAsync();
+        }
 
         void NewSketch()
         {
@@ -532,18 +551,6 @@ namespace Br3D
         {
             ActionSaveSketch ac = new ActionSaveSketch(design);
             ac.Run();
-        }
-
-        async void SketchCircle()
-        {
-            ActionSketchCircle ac = new ActionSketchCircle(design);
-            await ac.RunAsync();
-        }
-
-        async void SketchSlot()
-        {
-            ActionSketchSlot ac = new ActionSketchSlot(design);
-            await ac.RunAsync();
         }
 
         void LineType()
